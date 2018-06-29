@@ -7,21 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07446BF820E60C4B00768C90 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BF720E60C4B00768C90 /* LoadMoreView.swift */; };
+		07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BF920E60C9800768C90 /* CNodeService.swift */; };
+		07446BFC20E60DA400768C90 /* TabTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BFB20E60DA400768C90 /* TabTopicViewController.swift */; };
+		07446BFE20E6115900768C90 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BFD20E6115900768C90 /* UserViewController.swift */; };
+		07446C0020E619C300768C90 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BFF20E619C300768C90 /* HomeViewController.swift */; };
+		07446C0220E61BD300768C90 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0120E61BD300768C90 /* Constants.swift */; };
+		07446C0420E6242600768C90 /* TopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0320E6242600768C90 /* TopicTableViewCell.swift */; };
+		07446C0620E6270800768C90 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0520E6270800768C90 /* Result.swift */; };
+		07446C0820E627F500768C90 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0720E627F500768C90 /* Topic.swift */; };
+		07446C0A20E6285300768C90 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0920E6285300768C90 /* Author.swift */; };
+		07446C0C20E63C4200768C90 /* UILabelPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0B20E63C4200768C90 /* UILabelPadding.swift */; };
 		079A88C120E5C58000C1E76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A88C020E5C58000C1E76F /* AppDelegate.swift */; };
-		079A88C320E5C58000C1E76F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A88C220E5C58000C1E76F /* ViewController.swift */; };
+		079A88C320E5C58000C1E76F /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A88C220E5C58000C1E76F /* TabsViewController.swift */; };
 		079A88C620E5C58000C1E76F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 079A88C420E5C58000C1E76F /* Main.storyboard */; };
 		079A88C820E5C58100C1E76F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 079A88C720E5C58100C1E76F /* Assets.xcassets */; };
 		079A88CB20E5C58100C1E76F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 079A88C920E5C58100C1E76F /* LaunchScreen.storyboard */; };
+		079A891720E5FD2100C1E76F /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A891620E5FD2100C1E76F /* NotificationViewController.swift */; };
+		636F8FB742041EF846EE3E20 /* Pods_CNodeJS_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07446BF720E60C4B00768C90 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
+		07446BF920E60C9800768C90 /* CNodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNodeService.swift; sourceTree = "<group>"; };
+		07446BFB20E60DA400768C90 /* TabTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTopicViewController.swift; sourceTree = "<group>"; };
+		07446BFD20E6115900768C90 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		07446BFF20E619C300768C90 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		07446C0120E61BD300768C90 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		07446C0320E6242600768C90 /* TopicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTableViewCell.swift; sourceTree = "<group>"; };
+		07446C0520E6270800768C90 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		07446C0720E627F500768C90 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		07446C0920E6285300768C90 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		07446C0B20E63C4200768C90 /* UILabelPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelPadding.swift; sourceTree = "<group>"; };
 		079A88BD20E5C58000C1E76F /* CNodeJS-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CNodeJS-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		079A88C020E5C58000C1E76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		079A88C220E5C58000C1E76F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		079A88C220E5C58000C1E76F /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		079A88C520E5C58000C1E76F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		079A88C720E5C58100C1E76F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		079A88CA20E5C58100C1E76F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		079A88CC20E5C58100C1E76F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		079A891620E5FD2100C1E76F /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNodeJS_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5A9CD8FB6D3186E894505EB /* Pods-CNodeJS-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNodeJS-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift.release.xcconfig"; sourceTree = "<group>"; };
+		D5FFCA14473FEE46461B9308 /* Pods-CNodeJS-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNodeJS-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +57,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				636F8FB742041EF846EE3E20 /* Pods_CNodeJS_Swift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07446BF620E60C3900768C90 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				07446BF720E60C4B00768C90 /* LoadMoreView.swift */,
+				07446BF920E60C9800768C90 /* CNodeService.swift */,
+				07446C0120E61BD300768C90 /* Constants.swift */,
+				07446C0B20E63C4200768C90 /* UILabelPadding.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		079A88B420E5C58000C1E76F = {
 			isa = PBXGroup;
 			children = (
+				07446BF620E60C3900768C90 /* util */,
+				079A891A20E608F900C1E76F /* cell */,
+				079A891920E608F500C1E76F /* model */,
+				079A891820E608E900C1E76F /* controller */,
 				079A88BF20E5C58000C1E76F /* CNodeJS-Swift */,
 				079A88BE20E5C58000C1E76F /* Products */,
+				91E81104980A73FD48F70BFC /* Pods */,
+				5588F244308DF36E9E3119F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +101,59 @@
 			isa = PBXGroup;
 			children = (
 				079A88C020E5C58000C1E76F /* AppDelegate.swift */,
-				079A88C220E5C58000C1E76F /* ViewController.swift */,
 				079A88C420E5C58000C1E76F /* Main.storyboard */,
 				079A88C720E5C58100C1E76F /* Assets.xcassets */,
 				079A88C920E5C58100C1E76F /* LaunchScreen.storyboard */,
 				079A88CC20E5C58100C1E76F /* Info.plist */,
 			);
 			path = "CNodeJS-Swift";
+			sourceTree = "<group>";
+		};
+		079A891820E608E900C1E76F /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				07446BFF20E619C300768C90 /* HomeViewController.swift */,
+				079A88C220E5C58000C1E76F /* TabsViewController.swift */,
+				079A891620E5FD2100C1E76F /* NotificationViewController.swift */,
+				07446BFD20E6115900768C90 /* UserViewController.swift */,
+				07446BFB20E60DA400768C90 /* TabTopicViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		079A891920E608F500C1E76F /* model */ = {
+			isa = PBXGroup;
+			children = (
+				07446C0520E6270800768C90 /* Result.swift */,
+				07446C0720E627F500768C90 /* Topic.swift */,
+				07446C0920E6285300768C90 /* Author.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		079A891A20E608F900C1E76F /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				07446C0320E6242600768C90 /* TopicTableViewCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		5588F244308DF36E9E3119F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		91E81104980A73FD48F70BFC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D5FFCA14473FEE46461B9308 /* Pods-CNodeJS-Swift.debug.xcconfig */,
+				C5A9CD8FB6D3186E894505EB /* Pods-CNodeJS-Swift.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +163,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 079A88CF20E5C58100C1E76F /* Build configuration list for PBXNativeTarget "CNodeJS-Swift" */;
 			buildPhases = (
+				EBDDA6D2BD503CBCE3880751 /* [CP] Check Pods Manifest.lock */,
 				079A88B920E5C58000C1E76F /* Sources */,
 				079A88BA20E5C58000C1E76F /* Frameworks */,
 				079A88BB20E5C58000C1E76F /* Resources */,
+				75A62CA714CB3EE71DC197EE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,13 +224,80 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		75A62CA714CB3EE71DC197EE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBDDA6D2BD503CBCE3880751 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CNodeJS-Swift-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		079A88B920E5C58000C1E76F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				079A88C320E5C58000C1E76F /* ViewController.swift in Sources */,
+				07446BFE20E6115900768C90 /* UserViewController.swift in Sources */,
+				07446C0820E627F500768C90 /* Topic.swift in Sources */,
+				07446C0C20E63C4200768C90 /* UILabelPadding.swift in Sources */,
+				079A88C320E5C58000C1E76F /* TabsViewController.swift in Sources */,
+				07446BF820E60C4B00768C90 /* LoadMoreView.swift in Sources */,
+				07446C0020E619C300768C90 /* HomeViewController.swift in Sources */,
 				079A88C120E5C58000C1E76F /* AppDelegate.swift in Sources */,
+				07446C0420E6242600768C90 /* TopicTableViewCell.swift in Sources */,
+				079A891720E5FD2100C1E76F /* NotificationViewController.swift in Sources */,
+				07446BFC20E60DA400768C90 /* TabTopicViewController.swift in Sources */,
+				07446C0A20E6285300768C90 /* Author.swift in Sources */,
+				07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */,
+				07446C0220E61BD300768C90 /* Constants.swift in Sources */,
+				07446C0620E6270800768C90 /* Result.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,9 +439,11 @@
 		};
 		079A88D020E5C58100C1E76F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5FFCA14473FEE46461B9308 /* Pods-CNodeJS-Swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 79EEAF2463;
 				INFOPLIST_FILE = "CNodeJS-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -295,9 +458,11 @@
 		};
 		079A88D120E5C58100C1E76F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5A9CD8FB6D3186E894505EB /* Pods-CNodeJS-Swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 79EEAF2463;
 				INFOPLIST_FILE = "CNodeJS-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
