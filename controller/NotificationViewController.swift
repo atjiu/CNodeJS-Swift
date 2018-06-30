@@ -12,7 +12,7 @@ class NotificationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "通知"
+        self.tabBarController?.title = "通知"
         self.view.backgroundColor = .white
         
         self.navigationController?.navigationBar.barStyle = .black

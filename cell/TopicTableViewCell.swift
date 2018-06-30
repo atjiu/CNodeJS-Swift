@@ -71,7 +71,7 @@ class TopicTableViewCell: UITableViewCell {
         
         avatar.snp.makeConstraints { (make) in
             make.width.height.equalTo(36)
-            make.top.left.equalTo(16)
+            make.top.left.equalTo(10)
         }
         
         usernameLabel.snp.makeConstraints { (make) in
@@ -85,7 +85,7 @@ class TopicTableViewCell: UITableViewCell {
         }
         
         viewLabel.snp.makeConstraints { (make) in
-            make.right.equalTo(-16)
+            make.right.equalTo(-10)
             make.top.equalTo(self.avatar.snp.top)
         }
         
@@ -101,8 +101,8 @@ class TopicTableViewCell: UITableViewCell {
         
         titleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.avatar.snp.bottom).offset(10)
-            make.left.equalTo(16)
-            make.right.bottom.equalTo(-16)
+            make.left.equalTo(10)
+            make.right.bottom.equalTo(-10)
         }
     }
     
@@ -118,5 +118,9 @@ class TopicTableViewCell: UITableViewCell {
         self.replyCountLabel.text = String(topic.reply_count ?? 0)
         self.tabLabel.text = topic.tab
         self.titleLabel.text = topic.title
+    }
+    
+    override func frame(forAlignmentRect alignmentRect: CGRect) -> CGRect {
+        return CGRect(x: 0, y: 0, width: alignmentRect.size.width, height: 10)
     }
 }

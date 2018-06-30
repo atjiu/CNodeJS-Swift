@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "话题"
+        self.tabBarController?.title = "话题"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barStyle = .black
         self.navigationController?.navigationBar.tintColor = .white

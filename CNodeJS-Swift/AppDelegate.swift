@@ -16,22 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let homeViewController = UINavigationController(rootViewController: HomeViewController())
-        let notificationViewController = UINavigationController(rootViewController: NotificationViewController())
-        let userViewController = UINavigationController(rootViewController: UserViewController())
-        
-        homeViewController.tabBarItem.title = "话题"
-        notificationViewController.tabBarItem.title = "通知"
-        userViewController.tabBarItem.title = "我"
-        
-        homeViewController.tabBarItem.image = UIImage(named: "baseline_home_black_24pt")
-        notificationViewController.tabBarItem.image = UIImage(named: "baseline_notifications_black_24pt")
-        userViewController.tabBarItem.image = UIImage(named: "baseline_account_circle_black_24pt")
-        
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [homeViewController, notificationViewController, userViewController]
-        
-        self.window?.rootViewController  = tabBarController
+        let navigationController = UINavigationController(rootViewController: LayoutViewController())
+        navigationController.navigationBar.barStyle = .black
+        self.window?.rootViewController  = navigationController
         
         return true
     }

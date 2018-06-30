@@ -1,36 +1,36 @@
 //
-//  UserViewController.swift
+//  TopicDetailViewController.swift
 //  CNodeJS-Swift
 //
-//  Created by H on 2018/6/29.
+//  Created by h on 2018/6/30.
 //  Copyright © 2018年 H. All rights reserved.
 //
 
 import UIKit
+import Kingfisher
+import SnapKit
+import Toast_Swift
 
-class UserViewController: UIViewController {
+class TopicDetailViewController: UIViewController {
+    
+    var topic: Topic!
+    
+    var data = [1,2,3,4,5,6]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.title = "我"
+        self.title = "详情"
         self.view.backgroundColor = .white
-        
         self.navigationController?.navigationBar.barStyle = .black
-        self.navigationController?.navigationBar.tintColor = .white
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
+        // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
     */

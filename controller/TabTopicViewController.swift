@@ -9,6 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 import Moya
+import Toast_Swift
 
 class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     
@@ -23,7 +24,7 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor("#f5f5f5")
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -56,7 +57,8 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
                 self.refresh.endRefreshing()
                 self.tableView.reloadData()
             case .failure(let error):
-                print(error)
+                self.refresh.endRefreshing()
+                self.view.makeToast(error.errorDescription)
             }
         }
     }
@@ -74,14 +76,11 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
                 }
                 self.tableView.reloadData()
             case .failure(let error):
-                print(error)
+                self.tableView.mj_footer.endRefreshing()
+                self.view.makeToast(error.errorDescription)
             }
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 100
-//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
@@ -91,6 +90,13 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TopicTableViewCell
         cell.bind(topic: data[indexPath.row])
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let topic = data[indexPath.row]
+        let topicDetailViewController = TopicDetailViewController()
+        topicDetailViewController.topic = topic
+        self.navigationController?.pushViewController(topicDetailViewController, animated: true)
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {

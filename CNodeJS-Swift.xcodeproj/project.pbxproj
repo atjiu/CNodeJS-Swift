@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0715110A20E71D630014206D /* TopicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715110920E71D630014206D /* TopicDetailViewController.swift */; };
+		0715110C20E71FD80014206D /* LayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715110B20E71FD80014206D /* LayoutViewController.swift */; };
 		07446BF820E60C4B00768C90 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BF720E60C4B00768C90 /* LoadMoreView.swift */; };
 		07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BF920E60C9800768C90 /* CNodeService.swift */; };
 		07446BFC20E60DA400768C90 /* TabTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BFB20E60DA400768C90 /* TabTopicViewController.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0715110920E71D630014206D /* TopicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailViewController.swift; sourceTree = "<group>"; };
+		0715110B20E71FD80014206D /* LayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutViewController.swift; sourceTree = "<group>"; };
 		07446BF720E60C4B00768C90 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
 		07446BF920E60C9800768C90 /* CNodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNodeService.swift; sourceTree = "<group>"; };
 		07446BFB20E60DA400768C90 /* TabTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTopicViewController.swift; sourceTree = "<group>"; };
@@ -112,11 +116,13 @@
 		079A891820E608E900C1E76F /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				0715110B20E71FD80014206D /* LayoutViewController.swift */,
 				07446BFF20E619C300768C90 /* HomeViewController.swift */,
-				079A88C220E5C58000C1E76F /* TabsViewController.swift */,
 				079A891620E5FD2100C1E76F /* NotificationViewController.swift */,
 				07446BFD20E6115900768C90 /* UserViewController.swift */,
+				079A88C220E5C58000C1E76F /* TabsViewController.swift */,
 				07446BFB20E60DA400768C90 /* TabTopicViewController.swift */,
+				0715110920E71D630014206D /* TopicDetailViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -239,6 +245,7 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 			);
@@ -251,6 +258,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 			);
@@ -286,6 +294,7 @@
 			files = (
 				07446BFE20E6115900768C90 /* UserViewController.swift in Sources */,
 				07446C0820E627F500768C90 /* Topic.swift in Sources */,
+				0715110C20E71FD80014206D /* LayoutViewController.swift in Sources */,
 				07446C0C20E63C4200768C90 /* UILabelPadding.swift in Sources */,
 				079A88C320E5C58000C1E76F /* TabsViewController.swift in Sources */,
 				07446BF820E60C4B00768C90 /* LoadMoreView.swift in Sources */,
@@ -297,6 +306,7 @@
 				07446C0A20E6285300768C90 /* Author.swift in Sources */,
 				07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */,
 				07446C0220E61BD300768C90 /* Constants.swift in Sources */,
+				0715110A20E71D630014206D /* TopicDetailViewController.swift in Sources */,
 				07446C0620E6270800768C90 /* Result.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +455,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 79EEAF2463;
 				INFOPLIST_FILE = "CNodeJS-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,7 +463,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.yiiu.CNodeJS-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -464,6 +475,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 79EEAF2463;
 				INFOPLIST_FILE = "CNodeJS-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -471,7 +483,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.yiiu.CNodeJS-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -14,5 +14,6 @@ target 'CNodeJS-Swift' do
   pod 'XLPagerTabStrip'
   pod 'UIColor_Hex_Swift'
   pod 'DeviceKit'
+  pod 'Toast-Swift'
 
 end
