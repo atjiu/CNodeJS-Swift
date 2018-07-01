@@ -30,7 +30,13 @@ class TopicTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
-    var timeLabel: UILabel = {
+    var createTimeLabel: UILabel = {
+        var label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.textColor = UIColor(CNodeColor.timeColor)
+        return label
+    }()
+    var lastReplyTimeLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = UIColor(CNodeColor.timeColor)
@@ -51,8 +57,8 @@ class TopicTableViewCell: UITableViewCell {
     var tabLabel: UILabelPadding = {
         var label = UILabelPadding(withInsets: 0, 0, 3, 3)
         label.font = UIFont.systemFont(ofSize: 13)
-        label.backgroundColor = UIColor(CNodeColor.tabColor)
-        label.textColor = .white
+        label.backgroundColor = UIColor(CNodeColor.grayColor)
+        label.textColor = .gray
         label.layer.cornerRadius = 4
         label.layer.masksToBounds = true
         return label
@@ -63,7 +69,8 @@ class TopicTableViewCell: UITableViewCell {
         
         self.addSubview(avatar)
         self.addSubview(usernameLabel)
-        self.addSubview(timeLabel)
+        self.addSubview(createTimeLabel)
+        self.addSubview(lastReplyTimeLabel)
         self.addSubview(titleLabel)
         self.addSubview(replyCountLabel)
         self.addSubview(viewLabel)
@@ -79,13 +86,18 @@ class TopicTableViewCell: UITableViewCell {
             make.top.equalTo(self.avatar.snp.top)
         }
         
-        timeLabel.snp.makeConstraints { (make) in
+        createTimeLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.usernameLabel.snp.bottom).offset(5)
             make.left.equalTo(self.avatar.snp.right).offset(10)
         }
         
-        viewLabel.snp.makeConstraints { (make) in
+        lastReplyTimeLabel.snp.makeConstraints { (make) in
             make.right.equalTo(-10)
+            make.top.equalTo(self.avatar.snp.top)
+        }
+        
+        viewLabel.snp.makeConstraints { (make) in
+            make.right.equalTo(self.lastReplyTimeLabel.snp.left).offset(-5)
             make.top.equalTo(self.avatar.snp.top)
         }
         
@@ -96,7 +108,7 @@ class TopicTableViewCell: UITableViewCell {
         
         tabLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.avatar.snp.top)
-            make.right.equalTo(self.replyCountLabel.snp.left).offset(-10)
+            make.right.equalTo(self.replyCountLabel.snp.left).offset(-5)
         }
         
         titleLabel.snp.makeConstraints { (make) in
@@ -113,14 +125,12 @@ class TopicTableViewCell: UITableViewCell {
     func bind(topic: Topic) {
         self.avatar.kf.setImage(with: URL(string: (topic.author?.avatar_url)!)!)
         self.usernameLabel.text = topic.author?.loginname
-        self.timeLabel.text = "2小时前"
-        self.viewLabel.text = " / \(topic.visit_count ?? 0)"
+        self.createTimeLabel.text = "创建于 " + (topic.create_at?.getElapsedInterval())!
+        self.lastReplyTimeLabel.text = topic.last_reply_at?.getElapsedInterval()
+        self.viewLabel.text = "/\(topic.visit_count ?? 0)"
         self.replyCountLabel.text = String(topic.reply_count ?? 0)
         self.tabLabel.text = topic.tab
         self.titleLabel.text = topic.title
     }
     
-    override func frame(forAlignmentRect alignmentRect: CGRect) -> CGRect {
-        return CGRect(x: 0, y: 0, width: alignmentRect.size.width, height: 10)
-    }
 }

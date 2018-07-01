@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0715110A20E71D630014206D /* TopicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715110920E71D630014206D /* TopicDetailViewController.swift */; };
 		0715110C20E71FD80014206D /* LayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715110B20E71FD80014206D /* LayoutViewController.swift */; };
+		0715110E20E875DA0014206D /* TopicDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715110D20E875D90014206D /* TopicDetailTableViewCell.swift */; };
 		07446BF820E60C4B00768C90 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BF720E60C4B00768C90 /* LoadMoreView.swift */; };
 		07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BF920E60C9800768C90 /* CNodeService.swift */; };
 		07446BFC20E60DA400768C90 /* TabTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BFB20E60DA400768C90 /* TabTopicViewController.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		0715110920E71D630014206D /* TopicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailViewController.swift; sourceTree = "<group>"; };
 		0715110B20E71FD80014206D /* LayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutViewController.swift; sourceTree = "<group>"; };
+		0715110D20E875D90014206D /* TopicDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailTableViewCell.swift; sourceTree = "<group>"; };
 		07446BF720E60C4B00768C90 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
 		07446BF920E60C9800768C90 /* CNodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNodeService.swift; sourceTree = "<group>"; };
 		07446BFB20E60DA400768C90 /* TabTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTopicViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				07446C0320E6242600768C90 /* TopicTableViewCell.swift */,
+				0715110D20E875D90014206D /* TopicDetailTableViewCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				07446BFC20E60DA400768C90 /* TabTopicViewController.swift in Sources */,
 				07446C0A20E6285300768C90 /* Author.swift in Sources */,
 				07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */,
+				0715110E20E875DA0014206D /* TopicDetailTableViewCell.swift in Sources */,
 				07446C0220E61BD300768C90 /* Constants.swift in Sources */,
 				0715110A20E71D630014206D /* TopicDetailViewController.swift in Sources */,
 				07446C0620E6270800768C90 /* Result.swift in Sources */,

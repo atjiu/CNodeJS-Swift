@@ -52,7 +52,9 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
             switch res {
             case .success(let response):
                 self.page += 1
-                let result = try! JSONDecoder().decode(Result<[Topic]>.self, from: response.data)
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                let result = try! decoder.decode(Result<[Topic]>.self, from: response.data)
                 self.data = result.data!
                 self.refresh.endRefreshing()
                 self.tableView.reloadData()
@@ -68,6 +70,8 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
             switch res {
             case .success(let response):
                 self.page += 1
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                 let result = try! JSONDecoder().decode(Result<[Topic]>.self, from: response.data)
                 self.data += result.data!
                 self.tableView.mj_footer.endRefreshing()
