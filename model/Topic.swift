@@ -21,4 +21,6 @@ struct Topic: Decodable {
     var visit_count: Int?
     var create_at: Date?
     var author: Author?
+    var is_collect: Bool?
+    var replies: [Reply]?
 }

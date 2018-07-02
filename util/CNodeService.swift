@@ -11,6 +11,7 @@ import Moya
 
 enum CNodeService {
     case topics(page: Int, tab: String)
+    case topicDetail(id: String)
 }
 
 extension CNodeService: TargetType {
@@ -22,12 +23,14 @@ extension CNodeService: TargetType {
         switch self {
         case .topics:
             return "/topics"
+        case .topicDetail(let id):
+            return "/topic/\(id)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .topics:
+        case .topics, .topicDetail:
             return .get
         }
     }
@@ -40,6 +43,8 @@ extension CNodeService: TargetType {
         switch self {
         case .topics(let page, let tab):
             return .requestParameters(parameters: ["page": page, "tab": tab, "limit": 50], encoding: URLEncoding.default)
+        case .topicDetail:
+            return .requestPlain
         }
     }
     

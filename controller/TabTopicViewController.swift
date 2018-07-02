@@ -72,7 +72,7 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
                 self.page += 1
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-                let result = try! JSONDecoder().decode(Result<[Topic]>.self, from: response.data)
+                let result = try! decoder.decode(Result<[Topic]>.self, from: response.data)
                 self.data += result.data!
                 self.tableView.mj_footer.endRefreshing()
                 if result.data!.count < 50 {
