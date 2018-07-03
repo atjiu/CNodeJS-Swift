@@ -28,7 +28,7 @@ class TopicDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }()
     var titleLabel: UILabel = {
         var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
         return label
     }()
@@ -96,6 +96,8 @@ class TopicDetailViewController: UIViewController, UITableViewDataSource, UITabl
         return _tableView
     }()
     
+    var refresh = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "详情"
@@ -104,9 +106,14 @@ class TopicDetailViewController: UIViewController, UITableViewDataSource, UITabl
         //设置返回按钮为白色
         self.navigationController?.navigationBar.tintColor = .white
         
+//        self.view.addSubview(refresh)
+//        self.refresh.addTarget(self, action: #selector(TopicDetailViewController.fetch), for: .valueChanged)
+//        self.scrollView.refreshControl? = refresh
+        
         addSubView()
         addConstraints()
         
+//        self.refresh.beginRefreshing()
         fetch()
         
     }
@@ -119,7 +126,7 @@ class TopicDetailViewController: UIViewController, UITableViewDataSource, UITabl
         set {}
     }
     
-    func fetch() {
+    @objc func fetch() {
         provider.request(.topicDetail(id: topic.id!)) { (res) in
             switch res {
             case .success(let response):
@@ -128,6 +135,7 @@ class TopicDetailViewController: UIViewController, UITableViewDataSource, UITabl
                 let result = try! decoder.decode(Result<Topic>.self, from: response.data)
                 self.topic = result.data
                 self.replies = self.topic.replies!
+//                self.refresh.endRefreshing()
                 self.bind()
                 self.tableView.reloadData()
                 self.updateConstraints(height: 0)

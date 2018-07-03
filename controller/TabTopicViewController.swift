@@ -99,6 +99,7 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let topic = data[indexPath.row]
+//        let topicDetailViewController = TopicDetailTableViewController(style: .grouped)
         let topicDetailViewController = TopicDetailViewController()
         topicDetailViewController.topic = topic
         self.navigationController?.pushViewController(topicDetailViewController, animated: true)
