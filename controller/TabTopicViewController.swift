@@ -20,20 +20,22 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     fileprivate var page = 1
     var data = [Topic]()
     
-    var refresh = UIRefreshControl()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor("#f5f5f5")
+        self.view.backgroundColor = .white
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.register(TopicTableViewCell.self, forCellReuseIdentifier: "cell")
         
         // 添加下拉刷新组件
-        self.view.addSubview(refresh)
-        self.refresh.addTarget(self, action: #selector(TabTopicViewController.refreshData), for: .valueChanged)
-        self.tableView.refreshControl? = refresh
+//        self.view.addSubview(refresh)
+//        self.refresh.addTarget(self, action: #selector(TabTopicViewController.refreshData), for: .valueChanged)
+//        self.tableView.refreshControl? = refresh
+        self.tableView.mj_header = RefreshView(refreshingBlock: {
+            [weak self] () -> Void in
+            self?.refreshData()
+        })
         
         // 添加加载更多组件
         self.tableView.mj_footer = LoadMoreView(refreshingBlock: {
@@ -42,8 +44,7 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
         })
         
         //加载数据
-        self.refresh.beginRefreshing()
-        refreshData()
+        self.tableView.mj_header.beginRefreshing()
     }
     
     @objc func refreshData() {
@@ -56,10 +57,10 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                 let result = try! decoder.decode(Result<[Topic]>.self, from: response.data)
                 self.data = result.data!
-                self.refresh.endRefreshing()
+                self.tableView.mj_header.endRefreshing()
                 self.tableView.reloadData()
             case .failure(let error):
-                self.refresh.endRefreshing()
+                self.tableView.mj_header.endRefreshing()
                 self.view.makeToast(error.errorDescription)
             }
         }

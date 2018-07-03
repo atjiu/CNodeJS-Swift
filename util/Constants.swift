@@ -13,6 +13,9 @@ import DeviceKit
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width;
 //屏幕高度
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height;
+// viewport
+let VIEWPORT = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui\">"
+let CSS = try! String(contentsOfFile: Bundle.main.path(forResource: "app", ofType: "css")!, encoding: String.Encoding.utf8)
 //NavagationBar高度
 let NavigationBarHeight:CGFloat = {
     let device = Device()
@@ -55,5 +58,19 @@ extension Date {
         } else {
             return "几秒前"
         }
+    }
+}
+
+extension String {
+    var htmlToAttributedString: NSAttributedString? {
+        guard let data = data(using: .utf8) else { return NSAttributedString() }
+        do {
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            return NSAttributedString()
+        }
+    }
+    var htmlToString: String {
+        return htmlToAttributedString?.string ?? ""
     }
 }

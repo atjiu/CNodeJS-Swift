@@ -28,6 +28,8 @@
 		079A88C820E5C58100C1E76F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 079A88C720E5C58100C1E76F /* Assets.xcassets */; };
 		079A88CB20E5C58100C1E76F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 079A88C920E5C58100C1E76F /* LaunchScreen.storyboard */; };
 		079A891720E5FD2100C1E76F /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A891620E5FD2100C1E76F /* NotificationViewController.swift */; };
+		07A5428020EBBE960068B99C /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A5427F20EBBE960068B99C /* RefreshView.swift */; };
+		07A5428220EBC2610068B99C /* app.css in Resources */ = {isa = PBXBuildFile; fileRef = 07A5428120EBC2610068B99C /* app.css */; };
 		636F8FB742041EF846EE3E20 /* Pods_CNodeJS_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,8 @@
 		079A88CA20E5C58100C1E76F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		079A88CC20E5C58100C1E76F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		079A891620E5FD2100C1E76F /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		07A5427F20EBBE960068B99C /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
+		07A5428120EBC2610068B99C /* app.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = app.css; sourceTree = "<group>"; };
 		627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNodeJS_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A9CD8FB6D3186E894505EB /* Pods-CNodeJS-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNodeJS-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift.release.xcconfig"; sourceTree = "<group>"; };
 		D5FFCA14473FEE46461B9308 /* Pods-CNodeJS-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNodeJS-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 				07446BF920E60C9800768C90 /* CNodeService.swift */,
 				07446C0120E61BD300768C90 /* Constants.swift */,
 				07446C0B20E63C4200768C90 /* UILabelPadding.swift */,
+				07A5427F20EBBE960068B99C /* RefreshView.swift */,
+				07A5428120EBC2610068B99C /* app.css */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -231,6 +237,7 @@
 				079A88CB20E5C58100C1E76F /* LaunchScreen.storyboard in Resources */,
 				079A88C820E5C58100C1E76F /* Assets.xcassets in Resources */,
 				079A88C620E5C58000C1E76F /* Main.storyboard in Resources */,
+				07A5428220EBC2610068B99C /* app.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +318,7 @@
 				07446C0420E6242600768C90 /* TopicTableViewCell.swift in Sources */,
 				079A891720E5FD2100C1E76F /* NotificationViewController.swift in Sources */,
 				07446BFC20E60DA400768C90 /* TabTopicViewController.swift in Sources */,
+				07A5428020EBBE960068B99C /* RefreshView.swift in Sources */,
 				07446C0A20E6285300768C90 /* Author.swift in Sources */,
 				078B340720E9CD6A006AD5D1 /* Reply.swift in Sources */,
 				07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */,

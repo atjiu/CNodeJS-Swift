@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 import Kingfisher
-import WebKit
 import YYText
 
 class ReplyTableViewCell: UITableViewCell {
@@ -53,10 +52,11 @@ class ReplyTableViewCell: UITableViewCell {
         image.image = UIImage(named: "baseline_reply_black_24pt")
         return image
     }()
-    var contentLabel: UILabel = {
-        var label = UILabel()
+    var contentLabel: YYLabel = {
+        var label = YYLabel()
         label.numberOfLines = 0
-        label.sizeToFit()
+        label.displaysAsynchronously = true
+        label.preferredMaxLayoutWidth = SCREEN_WIDTH
         return label
     }()
     
@@ -118,8 +118,11 @@ class ReplyTableViewCell: UITableViewCell {
         positionLabel.text = "\(position)楼"
         createTimeLabel.text = reply.create_at?.getElapsedInterval()
         upLabel.text = String(reply.ups?.count ?? 0)
-        let content = "<html><head><style>.markdown-text{font-size:11pt;}img{max-width: 100%;}</style></head><body>\(reply.content!.trimmingCharacters(in: CharacterSet.newlines))</body></html>"
-        contentLabel.attributedText = try? NSMutableAttributedString(data: content.data(using: String.Encoding.unicode)!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+        var content = "<html><head>"+VIEWPORT+"<style>"+CSS+"img{max-width: 100%;}</style></head><body>\(reply.content!.trimmingCharacters(in: CharacterSet.newlines))</body></html>"
+        content = content.replacingOccurrences(of: "//dn-cnode.qbox.me", with: "https://dn-cnode.qbox.me")
+        content = content.replacingOccurrences(of: "\n</div>", with: "</div>")
+        contentLabel.textLayout = YYTextLayout(containerSize: CGSize(width: SCREEN_WIDTH-24, height: 9999), text: content.htmlToAttributedString!)
+        contentLabel.attributedText = content.htmlToAttributedString
     }
     
     required init?(coder aDecoder: NSCoder) {

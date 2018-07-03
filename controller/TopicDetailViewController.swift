@@ -12,7 +12,6 @@ import SnapKit
 import Toast_Swift
 import WebKit
 import Moya
-import YYText
 
 class TopicDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -83,7 +82,6 @@ class TopicDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     var scrollView: UIScrollView = {
         var scroll = UIScrollView()
-        scroll.backgroundColor = UIColor(CNodeColor.grayColor)
         scroll.alwaysBounceHorizontal = false
         scroll.alwaysBounceVertical = true
         return scroll
@@ -108,7 +106,6 @@ class TopicDetailViewController: UIViewController, UITableViewDataSource, UITabl
         
         addSubView()
         addConstraints()
-        bind()
         
         fetch()
         
@@ -129,8 +126,11 @@ class TopicDetailViewController: UIViewController, UITableViewDataSource, UITabl
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                 let result = try! decoder.decode(Result<Topic>.self, from: response.data)
-                self.replies = (result.data?.replies!)!
+                self.topic = result.data
+                self.replies = self.topic.replies!
+                self.bind()
                 self.tableView.reloadData()
+                self.updateConstraints(height: 0)
             case .failure(let error):
                 self.view.makeToast(error.errorDescription)
             }
@@ -220,7 +220,9 @@ class TopicDetailViewController: UIViewController, UITableViewDataSource, UITabl
         viewLabel.text = "/\(topic.visit_count ?? 0)次浏览"
         tabLabel.text = topic.tab
         titleLabel.text = topic.title
-        let content = "<html><head><style>.markdown-text{font-size:20pt;}img{max-width: 100%;}</style></head><body>\(topic.content!)</body></html>"
+        var content = "<html><head>"+VIEWPORT+"<style>"+CSS+"img{max-width: 100%;}</style></head><body>\(topic.content!)</body></html>"
+        content = content.replacingOccurrences(of: "//dn-cnode.qbox.me", with: "https://dn-cnode.qbox.me")
+        content = content.replacingOccurrences(of: "\n</div>", with: "</div>")
         contentWebView.loadHTMLString(content, baseURL: nil)
     }
     
