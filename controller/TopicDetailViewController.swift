@@ -13,7 +13,7 @@ import Toast_Swift
 import Moya
 import WebKit
 
-class TopicDetailViewController: UIViewController, WKNavigationDelegate {
+class TopicDetailViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
     
     var provider = MoyaProvider<CNodeService>()
     
@@ -22,8 +22,12 @@ class TopicDetailViewController: UIViewController, WKNavigationDelegate {
     lazy var webView: WKWebView = {
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true
+        
         let configuration = WKWebViewConfiguration()
         configuration.preferences = preferences
+        configuration.userContentController = WKUserContentController()
+        configuration.userContentController.add(self, name: "AppModel")
+        
         var webView = WKWebView(frame: .zero, configuration: configuration)
         webView.layer.borderColor = UIColor.red.cgColor
         webView.layer.borderWidth = 1
@@ -94,4 +98,7 @@ class TopicDetailViewController: UIViewController, WKNavigationDelegate {
         })
     }
     
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print(message.body)
+    }
 }

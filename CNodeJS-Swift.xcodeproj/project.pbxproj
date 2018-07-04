@@ -22,8 +22,6 @@
 		07446C0C20E63C4200768C90 /* UILabelPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0B20E63C4200768C90 /* UILabelPadding.swift */; };
 		074F903820E9FA9A00951B27 /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */; };
 		0781B4A420ECAF6A00E006F1 /* TopicDetail.html in Resources */ = {isa = PBXBuildFile; fileRef = 0781B4A320ECAF6A00E006F1 /* TopicDetail.html */; };
-		0781B4A720ECB72200E006F1 /* SwiftJavaScriptDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0781B4A620ECB72200E006F1 /* SwiftJavaScriptDelegate.swift */; };
-		0781B4A920ECB78300E006F1 /* SwiftJavaScriptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0781B4A820ECB78300E006F1 /* SwiftJavaScriptModel.swift */; };
 		078B340720E9CD6A006AD5D1 /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078B340620E9CD6A006AD5D1 /* Reply.swift */; };
 		079A88C120E5C58000C1E76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A88C020E5C58000C1E76F /* AppDelegate.swift */; };
 		079A88C320E5C58000C1E76F /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A88C220E5C58000C1E76F /* TabsViewController.swift */; };
@@ -54,8 +52,6 @@
 		07446C0B20E63C4200768C90 /* UILabelPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelPadding.swift; sourceTree = "<group>"; };
 		074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
 		0781B4A320ECAF6A00E006F1 /* TopicDetail.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = TopicDetail.html; sourceTree = "<group>"; };
-		0781B4A620ECB72200E006F1 /* SwiftJavaScriptDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftJavaScriptDelegate.swift; sourceTree = "<group>"; };
-		0781B4A820ECB78300E006F1 /* SwiftJavaScriptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftJavaScriptModel.swift; sourceTree = "<group>"; };
 		078B340620E9CD6A006AD5D1 /* Reply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
 		079A88BD20E5C58000C1E76F /* CNodeJS-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CNodeJS-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		079A88C020E5C58000C1E76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,19 +96,9 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		0781B4A520ECB70500E006F1 /* JavaScript */ = {
-			isa = PBXGroup;
-			children = (
-				0781B4A620ECB72200E006F1 /* SwiftJavaScriptDelegate.swift */,
-				0781B4A820ECB78300E006F1 /* SwiftJavaScriptModel.swift */,
-			);
-			path = JavaScript;
-			sourceTree = "<group>";
-		};
 		079A88B420E5C58000C1E76F = {
 			isa = PBXGroup;
 			children = (
-				0781B4A520ECB70500E006F1 /* JavaScript */,
 				07446BF620E60C3900768C90 /* Util */,
 				079A891A20E608F900C1E76F /* Cell */,
 				079A891920E608F500C1E76F /* Model */,
@@ -346,8 +332,6 @@
 				07A5428020EBBE960068B99C /* RefreshView.swift in Sources */,
 				07BE3EF120EBE1F600E097E0 /* TopicDetailTableViewController.swift in Sources */,
 				07446C0A20E6285300768C90 /* Author.swift in Sources */,
-				0781B4A720ECB72200E006F1 /* SwiftJavaScriptDelegate.swift in Sources */,
-				0781B4A920ECB78300E006F1 /* SwiftJavaScriptModel.swift in Sources */,
 				078B340720E9CD6A006AD5D1 /* Reply.swift in Sources */,
 				07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */,
 				074F903820E9FA9A00951B27 /* ReplyTableViewCell.swift in Sources */,
