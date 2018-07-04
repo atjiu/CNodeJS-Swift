@@ -65,7 +65,7 @@ class TopicDetailTableViewCell: UITableViewCell {
     var starImage: UIButton = {
         var button = UIButton(type: UIButtonType.custom)
         button.setImage(UIImage(named: "baseline_star_border_black_24pt"), for: UIControlState.normal)
-        button.addTarget(self, action: #selector(TopicDetailViewController.starClick), for: UIControlEvents.touchUpInside)
+        button.addTarget(self, action: #selector(TopicDetailTableViewCell.starClick), for: UIControlEvents.touchUpInside)
         return button
     }()
     

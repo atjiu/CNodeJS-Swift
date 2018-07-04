@@ -16,6 +16,7 @@ let SCREEN_HEIGHT = UIScreen.main.bounds.size.height;
 // viewport
 let VIEWPORT = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui\">"
 let CSS = try! String(contentsOfFile: Bundle.main.path(forResource: "app", ofType: "css")!, encoding: String.Encoding.utf8)
+let TOPICDETAILHTML = try! String(contentsOfFile: Bundle.main.path(forResource: "TopicDetail", ofType: "html")!, encoding: String.Encoding.utf8)
 //NavagationBar高度
 let NavigationBarHeight:CGFloat = {
     let device = Device()
