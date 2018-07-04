@@ -80,7 +80,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07446BF620E60C3900768C90 /* util */ = {
+		07446BF620E60C3900768C90 /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				07446BF720E60C4B00768C90 /* LoadMoreView.swift */,
@@ -90,16 +90,16 @@
 				07A5427F20EBBE960068B99C /* RefreshView.swift */,
 				07A5428120EBC2610068B99C /* app.css */,
 			);
-			path = util;
+			path = Util;
 			sourceTree = "<group>";
 		};
 		079A88B420E5C58000C1E76F = {
 			isa = PBXGroup;
 			children = (
-				07446BF620E60C3900768C90 /* util */,
-				079A891A20E608F900C1E76F /* cell */,
-				079A891920E608F500C1E76F /* model */,
-				079A891820E608E900C1E76F /* controller */,
+				07446BF620E60C3900768C90 /* Util */,
+				079A891A20E608F900C1E76F /* Cell */,
+				079A891920E608F500C1E76F /* Model */,
+				079A891820E608E900C1E76F /* Controller */,
 				079A88BF20E5C58000C1E76F /* CNodeJS-Swift */,
 				079A88BE20E5C58000C1E76F /* Products */,
 				91E81104980A73FD48F70BFC /* Pods */,
@@ -127,7 +127,7 @@
 			path = "CNodeJS-Swift";
 			sourceTree = "<group>";
 		};
-		079A891820E608E900C1E76F /* controller */ = {
+		079A891820E608E900C1E76F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				0715110B20E71FD80014206D /* LayoutViewController.swift */,
@@ -139,10 +139,10 @@
 				0715110920E71D630014206D /* TopicDetailViewController.swift */,
 				07BE3EF020EBE1F600E097E0 /* TopicDetailTableViewController.swift */,
 			);
-			path = controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		079A891920E608F500C1E76F /* model */ = {
+		079A891920E608F500C1E76F /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				07446C0520E6270800768C90 /* Result.swift */,
@@ -150,17 +150,17 @@
 				07446C0920E6285300768C90 /* Author.swift */,
 				078B340620E9CD6A006AD5D1 /* Reply.swift */,
 			);
-			path = model;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		079A891A20E608F900C1E76F /* cell */ = {
+		079A891A20E608F900C1E76F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				07446C0320E6242600768C90 /* TopicTableViewCell.swift */,
 				074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */,
 				07BE3EF220EBE69E00E097E0 /* TopicDetailTableViewCell.swift */,
 			);
-			path = cell;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5588F244308DF36E9E3119F5 /* Frameworks */ = {
