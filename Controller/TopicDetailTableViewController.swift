@@ -37,6 +37,12 @@ class TopicDetailTableViewController: UITableViewController {
         self.tableView.mj_header.beginRefreshing()
         topicDetailView.isHidden = true
         self.tableView.tableHeaderView = topicDetailView
+        topicDetailView.heightChange = {
+            [weak self] (flag) in
+            if flag {
+                self?.tableView.reloadData()
+            }
+        }
     }
     
     func fetch() {

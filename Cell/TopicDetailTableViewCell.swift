@@ -180,7 +180,7 @@ class TopicDetailTableViewCell: UITableViewCell {
             star = true
         }
     }
-    
+    var heightChange: ( (_ flag: Bool) -> Void )?
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let keyPath = keyPath else {
             super.observeValue(forKeyPath: nil, of: object, change: change, context: context)
@@ -188,6 +188,7 @@ class TopicDetailTableViewCell: UITableViewCell {
         }
         if keyPath == "contentSize" {
             updateConstraints(height: contentWebView.scrollView.contentSize.height)
+            heightChange?(true)
         }
     }
 

@@ -115,7 +115,7 @@ class ReplyTableViewCell: UITableViewCell {
     func bind(reply: Reply, position: Int) {
         avatar.kf.setImage(with: URL(string: (reply.author?.avatar_url!)!))
         usernameLabel.text = reply.author?.loginname
-        positionLabel.text = "\(position)楼"
+        positionLabel.text = "\(position + 1)楼"
         createTimeLabel.text = reply.create_at?.getElapsedInterval()
         upLabel.text = String(reply.ups?.count ?? 0)
         var content = "<html><head>"+VIEWPORT+"<style>"+CSS+"img{max-width: 100%;}</style></head><body>\(reply.content!.trimmingCharacters(in: CharacterSet.newlines))</body></html>"
