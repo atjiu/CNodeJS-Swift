@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Moya
 import YYText
+import Toast_Swift
 
 class TopicDetailTableViewController: UITableViewController {
     
@@ -25,9 +26,16 @@ class TopicDetailTableViewController: UITableViewController {
         //设置返回按钮为白色
         self.navigationController?.navigationBar.tintColor = .white
         
+        //添加菜单
+        let menuButton = UIButton()
+        menuButton.contentMode = .center
+        menuButton.setImage(UIImage(named: "baseline_menu_white_24pt"), for: UIControlState.normal)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
+        menuButton.addTarget(self, action: #selector(TopicDetailTableViewController.menuClick), for: .touchUpInside)
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.tableView.register(TopicDetailTableViewCell.self, forCellReuseIdentifier: "detailCell")
+        self.tableView.separatorStyle = .none
         self.tableView.register(ReplyTableViewCell.self, forCellReuseIdentifier: "repliesCell")
         
         self.tableView.mj_header = RefreshView(refreshingBlock: {
@@ -35,13 +43,43 @@ class TopicDetailTableViewController: UITableViewController {
             self?.fetch()
         })
         self.tableView.mj_header.beginRefreshing()
-        topicDetailView.isHidden = true
-        self.tableView.tableHeaderView = topicDetailView
         topicDetailView.heightChange = {
             [weak self] (flag) in
             if flag {
                 self?.tableView.reloadData()
             }
+        }
+    }
+    
+    @objc func menuClick() {
+        let alertController = UIAlertController(title: "Hello World", message: "WebView这么难用，那么Safari是怎么开发出来的呢？", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "收藏", style: .default, handler: self.collectHandler))
+        alertController.addAction(UIAlertAction(title: "分享", style: .default, handler: self.shareHandler))
+        alertController.addAction(UIAlertAction(title: "回复", style: .default, handler: self.replyHandler))
+        alertController.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func collectHandler(alert: UIAlertAction) {
+        if isLogin {
+            print(111)
+        } else {
+            self.view.makeToast("请先登录", duration: 2, position: .center)
+        }
+    }
+    
+    func shareHandler(alert: UIAlertAction) {
+        let shareUrl = URL.init(string: "\(BASE_URL)/topic/\(topic.id!)")
+        let shareArr = [shareUrl!]
+        let activityController = UIActivityViewController.init(activityItems: shareArr, applicationActivities: nil)
+        self.present(activityController, animated: true, completion: nil)
+    }
+    
+    func replyHandler(alert: UIAlertAction) {
+        if isLogin {
+            print(222)
+        } else {
+            self.view.makeToast("请先登录", duration: 2, position: .center)
         }
     }
     
@@ -55,7 +93,7 @@ class TopicDetailTableViewController: UITableViewController {
                 self.topic = result.data
                 self.tableView.mj_header.endRefreshing()
                 self.topicDetailView.bind(topic: self.topic)
-                self.topicDetailView.isHidden = false
+                self.tableView.tableHeaderView = self.topicDetailView
                 self.tableView.reloadData()
             case .failure(let error):
                 self.view.makeToast(error.errorDescription)

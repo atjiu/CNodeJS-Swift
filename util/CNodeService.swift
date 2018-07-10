@@ -16,7 +16,7 @@ enum CNodeService {
 
 extension CNodeService: TargetType {
     var baseURL: URL {
-        return URL(string: "https://cnodejs.org/api/v1")!
+        return URL(string: "\(BASE_URL)/api/v1")!
     }
     
     var path: String {

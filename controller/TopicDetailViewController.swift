@@ -46,34 +46,17 @@ class TopicDetailViewController: UIViewController, WKNavigationDelegate, WKScrip
         self.navigationController?.navigationBar.barStyle = .black
         //设置返回按钮为白色
         self.navigationController?.navigationBar.tintColor = .white
-        
+
         //给scrollView添加下拉刷新
 //        self.scrollView.refreshControl = refresh
 //        self.refresh.addTarget(self, action: #selector(TopicDetailViewController.fetch), for: .valueChanged)
-        
+
         addSubView()
         addConstraints()
-        
-        fetch()
     }
-    
+
     func world(message: String) {
         print("message: \(message)")
-    }
-    
-    @objc func fetch() {
-        provider.request(.topicDetail(id: topic.id!)) { (res) in
-            switch res {
-            case .success(let response):
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-                let result = try! decoder.decode(Result<Topic>.self, from: response.data)
-                self.topic = result.data
-                self.reloadData()
-            case .failure(let error):
-                self.view.makeToast(error.errorDescription)
-            }
-        }
     }
     
     func addSubView() {
@@ -88,14 +71,26 @@ class TopicDetailViewController: UIViewController, WKNavigationDelegate, WKScrip
     }
     
     func reloadData() {
-        webView.loadHTMLString(TOPICDETAILHTML, baseURL: nil)
-        
+        webView.loadHTMLString(TOPICDETAILHTML, baseURL: Bundle.main.resourceURL)
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        webView.evaluateJavaScript("hello('\(topic.title!)')", completionHandler: { (res, err) in
-            print(res, err)
-        })
+        provider.request(.topicDetail(id: topic.id!)) { (res) in
+            switch res {
+            case .success(let response):
+                print(try! response.mapJSON())
+//                let decoder = JSONDecoder()
+//                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+//                let result = try! decoder.decode(Result<Topic>.self, from: response.data)
+//                self.topic = result.data
+//                self.reloadData()
+                webView.evaluateJavaScript("init('\(response.data.description)')", completionHandler: { (res, err) in
+                    print(res, err)
+                })
+            case .failure(let error):
+                self.view.makeToast(error.errorDescription)
+            }
+        }
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {

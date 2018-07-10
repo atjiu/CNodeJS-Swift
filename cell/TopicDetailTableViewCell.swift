@@ -84,17 +84,19 @@ class TopicDetailTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(avatar)
-        self.addSubview(usernameLabel)
-        self.addSubview(createTimeLabel)
-        self.addSubview(titleLabel)
-        self.addSubview(viewLabel)
-        self.addSubview(tabLabel)
-        self.addSubview(starImage)
-        self.addSubview(contentWebView)
+        self.contentView.isUserInteractionEnabled = true
+        
+        self.contentView.addSubview(avatar)
+        self.contentView.addSubview(usernameLabel)
+        self.contentView.addSubview(createTimeLabel)
+        self.contentView.addSubview(titleLabel)
+        self.contentView.addSubview(viewLabel)
+        self.contentView.addSubview(tabLabel)
+        self.contentView.addSubview(starImage)
+        self.contentView.addSubview(contentWebView)
         
         self.tableHeaderView.addSubview(self.tableHeaderTitle)
-        self.addSubview(tableHeaderView)
+        self.contentView.addSubview(tableHeaderView)
         
         titleLabel.snp.makeConstraints { (make) in
             make.left.top.equalTo(10)
@@ -180,6 +182,7 @@ class TopicDetailTableViewCell: UITableViewCell {
             star = true
         }
     }
+    
     var heightChange: ( (_ flag: Bool) -> Void )?
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let keyPath = keyPath else {
@@ -193,7 +196,6 @@ class TopicDetailTableViewCell: UITableViewCell {
     }
 
     func updateConstraints(height: CGFloat) {
-        print("height: \(height)")
         let topicDetailHeight = 10 + self.titleLabel.bounds.size.height + 10 + self.avatar.bounds.size.height + 10 + height + self.tableHeaderView.bounds.size.height
         self.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: topicDetailHeight)
         self.contentWebView.snp.updateConstraints { (make) in

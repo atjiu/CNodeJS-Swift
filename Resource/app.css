@@ -1,0 +1,75 @@
+body {
+  margin: 0 auto;
+  font-size: 12px;
+}
+
+.markdown-text p, .preview p {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5em;
+}
+
+.markdown-text > :last-child, .preview > :last-child, textarea#title {
+  margin-bottom: 1em
+}
+
+.markdown-text > :first-child, .preview > :first-child {
+  margin-top: 0
+}
+
+.markdown-text li, .preview li {
+  /*    font-size:14px;*/
+  line-height: 1.5em
+}
+
+.markdown-text li code, .markdown-text p code, .preview li code, .preview p code {
+  color: #000;
+  background-color: #fcfafa;
+  padding: 4px 6px
+}
+
+.markdown-text img {
+  cursor: pointer
+}
+
+.markdown-text h1 code, .markdown-text h2 code, .markdown-text h3 code, .markdown-text h4 code, .markdown-text h5 code, .markdown-text h6 code {
+  font-size: inherit;
+  color: inherit
+}
+
+.markdown-text a {
+  color: #08c
+}
+
+img {
+  max-width: 100%
+}
+
+ul, ol {
+  margin: 15px 0 15px 20px;
+  padding: 0;
+}
+
+ol li, ul li {
+  padding: 0;
+  margin: 0;
+}
+
+li > ul, li > ol {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+}

@@ -21,7 +21,6 @@
 		07446C0A20E6285300768C90 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0920E6285300768C90 /* Author.swift */; };
 		07446C0C20E63C4200768C90 /* UILabelPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0B20E63C4200768C90 /* UILabelPadding.swift */; };
 		074F903820E9FA9A00951B27 /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */; };
-		0781B4A420ECAF6A00E006F1 /* TopicDetail.html in Resources */ = {isa = PBXBuildFile; fileRef = 0781B4A320ECAF6A00E006F1 /* TopicDetail.html */; };
 		078B340720E9CD6A006AD5D1 /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078B340620E9CD6A006AD5D1 /* Reply.swift */; };
 		079A88C120E5C58000C1E76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A88C020E5C58000C1E76F /* AppDelegate.swift */; };
 		079A88C320E5C58000C1E76F /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A88C220E5C58000C1E76F /* TabsViewController.swift */; };
@@ -34,6 +33,8 @@
 		07BE3EF120EBE1F600E097E0 /* TopicDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE3EF020EBE1F600E097E0 /* TopicDetailTableViewController.swift */; };
 		07BE3EF320EBE69E00E097E0 /* TopicDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE3EF220EBE69E00E097E0 /* TopicDetailTableViewCell.swift */; };
 		636F8FB742041EF846EE3E20 /* Pods_CNodeJS_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */; };
+		681C6C26F0CEC1CF17FAF890 /* topic_detail.html in Resources */ = {isa = PBXBuildFile; fileRef = 684FE68948450D9F90F4E1EF /* topic_detail.html */; };
+		68857D55D6DCD14AE423E2A9 /* vue.js in Sources */ = {isa = PBXBuildFile; fileRef = 68BDBFF0627BB5B335DCD9DD /* vue.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +52,6 @@
 		07446C0920E6285300768C90 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		07446C0B20E63C4200768C90 /* UILabelPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelPadding.swift; sourceTree = "<group>"; };
 		074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
-		0781B4A320ECAF6A00E006F1 /* TopicDetail.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = TopicDetail.html; sourceTree = "<group>"; };
 		078B340620E9CD6A006AD5D1 /* Reply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
 		079A88BD20E5C58000C1E76F /* CNodeJS-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CNodeJS-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		079A88C020E5C58000C1E76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +66,8 @@
 		07BE3EF020EBE1F600E097E0 /* TopicDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailTableViewController.swift; sourceTree = "<group>"; };
 		07BE3EF220EBE69E00E097E0 /* TopicDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailTableViewCell.swift; sourceTree = "<group>"; };
 		627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNodeJS_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		684FE68948450D9F90F4E1EF /* topic_detail.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = topic_detail.html; sourceTree = "<group>"; };
+		68BDBFF0627BB5B335DCD9DD /* vue.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = vue.js; sourceTree = "<group>"; };
 		C5A9CD8FB6D3186E894505EB /* Pods-CNodeJS-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNodeJS-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift.release.xcconfig"; sourceTree = "<group>"; };
 		D5FFCA14473FEE46461B9308 /* Pods-CNodeJS-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNodeJS-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,8 +92,6 @@
 				07446C0120E61BD300768C90 /* Constants.swift */,
 				07446C0B20E63C4200768C90 /* UILabelPadding.swift */,
 				07A5427F20EBBE960068B99C /* RefreshView.swift */,
-				07A5428120EBC2610068B99C /* app.css */,
-				0781B4A320ECAF6A00E006F1 /* TopicDetail.html */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -99,14 +99,15 @@
 		079A88B420E5C58000C1E76F = {
 			isa = PBXGroup;
 			children = (
-				07446BF620E60C3900768C90 /* Util */,
 				079A891A20E608F900C1E76F /* Cell */,
-				079A891920E608F500C1E76F /* Model */,
-				079A891820E608E900C1E76F /* Controller */,
 				079A88BF20E5C58000C1E76F /* CNodeJS-Swift */,
-				079A88BE20E5C58000C1E76F /* Products */,
-				91E81104980A73FD48F70BFC /* Pods */,
+				079A891820E608E900C1E76F /* Controller */,
 				5588F244308DF36E9E3119F5 /* Frameworks */,
+				079A891920E608F500C1E76F /* Model */,
+				91E81104980A73FD48F70BFC /* Pods */,
+				079A88BE20E5C58000C1E76F /* Products */,
+				68A37A4354DB9DB388B19696 /* Resource */,
+				07446BF620E60C3900768C90 /* Util */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,6 +173,16 @@
 				627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		68A37A4354DB9DB388B19696 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				684FE68948450D9F90F4E1EF /* topic_detail.html */,
+				07A5428120EBC2610068B99C /* app.css */,
+				68BDBFF0627BB5B335DCD9DD /* vue.js */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		91E81104980A73FD48F70BFC /* Pods */ = {
@@ -245,9 +256,9 @@
 			files = (
 				079A88CB20E5C58100C1E76F /* LaunchScreen.storyboard in Resources */,
 				079A88C820E5C58100C1E76F /* Assets.xcassets in Resources */,
-				0781B4A420ECAF6A00E006F1 /* TopicDetail.html in Resources */,
 				079A88C620E5C58000C1E76F /* Main.storyboard in Resources */,
 				07A5428220EBC2610068B99C /* app.css in Resources */,
+				681C6C26F0CEC1CF17FAF890 /* topic_detail.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +349,7 @@
 				07446C0220E61BD300768C90 /* Constants.swift in Sources */,
 				0715110A20E71D630014206D /* TopicDetailViewController.swift in Sources */,
 				07446C0620E6270800768C90 /* Result.swift in Sources */,
+				68857D55D6DCD14AE423E2A9 /* vue.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +494,7 @@
 			baseConfigurationReference = D5FFCA14473FEE46461B9308 /* Pods-CNodeJS-Swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 79EEAF2463;
 				INFOPLIST_FILE = "CNodeJS-Swift/Info.plist";
@@ -502,6 +515,7 @@
 			baseConfigurationReference = C5A9CD8FB6D3186E894505EB /* Pods-CNodeJS-Swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 79EEAF2463;
 				INFOPLIST_FILE = "CNodeJS-Swift/Info.plist";

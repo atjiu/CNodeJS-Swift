@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no"/>
+  <link rel="stylesheet" href="app.css">
+  <script src="vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+  <div class="header">
+    <img :src="topic.author.avatar_url" alt="" class="avatar">
+    <div class="title">{{topic.title}}</div>
+  </div>
+</div>
+<script type="text/javascript">
+  function init(topic) {
+    console.log(topic)
+  }
+
+  function clickMe() {
+    window.webkit.messageHandlers.AppModel.postMessage("1")
+  }
+</script>
+</body>
+
+</html>

@@ -9,6 +9,7 @@
 import UIKit
 import DeviceKit
 
+let BASE_URL = "https://cnodejs.org"
 //屏幕宽度
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width;
 //屏幕高度
@@ -16,7 +17,7 @@ let SCREEN_HEIGHT = UIScreen.main.bounds.size.height;
 // viewport
 let VIEWPORT = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui\">"
 let CSS = try! String(contentsOfFile: Bundle.main.path(forResource: "app", ofType: "css")!, encoding: String.Encoding.utf8)
-let TOPICDETAILHTML = try! String(contentsOfFile: Bundle.main.path(forResource: "TopicDetail", ofType: "html")!, encoding: String.Encoding.utf8)
+let TOPICDETAILHTML = try! String(contentsOfFile: Bundle.main.path(forResource: "topic_detail", ofType: "html")!, encoding: String.Encoding.utf8)
 //NavagationBar高度
 let NavigationBarHeight:CGFloat = {
     let device = Device()
@@ -26,6 +27,7 @@ let NavigationBarHeight:CGFloat = {
     return 64
 }()
 
+let isLogin = UserDefaults.standard.string(forKey: "token") != nil
 
 class CNodeColor {
     static let tabColor = "#80bd01"
