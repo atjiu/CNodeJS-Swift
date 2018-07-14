@@ -13,13 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let navigationController = UINavigationController(rootViewController: LayoutViewController())
         navigationController.navigationBar.barStyle = .black
         self.window?.rootViewController  = navigationController
-        
+        UserDefaults.standard.set("https://avatars2.githubusercontent.com/u/6915570?v=4&amp;s=120", forKey: "avatar_url")
+        UserDefaults.standard.set("tomoya92", forKey: "loginname")
+        UserDefaults.standard.set("2014-07-01T06:29:57.606Z", forKey: "create_at")
+        UserDefaults.standard.set("2600", forKey: "score")
+        UserDefaults.standard.set("f8f3a105-cd68-4284-845b-0f4fc87de334", forKey: "token")
         return true
     }
 

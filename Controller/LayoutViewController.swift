@@ -38,6 +38,16 @@ class LayoutViewController: UITabBarController {
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         self.title = item.title
+//        if item.title == "通知" || item.title == "我" {
+//            if !isLogin {
+//                let alert = UIAlertController(title: "请先登录", message: "您要打开的页面需要登录才能访问，是否去扫码登录？", preferredStyle: UIAlertControllerStyle.alert)
+//                alert.addAction(UIAlertAction(title: "去扫码", style: .default, handler: { (action: UIAlertAction!) in
+//                    print("Handle Ok logic here")
+//                }))
+//                alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//            }
+//        }
     }
     
     /*

@@ -63,8 +63,6 @@ class ReplyTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.selectionStyle = .none
-        
         self.addSubview(avatar)
         self.addSubview(usernameLabel)
         self.addSubview(createTimeLabel)
@@ -110,6 +108,21 @@ class ReplyTableViewCell: UITableViewCell {
             make.top.equalTo(self.avatar.snp.bottom).offset(10)
             make.bottom.equalTo(-10)
         }
+        
+        //给头像绑定事件
+        self.avatar.isUserInteractionEnabled = true
+        self.avatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ReplyTableViewCell.avatarTap(_:))))
+        
+        self.usernameLabel.isUserInteractionEnabled = true
+        self.usernameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ReplyTableViewCell.usernameTap(_:))))
+    }
+    
+    @objc func avatarTap(_ sender: UITapGestureRecognizer) {
+        print("avatarTap")
+    }
+    
+    @objc func usernameTap(_ sender: UITapGestureRecognizer) {
+        print("usernameTap")
     }
     
     func bind(reply: Reply, position: Int) {

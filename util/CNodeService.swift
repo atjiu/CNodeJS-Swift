@@ -12,6 +12,9 @@ import Moya
 enum CNodeService {
     case topics(page: Int, tab: String)
     case topicDetail(id: String)
+    case accessToken(token: String)
+    case user(loginname: String)
+    case collect(loginname: String, page: Int)
 }
 
 extension CNodeService: TargetType {
@@ -25,13 +28,21 @@ extension CNodeService: TargetType {
             return "/topics"
         case .topicDetail(let id):
             return "/topic/\(id)"
+        case .accessToken:
+            return "/accesstoken"
+        case .user(let loginname):
+            return "/user/\(loginname)"
+        case .collect(let loginname, _):
+            return "/topic_collect/\(loginname)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .topics, .topicDetail:
+        case .topics, .topicDetail, .user, .collect:
             return .get
+        case .accessToken:
+            return .post
         }
     }
     
@@ -45,6 +56,12 @@ extension CNodeService: TargetType {
             return .requestParameters(parameters: ["page": page, "tab": tab, "limit": 50], encoding: URLEncoding.default)
         case .topicDetail:
             return .requestPlain
+        case .accessToken(let token):
+            return .requestParameters(parameters: ["accesstoken": token], encoding: URLEncoding.default)
+        case .user:
+            return .requestPlain
+        case .collect(_, let page):
+            return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
         }
     }
     

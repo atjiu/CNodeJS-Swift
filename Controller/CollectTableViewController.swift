@@ -1,37 +1,36 @@
 //
-//  TabTopicViewController.swift
+//  CollectTableViewController.swift
 //  CNodeJS-Swift
 //
-//  Created by H on 2018/6/29.
+//  Created by H on 2018/7/14.
 //  Copyright © 2018年 H. All rights reserved.
 //
 
 import UIKit
-import XLPagerTabStrip
 import Moya
 import Toast_Swift
+import MJRefresh
 
-class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
-    
-    var tabText: String!
-    var tab: String!
+class CollectTableViewController: UITableViewController {
     
     var provider = MoyaProvider<CNodeService>()
-    fileprivate var page = 1
-    var data = [Topic]()
     
+    var data = [Topic]()
+    fileprivate var page = 1
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "我的收藏"
         self.view.backgroundColor = .white
-        
+        self.navigationController?.navigationBar.barStyle = .black
+        //设置返回按钮为白色
+        self.navigationController?.navigationBar.tintColor = .white
+
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.tableView.register(TopicTableViewCell.self, forCellReuseIdentifier: "cell")
         
-        // 添加下拉刷新组件
-//        self.view.addSubview(refresh)
-//        self.refresh.addTarget(self, action: #selector(TabTopicViewController.refreshData), for: .valueChanged)
-//        self.tableView.refreshControl? = refresh
+        self.tableView.register(UserTopicsTableViewCell.self, forCellReuseIdentifier: "cell")
+        
         self.tableView.mj_header = RefreshView(refreshingBlock: {
             [weak self] () -> Void in
             self?.refreshData()
@@ -47,9 +46,10 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
         self.tableView.mj_header.beginRefreshing()
     }
     
+    
     @objc func refreshData() {
         self.page = 1
-        provider.request(.topics(page: self.page, tab: self.tab)) { (res) in
+        provider.request(.collect(loginname: UserDefaults.standard.string(forKey: "loginname")!, page: self.page)) { (res) in
             switch res {
             case .success(let response):
                 self.page += 1
@@ -67,7 +67,7 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     }
     
     @objc func loadMoreData() {
-        provider.request(.topics(page: self.page, tab: self.tab)) { (res) in
+        provider.request(.collect(loginname: UserDefaults.standard.string(forKey: "loginname")!, page: self.page)) { (res) in
             switch res {
             case .success(let response):
                 self.page += 1
@@ -86,34 +86,74 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
             }
         }
     }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TopicTableViewCell
-        cell.bind(topic: data[indexPath.row])
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let topic = data[indexPath.row]
-//        let topicDetailViewController = TopicDetailTableViewController()
-        let topicDetailViewController = TopicDetailViewController()
-        topicDetailViewController.topic = topic
-        self.navigationController?.pushViewController(topicDetailViewController, animated: true)
-    }
-    
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: self.tabText)
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UserTopicsTableViewCell
+        cell.bind(data[indexPath.row])
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let topic = data[indexPath.row]
+        let topicDetailViewController = TopicDetailTableViewController()
+        //        let topicDetailViewController = TopicDetailViewController()
+        topicDetailViewController.topic = topic
+        self.navigationController?.pushViewController(topicDetailViewController, animated: true)
+    }
+
+    /*
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
+        return cell
+    }
+    */
+
+    /*
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    */
+
+    /*
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
+    */
+
+    /*
+    // Override to support rearranging the table view.
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+
+    }
+    */
+
+    /*
+    // Override to support conditional rearranging of the table view.
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the item to be re-orderable.
+        return true
+    }
+    */
 
     /*
     // MARK: - Navigation

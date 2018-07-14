@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0715110A20E71D630014206D /* TopicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715110920E71D630014206D /* TopicDetailViewController.swift */; };
 		0715110C20E71FD80014206D /* LayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715110B20E71FD80014206D /* LayoutViewController.swift */; };
+		072ED80420F8EB8A00941953 /* UserTopicsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072ED80320F8EB8A00941953 /* UserTopicsTableViewCell.swift */; };
+		072ED80620F9FAA300941953 /* CollectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072ED80520F9FAA300941953 /* CollectTableViewController.swift */; };
 		07446BF820E60C4B00768C90 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BF720E60C4B00768C90 /* LoadMoreView.swift */; };
 		07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BF920E60C9800768C90 /* CNodeService.swift */; };
 		07446BFC20E60DA400768C90 /* TabTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BFB20E60DA400768C90 /* TabTopicViewController.swift */; };
@@ -21,6 +23,15 @@
 		07446C0A20E6285300768C90 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0920E6285300768C90 /* Author.swift */; };
 		07446C0C20E63C4200768C90 /* UILabelPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0B20E63C4200768C90 /* UILabelPadding.swift */; };
 		074F903820E9FA9A00951B27 /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */; };
+		07742D4120F4B458004C80AA /* LBXScanNetAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D3A20F4B458004C80AA /* LBXScanNetAnimation.swift */; };
+		07742D4220F4B458004C80AA /* LBXScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D3B20F4B458004C80AA /* LBXScanView.swift */; };
+		07742D4320F4B458004C80AA /* LBXPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D3C20F4B458004C80AA /* LBXPermissions.swift */; };
+		07742D4420F4B458004C80AA /* LBXScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D3D20F4B458004C80AA /* LBXScanViewController.swift */; };
+		07742D4520F4B458004C80AA /* LBXScanViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D3E20F4B458004C80AA /* LBXScanViewStyle.swift */; };
+		07742D4620F4B458004C80AA /* LBXScanWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D3F20F4B458004C80AA /* LBXScanWrapper.swift */; };
+		07742D4720F4B458004C80AA /* LBXScanLineAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D4020F4B458004C80AA /* LBXScanLineAnimation.swift */; };
+		07742D4920F5912F004C80AA /* UserCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D4820F5912F004C80AA /* UserCenterViewController.swift */; };
+		07742D4B20F596FC004C80AA /* UserHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D4A20F596FC004C80AA /* UserHeaderTableViewCell.swift */; };
 		078B340720E9CD6A006AD5D1 /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078B340620E9CD6A006AD5D1 /* Reply.swift */; };
 		079A88C120E5C58000C1E76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A88C020E5C58000C1E76F /* AppDelegate.swift */; };
 		079A88C320E5C58000C1E76F /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A88C220E5C58000C1E76F /* TabsViewController.swift */; };
@@ -32,6 +43,8 @@
 		07A5428220EBC2610068B99C /* app.css in Resources */ = {isa = PBXBuildFile; fileRef = 07A5428120EBC2610068B99C /* app.css */; };
 		07BE3EF120EBE1F600E097E0 /* TopicDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE3EF020EBE1F600E097E0 /* TopicDetailTableViewController.swift */; };
 		07BE3EF320EBE69E00E097E0 /* TopicDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE3EF220EBE69E00E097E0 /* TopicDetailTableViewCell.swift */; };
+		07C5540820F8E1600056E314 /* TabsTopicAndReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5540720F8E1600056E314 /* TabsTopicAndReplyViewController.swift */; };
+		07C5540A20F8E1BC0056E314 /* TopicOrReplyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5540920F8E1BC0056E314 /* TopicOrReplyTableViewController.swift */; };
 		636F8FB742041EF846EE3E20 /* Pods_CNodeJS_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */; };
 		681C6C26F0CEC1CF17FAF890 /* topic_detail.html in Resources */ = {isa = PBXBuildFile; fileRef = 684FE68948450D9F90F4E1EF /* topic_detail.html */; };
 		68857D55D6DCD14AE423E2A9 /* vue.js in Sources */ = {isa = PBXBuildFile; fileRef = 68BDBFF0627BB5B335DCD9DD /* vue.js */; };
@@ -40,6 +53,8 @@
 /* Begin PBXFileReference section */
 		0715110920E71D630014206D /* TopicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailViewController.swift; sourceTree = "<group>"; };
 		0715110B20E71FD80014206D /* LayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutViewController.swift; sourceTree = "<group>"; };
+		072ED80320F8EB8A00941953 /* UserTopicsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTopicsTableViewCell.swift; sourceTree = "<group>"; };
+		072ED80520F9FAA300941953 /* CollectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectTableViewController.swift; sourceTree = "<group>"; };
 		07446BF720E60C4B00768C90 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
 		07446BF920E60C9800768C90 /* CNodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNodeService.swift; sourceTree = "<group>"; };
 		07446BFB20E60DA400768C90 /* TabTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTopicViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +67,15 @@
 		07446C0920E6285300768C90 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		07446C0B20E63C4200768C90 /* UILabelPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelPadding.swift; sourceTree = "<group>"; };
 		074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
+		07742D3A20F4B458004C80AA /* LBXScanNetAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanNetAnimation.swift; sourceTree = "<group>"; };
+		07742D3B20F4B458004C80AA /* LBXScanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanView.swift; sourceTree = "<group>"; };
+		07742D3C20F4B458004C80AA /* LBXPermissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXPermissions.swift; sourceTree = "<group>"; };
+		07742D3D20F4B458004C80AA /* LBXScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanViewController.swift; sourceTree = "<group>"; };
+		07742D3E20F4B458004C80AA /* LBXScanViewStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanViewStyle.swift; sourceTree = "<group>"; };
+		07742D3F20F4B458004C80AA /* LBXScanWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanWrapper.swift; sourceTree = "<group>"; };
+		07742D4020F4B458004C80AA /* LBXScanLineAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanLineAnimation.swift; sourceTree = "<group>"; };
+		07742D4820F5912F004C80AA /* UserCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterViewController.swift; sourceTree = "<group>"; };
+		07742D4A20F596FC004C80AA /* UserHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		078B340620E9CD6A006AD5D1 /* Reply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
 		079A88BD20E5C58000C1E76F /* CNodeJS-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CNodeJS-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		079A88C020E5C58000C1E76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +89,8 @@
 		07A5428120EBC2610068B99C /* app.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = app.css; sourceTree = "<group>"; };
 		07BE3EF020EBE1F600E097E0 /* TopicDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailTableViewController.swift; sourceTree = "<group>"; };
 		07BE3EF220EBE69E00E097E0 /* TopicDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailTableViewCell.swift; sourceTree = "<group>"; };
+		07C5540720F8E1600056E314 /* TabsTopicAndReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsTopicAndReplyViewController.swift; sourceTree = "<group>"; };
+		07C5540920F8E1BC0056E314 /* TopicOrReplyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicOrReplyTableViewController.swift; sourceTree = "<group>"; };
 		627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNodeJS_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		684FE68948450D9F90F4E1EF /* topic_detail.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = topic_detail.html; sourceTree = "<group>"; };
 		68BDBFF0627BB5B335DCD9DD /* vue.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = vue.js; sourceTree = "<group>"; };
@@ -96,9 +122,24 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		07742D3920F4B405004C80AA /* SwiftScan */ = {
+			isa = PBXGroup;
+			children = (
+				07742D3C20F4B458004C80AA /* LBXPermissions.swift */,
+				07742D4020F4B458004C80AA /* LBXScanLineAnimation.swift */,
+				07742D3A20F4B458004C80AA /* LBXScanNetAnimation.swift */,
+				07742D3B20F4B458004C80AA /* LBXScanView.swift */,
+				07742D3D20F4B458004C80AA /* LBXScanViewController.swift */,
+				07742D3E20F4B458004C80AA /* LBXScanViewStyle.swift */,
+				07742D3F20F4B458004C80AA /* LBXScanWrapper.swift */,
+			);
+			path = SwiftScan;
+			sourceTree = "<group>";
+		};
 		079A88B420E5C58000C1E76F = {
 			isa = PBXGroup;
 			children = (
+				07742D3920F4B405004C80AA /* SwiftScan */,
 				079A891A20E608F900C1E76F /* Cell */,
 				079A88BF20E5C58000C1E76F /* CNodeJS-Swift */,
 				079A891820E608E900C1E76F /* Controller */,
@@ -142,6 +183,10 @@
 				07446BFB20E60DA400768C90 /* TabTopicViewController.swift */,
 				0715110920E71D630014206D /* TopicDetailViewController.swift */,
 				07BE3EF020EBE1F600E097E0 /* TopicDetailTableViewController.swift */,
+				07742D4820F5912F004C80AA /* UserCenterViewController.swift */,
+				07C5540720F8E1600056E314 /* TabsTopicAndReplyViewController.swift */,
+				07C5540920F8E1BC0056E314 /* TopicOrReplyTableViewController.swift */,
+				072ED80520F9FAA300941953 /* CollectTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -163,6 +208,8 @@
 				07446C0320E6242600768C90 /* TopicTableViewCell.swift */,
 				074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */,
 				07BE3EF220EBE69E00E097E0 /* TopicDetailTableViewCell.swift */,
+				07742D4A20F596FC004C80AA /* UserHeaderTableViewCell.swift */,
+				072ED80320F8EB8A00941953 /* UserTopicsTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -274,6 +321,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FXBlurView/FXBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -288,6 +336,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
@@ -329,23 +378,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				07446BFE20E6115900768C90 /* UserViewController.swift in Sources */,
+				07742D4B20F596FC004C80AA /* UserHeaderTableViewCell.swift in Sources */,
 				07446C0820E627F500768C90 /* Topic.swift in Sources */,
+				07C5540820F8E1600056E314 /* TabsTopicAndReplyViewController.swift in Sources */,
 				0715110C20E71FD80014206D /* LayoutViewController.swift in Sources */,
+				07742D4720F4B458004C80AA /* LBXScanLineAnimation.swift in Sources */,
 				07446C0C20E63C4200768C90 /* UILabelPadding.swift in Sources */,
+				07C5540A20F8E1BC0056E314 /* TopicOrReplyTableViewController.swift in Sources */,
 				079A88C320E5C58000C1E76F /* TabsViewController.swift in Sources */,
 				07446BF820E60C4B00768C90 /* LoadMoreView.swift in Sources */,
 				07446C0020E619C300768C90 /* HomeViewController.swift in Sources */,
+				07742D4920F5912F004C80AA /* UserCenterViewController.swift in Sources */,
 				079A88C120E5C58000C1E76F /* AppDelegate.swift in Sources */,
 				07BE3EF320EBE69E00E097E0 /* TopicDetailTableViewCell.swift in Sources */,
+				07742D4120F4B458004C80AA /* LBXScanNetAnimation.swift in Sources */,
+				07742D4220F4B458004C80AA /* LBXScanView.swift in Sources */,
 				07446C0420E6242600768C90 /* TopicTableViewCell.swift in Sources */,
+				07742D4320F4B458004C80AA /* LBXPermissions.swift in Sources */,
 				079A891720E5FD2100C1E76F /* NotificationViewController.swift in Sources */,
+				07742D4520F4B458004C80AA /* LBXScanViewStyle.swift in Sources */,
 				07446BFC20E60DA400768C90 /* TabTopicViewController.swift in Sources */,
 				07A5428020EBBE960068B99C /* RefreshView.swift in Sources */,
 				07BE3EF120EBE1F600E097E0 /* TopicDetailTableViewController.swift in Sources */,
 				07446C0A20E6285300768C90 /* Author.swift in Sources */,
+				072ED80620F9FAA300941953 /* CollectTableViewController.swift in Sources */,
+				072ED80420F8EB8A00941953 /* UserTopicsTableViewCell.swift in Sources */,
 				078B340720E9CD6A006AD5D1 /* Reply.swift in Sources */,
 				07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */,
+				07742D4420F4B458004C80AA /* LBXScanViewController.swift in Sources */,
 				074F903820E9FA9A00951B27 /* ReplyTableViewCell.swift in Sources */,
+				07742D4620F4B458004C80AA /* LBXScanWrapper.swift in Sources */,
 				07446C0220E61BD300768C90 /* Constants.swift in Sources */,
 				0715110A20E71D630014206D /* TopicDetailViewController.swift in Sources */,
 				07446C0620E6270800768C90 /* Result.swift in Sources */,

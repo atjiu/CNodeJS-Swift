@@ -64,6 +64,8 @@ class TopicTableViewCell: UITableViewCell {
         return label
     }()
     
+    var topic: Topic?
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -116,6 +118,19 @@ class TopicTableViewCell: UITableViewCell {
             make.left.equalTo(10)
             make.right.bottom.equalTo(-10)
         }
+        
+        self.avatar.isUserInteractionEnabled = true
+        self.avatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TopicTableViewCell.avatarTap)))
+        self.usernameLabel.isUserInteractionEnabled = true
+        self.usernameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TopicTableViewCell.usernameLabelTap)))
+    }
+    
+    @objc func avatarTap() {
+        print(self.topic?.author?.loginname)
+    }
+    
+    @objc func usernameLabelTap() {
+        print(self.topic?.author?.loginname)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -131,6 +146,8 @@ class TopicTableViewCell: UITableViewCell {
         self.replyCountLabel.text = String(topic.reply_count ?? 0)
         self.tabLabel.text = topic.tab
         self.titleLabel.text = topic.title
+        
+        self.topic = topic
     }
     
 }

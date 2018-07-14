@@ -9,9 +9,15 @@
 import UIKit
 import XLPagerTabStrip
 import UIColor_Hex_Swift
+import Moya
 
-class TabsViewController: ButtonBarPagerTabStripViewController {
-
+class TabsTopicAndReplyViewController: ButtonBarPagerTabStripViewController {
+    
+    let provider = MoyaProvider<CNodeService>()
+    var author: Author!
+    let topicsVC = TopicOrReplyTableViewController()
+    let repliesVC = TopicOrReplyTableViewController()
+    
     override func viewDidLoad() {
         self.settings.style.buttonBarItemFont = .systemFont(ofSize: 16)
         self.settings.style.buttonBarItemTitleColor = UIColor(CNodeColor.tabColor)
@@ -40,25 +46,33 @@ class TabsViewController: ButtonBarPagerTabStripViewController {
         }
         
         super.viewDidLoad()
+        
+        provider.request(.user(loginname: UserDefaults.standard.string(forKey: "loginname")!)) { (res) in
+            switch res {
+            case .success(let response):
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                let result = try! decoder.decode(Result<Author>.self, from: response.data)
+                self.topicsVC.reloadData((result.data?.recent_topics)!)
+                self.repliesVC.reloadData((result.data?.recent_replies)!)
+            case .failure(let error):
+                self.view.makeToast(error.errorDescription)
+            }
+        }
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let tabs = [("全部", ""), ("精华", "good"), ("分享", "share"), ("问答", "ask"), ("招聘", "job")]
-        var uiViewControllers = [TabTopicViewController]()
-        for tab in tabs {
-            let tabTopicViewController = TabTopicViewController()
-            tabTopicViewController.tabText = tab.0
-            tabTopicViewController.tab = tab.1
-            uiViewControllers.append(tabTopicViewController)
-        }
-        return uiViewControllers
+        topicsVC.tabTitle = "话题"
+        repliesVC.tabTitle = "回复"
+        
+        return [topicsVC, repliesVC]
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 

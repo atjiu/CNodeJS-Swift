@@ -9,6 +9,15 @@
 import Foundation
 
 struct Author: Decodable {
+    var success: Bool?
     var loginname: String?
+    var id: String?
     var avatar_url: String?
+    var error_Msg: String?
+    var score: Int?
+    var create_at: String?
+    var githubUsername: String?
+    
+    var recent_topics: [Topic]?
+    var recent_replies: [Topic]?
 }

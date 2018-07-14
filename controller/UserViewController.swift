@@ -7,51 +7,33 @@
 //
 
 import UIKit
-import SnapKit
-import Kingfisher
 import Toast_Swift
 
 class UserViewController: UITableViewController {
     
-    lazy var headerView: UITableViewCell = {
-        var view = UITableViewCell()
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "user_detail_header_bg")!)
-        return view
-    }()
-    
-    lazy var avatar: UIImageView = {
-        var avatar = UIImageView()
-        avatar.image = UIImage(named: "baseline_account_circle_white_24pt")
-        return avatar
-    }()
-    
-    var username: UILabel = {
-        var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .white
-        return label
-    }()
-    
-    var registerTime: UILabel = {
-        var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .white
-        return label
-    }()
-    
-    var score: UILabel = {
-        var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(CNodeColor.tabColor)
-        return label
+    lazy var headerView: UserHeaderTableViewCell = {
+        var cell = UserHeaderTableViewCell()
+        cell.scanQrCodeViewController = { [weak self] vc in
+            self?.navigationController?.pushViewController(vc!, animated: true)
+        }
+        cell.startReloadDataRefreshing = { [weak self] in
+            self?.view.makeToastActivity(.center)
+        }
+        cell.endReloadDataRefreshing = { [weak self] in
+            self?.view.hideToastActivity()
+        }
+        cell.toastMessage = { [weak self] (msg) in
+            self?.view.makeToast(msg)
+        }
+        return cell
     }()
     
     var data = [
         ("", []),
         ("", [
             ("baseline_account_circle_black_24pt","个人中心"),
-            ("baseline_view_list_black_24pt","我的话题"),
-            ("baseline_reply_all_black_24pt","我的回复"),
+//            ("baseline_view_list_black_24pt","我的话题"),
+//            ("baseline_reply_all_black_24pt","我的回复"),
             ("baseline_collections_bookmark_black_24pt","我的收藏"),
             ("baseline_settings_black_24pt","设置")
         ]),
@@ -66,54 +48,14 @@ class UserViewController: UITableViewController {
         self.navigationController?.navigationBar.barStyle = .black
         self.navigationController?.navigationBar.tintColor = .white
         
-        addView()
-        addConstraints()
-
+        self.tableView.addSubview(headerView)
+        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "userCell")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "logoutCell")
         
         let footerView = UIView()
         footerView.backgroundColor = UIColor.clear
         self.tableView.tableFooterView = footerView
-    }
-    
-    func  addView() {
-        self.headerView.addSubview(avatar)
-        self.headerView.addSubview(username)
-        self.headerView.addSubview(registerTime)
-        self.headerView.addSubview(score)
-        
-        self.tableView.addSubview(headerView)
-    }
-    
-    func addConstraints() {
-        headerView.snp.makeConstraints { (make) in
-            make.top.equalTo(0)
-            make.width.equalTo(SCREEN_WIDTH)
-            make.height.equalTo(200)
-        }
-        avatar.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(20)
-            make.centerX.equalToSuperview()
-            make.height.width.equalTo(72)
-        }
-        
-        username.snp.makeConstraints { (make) in
-            make.top.equalTo(self.avatar.snp.bottom).offset(10)
-            make.centerX.equalToSuperview()
-        }
-        
-        registerTime.snp.makeConstraints { (make) in
-            make.left.equalTo(10)
-            make.top.equalTo(self.username.snp.bottom).offset(10)
-            make.bottom.equalTo(-10)
-        }
-        
-        score.snp.makeConstraints { (make) in
-            make.right.equalTo(-10)
-            make.top.equalTo(self.username.snp.bottom).offset(10)
-            make.bottom.equalTo(-10)
-        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -148,6 +90,22 @@ class UserViewController: UITableViewController {
             cell.textLabel?.text = data[indexPath.section].1[indexPath.row].1
             cell.imageView?.image = UIImage(named: data[indexPath.section].1[indexPath.row].0)
             return cell
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isLogin {
+            let menuName = data[indexPath.section].1[indexPath.row].1
+            if menuName == "个人中心" {
+                let userCenterViewController = UserCenterViewController()
+                userCenterViewController.loginname = UserDefaults.standard.string(forKey: "loginname")
+                self.navigationController?.pushViewController(userCenterViewController, animated: true)
+            } else if menuName == "我的收藏" {
+                let collectVC = CollectTableViewController()
+                self.navigationController?.pushViewController(collectVC, animated: true)
+            }
+        } else {
+            self.view.makeToast("请先登录")
         }
     }
     

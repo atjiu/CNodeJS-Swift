@@ -33,9 +33,6 @@ class TopicDetailTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
         menuButton.addTarget(self, action: #selector(TopicDetailTableViewController.menuClick), for: .touchUpInside)
         
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.tableView.separatorStyle = .none
         self.tableView.register(ReplyTableViewCell.self, forCellReuseIdentifier: "repliesCell")
         
         self.tableView.mj_header = RefreshView(refreshingBlock: {
