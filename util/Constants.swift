@@ -27,8 +27,6 @@ let NavigationBarHeight:CGFloat = {
     return 64
 }()
 
-let isLogin = UserDefaults.standard.string(forKey: "token") != nil
-
 class CNodeColor {
     static let tabColor = "#80bd01"
     static let timeColor = "#5d5d5d"

@@ -58,7 +58,7 @@ class TopicDetailTableViewController: UITableViewController {
     }
     
     func collectHandler(alert: UIAlertAction) {
-        if isLogin {
+        if UserDefaults.standard.string(forKey: "token") != nil {
             print(111)
         } else {
             self.view.makeToast("请先登录", duration: 2, position: .center)
@@ -73,7 +73,7 @@ class TopicDetailTableViewController: UITableViewController {
     }
     
     func replyHandler(alert: UIAlertAction) {
-        if isLogin {
+        if UserDefaults.standard.string(forKey: "token") != nil {
             print(222)
         } else {
             self.view.makeToast("请先登录", duration: 2, position: .center)

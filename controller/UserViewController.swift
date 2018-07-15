@@ -94,7 +94,7 @@ class UserViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isLogin {
+        if UserDefaults.standard.string(forKey: "token") != nil {
             let menuName = data[indexPath.section].1[indexPath.row].1
             if menuName == "个人中心" {
                 let userCenterViewController = UserCenterViewController()
@@ -103,6 +103,12 @@ class UserViewController: UITableViewController {
             } else if menuName == "我的收藏" {
                 let collectVC = CollectTableViewController()
                 self.navigationController?.pushViewController(collectVC, animated: true)
+            } else if menuName == "登出" {
+                let domain = Bundle.main.bundleIdentifier!
+                UserDefaults.standard.removePersistentDomain(forName: domain)
+                UserDefaults.standard.synchronize()
+                self.headerView.unbind()
+                self.tableView.reloadData()
             }
         } else {
             self.view.makeToast("请先登录")

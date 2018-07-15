@@ -57,7 +57,7 @@ extension CNodeService: TargetType {
         case .topicDetail:
             return .requestPlain
         case .accessToken(let token):
-            return .requestParameters(parameters: ["accesstoken": token], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["accesstoken": token], encoding: URLEncoding(destination: .queryString))
         case .user:
             return .requestPlain
         case .collect(_, let page):

@@ -15,7 +15,7 @@ struct Author: Decodable {
     var avatar_url: String?
     var error_Msg: String?
     var score: Int?
-    var create_at: String?
+    var create_at: Date?
     var githubUsername: String?
     
     var recent_topics: [Topic]?

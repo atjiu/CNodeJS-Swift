@@ -93,22 +93,37 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
     }
     
     func bind() {
-        if isLogin {
+        if UserDefaults.standard.string(forKey: "token") != nil {
             let avatar_url = UserDefaults.standard.string(forKey: "avatar_url")
             let username = UserDefaults.standard.string(forKey: "loginname")
             let create_at = UserDefaults.standard.string(forKey: "create_at")
-            let score = "积分:\(UserDefaults.standard.string(forKey: "score")!)"
-            self.avatar.kf.setImage(with: URL(string: avatar_url!))
-            self.username.text = username
-            self.registerTime.text = create_at
-            self.score.text = score
+            let score = UserDefaults.standard.string(forKey: "score")
+            if avatar_url != nil {
+                self.avatar.kf.setImage(with: URL(string: avatar_url!))
+            }
+            if username != nil {
+                self.username.text = username
+            }
+            if create_at != nil {
+                self.registerTime.text = "注册于" + create_at!
+            }
+            if score != nil {
+                self.score.text = "积分:\(score!)"
+            }
         } else {
             self.username.text = "点击头像扫码登录"
         }
     }
     
+    func unbind() {
+        self.avatar.image = UIImage(named: "baseline_account_circle_white_24pt")
+        self.username.text = "点击头像扫码登录"
+        self.registerTime.text = ""
+        self.score.text = ""
+    }
+    
     @objc func avatarTap() {
-        if !isLogin {
+        if UserDefaults.standard.string(forKey: "token") == nil {
             LBXPermissions.authorizeCameraWith { [weak self] (granted) in
                 if granted {
                     self?.scanQrCode()
@@ -155,22 +170,20 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
             switch res {
             case .success(let response):
                 let decoder = JSONDecoder()
-//                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                 let author = try! decoder.decode(Author.self, from: response.data)
                 UserDefaults.standard.set(token, forKey: "token")
-                UserDefaults.standard.set(author.loginname, forKey: "loginname")
                 UserDefaults.standard.set(author.avatar_url, forKey: "avatar_url")
                 UserDefaults.standard.set(author.loginname, forKey: "loginname")
-                
                 // 请求用户个人信息
                 self.provider.request(.user(loginname: author.loginname!), completion: { (res) in
                     switch res {
                     case .success(let response):
                         let decoder = JSONDecoder()
-//                        decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                        decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                         let result = try! decoder.decode(Result<Author>.self, from: response.data)
                         UserDefaults.standard.set(result.data?.score, forKey: "score")
-                        UserDefaults.standard.set(result.data?.create_at, forKey: "create_at")
+                        UserDefaults.standard.set(result.data?.create_at?.getElapsedInterval(), forKey: "create_at")
                         self.bind()
                         self.endReloadDataRefreshing?()
                     case .failure(let error):
