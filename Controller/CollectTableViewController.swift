@@ -8,7 +8,6 @@
 
 import UIKit
 import Moya
-import Toast_Swift
 import MJRefresh
 
 class CollectTableViewController: UITableViewController {
@@ -26,9 +25,6 @@ class CollectTableViewController: UITableViewController {
         //设置返回按钮为白色
         self.navigationController?.navigationBar.tintColor = .white
 
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        
         self.tableView.register(UserTopicsTableViewCell.self, forCellReuseIdentifier: "cell")
         
         self.tableView.mj_header = RefreshView(refreshingBlock: {
@@ -61,7 +57,7 @@ class CollectTableViewController: UITableViewController {
                 self.tableView.reloadData()
             case .failure(let error):
                 self.tableView.mj_header.endRefreshing()
-                self.view.makeToast(error.errorDescription)
+                UIAlertController.showAlert(message: error.errorDescription!)
             }
         }
     }
@@ -82,7 +78,7 @@ class CollectTableViewController: UITableViewController {
                 self.tableView.reloadData()
             case .failure(let error):
                 self.tableView.mj_footer.endRefreshing()
-                self.view.makeToast(error.errorDescription)
+                UIAlertController.showAlert(message: error.errorDescription!)
             }
         }
     }

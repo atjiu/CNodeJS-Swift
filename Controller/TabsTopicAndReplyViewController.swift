@@ -56,7 +56,7 @@ class TabsTopicAndReplyViewController: ButtonBarPagerTabStripViewController {
                 self.topicsVC.reloadData((result.data?.recent_topics)!)
                 self.repliesVC.reloadData((result.data?.recent_replies)!)
             case .failure(let error):
-                self.view.makeToast(error.errorDescription)
+                UIAlertController.showAlert(message: error.errorDescription!)
             }
         }
     }

@@ -15,6 +15,7 @@ enum CNodeService {
     case accessToken(token: String)
     case user(loginname: String)
     case collect(loginname: String, page: Int)
+    case messages(token: String)
 }
 
 extension CNodeService: TargetType {
@@ -34,12 +35,14 @@ extension CNodeService: TargetType {
             return "/user/\(loginname)"
         case .collect(let loginname, _):
             return "/topic_collect/\(loginname)"
+        case .messages:
+            return "/messages"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .topics, .topicDetail, .user, .collect:
+        case .topics, .topicDetail, .user, .collect, .messages:
             return .get
         case .accessToken:
             return .post
@@ -56,7 +59,7 @@ extension CNodeService: TargetType {
             return .requestParameters(parameters: ["page": page, "tab": tab, "limit": 50], encoding: URLEncoding.default)
         case .topicDetail:
             return .requestPlain
-        case .accessToken(let token):
+        case .accessToken(let token), .messages(let token):
             return .requestParameters(parameters: ["accesstoken": token], encoding: URLEncoding(destination: .queryString))
         case .user:
             return .requestPlain

@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Moya
 import YYText
-import Toast_Swift
 
 class TopicDetailTableViewController: UITableViewController {
     
@@ -61,7 +60,7 @@ class TopicDetailTableViewController: UITableViewController {
         if UserDefaults.standard.string(forKey: "token") != nil {
             print(111)
         } else {
-            self.view.makeToast("请先登录", duration: 2, position: .center)
+            UIAlertController.showAlert(message: "请先登录!")
         }
     }
     
@@ -76,7 +75,7 @@ class TopicDetailTableViewController: UITableViewController {
         if UserDefaults.standard.string(forKey: "token") != nil {
             print(222)
         } else {
-            self.view.makeToast("请先登录", duration: 2, position: .center)
+            UIAlertController.showAlert(message: "请先登录")
         }
     }
     
@@ -93,7 +92,7 @@ class TopicDetailTableViewController: UITableViewController {
                 self.tableView.tableHeaderView = self.topicDetailView
                 self.tableView.reloadData()
             case .failure(let error):
-                self.view.makeToast(error.errorDescription)
+                UIAlertController.showAlert(message: error.errorDescription!)
             }
         }
     }

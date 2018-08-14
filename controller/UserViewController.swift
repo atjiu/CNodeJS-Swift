@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Toast_Swift
 
 class UserViewController: UITableViewController {
     
@@ -15,15 +14,6 @@ class UserViewController: UITableViewController {
         var cell = UserHeaderTableViewCell()
         cell.scanQrCodeViewController = { [weak self] vc in
             self?.navigationController?.pushViewController(vc!, animated: true)
-        }
-        cell.startReloadDataRefreshing = { [weak self] in
-            self?.view.makeToastActivity(.center)
-        }
-        cell.endReloadDataRefreshing = { [weak self] in
-            self?.view.hideToastActivity()
-        }
-        cell.toastMessage = { [weak self] (msg) in
-            self?.view.makeToast(msg)
         }
         return cell
     }()
@@ -49,7 +39,7 @@ class UserViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = .white
         
         self.tableView.addSubview(headerView)
-        
+    
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "userCell")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "logoutCell")
         
@@ -84,6 +74,7 @@ class UserViewController: UITableViewController {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
             if indexPath.section == 2 {
+                cell.selectionStyle = .none
                 cell.textLabel?.textColor = UIColor.white
                 cell.backgroundColor = UIColor.red
             }
@@ -104,14 +95,16 @@ class UserViewController: UITableViewController {
                 let collectVC = CollectTableViewController()
                 self.navigationController?.pushViewController(collectVC, animated: true)
             } else if menuName == "登出" {
-                let domain = Bundle.main.bundleIdentifier!
-                UserDefaults.standard.removePersistentDomain(forName: domain)
-                UserDefaults.standard.synchronize()
-                self.headerView.unbind()
-                self.tableView.reloadData()
+                UIAlertController.showConfirm(message: "确定要登出吗？") { (_) in
+                    let domain = Bundle.main.bundleIdentifier!
+                    UserDefaults.standard.removePersistentDomain(forName: domain)
+                    UserDefaults.standard.synchronize()
+                    self.headerView.unbind()
+                    self.tableView.reloadData()
+                }
             }
         } else {
-            self.view.makeToast("请先登录")
+            UIAlertController.showAlert(message: "请先登录!")
         }
     }
     

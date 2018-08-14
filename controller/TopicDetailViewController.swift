@@ -9,7 +9,6 @@
 import UIKit
 import Kingfisher
 import SnapKit
-import Toast_Swift
 import Moya
 import WebKit
 
@@ -88,7 +87,7 @@ class TopicDetailViewController: UIViewController, WKNavigationDelegate, WKScrip
                     print(res, err)
                 })
             case .failure(let error):
-                self.view.makeToast(error.errorDescription)
+                UIAlertController.showAlert(message: error.errorDescription!)
             }
         }
     }

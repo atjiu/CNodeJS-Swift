@@ -68,7 +68,6 @@ class UserTopicsTableViewCell: UITableViewCell {
     }
     
     func bind(_ topic: Topic) {
-        print(topic)
         self.titleLabel.text = topic.title
         self.usernameLabel.text = topic.author?.loginname
         self.createTimeLabel.text = topic.last_reply_at?.getElapsedInterval()

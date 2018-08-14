@@ -22,7 +22,10 @@
 		07446C0820E627F500768C90 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0720E627F500768C90 /* Topic.swift */; };
 		07446C0A20E6285300768C90 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0920E6285300768C90 /* Author.swift */; };
 		07446C0C20E63C4200768C90 /* UILabelPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0B20E63C4200768C90 /* UILabelPadding.swift */; };
+		074D0BAB2122A9870055B10E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D0BAA2122A9870055B10E /* Message.swift */; };
+		074D0BAD2122AE500055B10E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D0BAC2122AE500055B10E /* Notification.swift */; };
 		074F903820E9FA9A00951B27 /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */; };
+		0770F8952109604900157EF2 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0770F8942109604900157EF2 /* NotificationTableViewCell.swift */; };
 		07742D4120F4B458004C80AA /* LBXScanNetAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D3A20F4B458004C80AA /* LBXScanNetAnimation.swift */; };
 		07742D4220F4B458004C80AA /* LBXScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D3B20F4B458004C80AA /* LBXScanView.swift */; };
 		07742D4320F4B458004C80AA /* LBXPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D3C20F4B458004C80AA /* LBXPermissions.swift */; };
@@ -66,7 +69,10 @@
 		07446C0720E627F500768C90 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		07446C0920E6285300768C90 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		07446C0B20E63C4200768C90 /* UILabelPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelPadding.swift; sourceTree = "<group>"; };
+		074D0BAA2122A9870055B10E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		074D0BAC2122AE500055B10E /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
+		0770F8942109604900157EF2 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		07742D3A20F4B458004C80AA /* LBXScanNetAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanNetAnimation.swift; sourceTree = "<group>"; };
 		07742D3B20F4B458004C80AA /* LBXScanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanView.swift; sourceTree = "<group>"; };
 		07742D3C20F4B458004C80AA /* LBXPermissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXPermissions.swift; sourceTree = "<group>"; };
@@ -198,6 +204,8 @@
 				07446C0720E627F500768C90 /* Topic.swift */,
 				07446C0920E6285300768C90 /* Author.swift */,
 				078B340620E9CD6A006AD5D1 /* Reply.swift */,
+				074D0BAA2122A9870055B10E /* Message.swift */,
+				074D0BAC2122AE500055B10E /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -210,6 +218,7 @@
 				07BE3EF220EBE69E00E097E0 /* TopicDetailTableViewCell.swift */,
 				07742D4A20F596FC004C80AA /* UserHeaderTableViewCell.swift */,
 				072ED80320F8EB8A00941953 /* UserTopicsTableViewCell.swift */,
+				0770F8942109604900157EF2 /* NotificationTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -321,13 +330,11 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FXBlurView/FXBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
@@ -336,13 +343,11 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
@@ -377,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0770F8952109604900157EF2 /* NotificationTableViewCell.swift in Sources */,
 				07446BFE20E6115900768C90 /* UserViewController.swift in Sources */,
 				07742D4B20F596FC004C80AA /* UserHeaderTableViewCell.swift in Sources */,
 				07446C0820E627F500768C90 /* Topic.swift in Sources */,
@@ -388,6 +394,7 @@
 				079A88C320E5C58000C1E76F /* TabsViewController.swift in Sources */,
 				07446BF820E60C4B00768C90 /* LoadMoreView.swift in Sources */,
 				07446C0020E619C300768C90 /* HomeViewController.swift in Sources */,
+				074D0BAD2122AE500055B10E /* Notification.swift in Sources */,
 				07742D4920F5912F004C80AA /* UserCenterViewController.swift in Sources */,
 				079A88C120E5C58000C1E76F /* AppDelegate.swift in Sources */,
 				07BE3EF320EBE69E00E097E0 /* TopicDetailTableViewCell.swift in Sources */,
@@ -404,6 +411,7 @@
 				072ED80620F9FAA300941953 /* CollectTableViewController.swift in Sources */,
 				072ED80420F8EB8A00941953 /* UserTopicsTableViewCell.swift in Sources */,
 				078B340720E9CD6A006AD5D1 /* Reply.swift in Sources */,
+				074D0BAB2122A9870055B10E /* Message.swift in Sources */,
 				07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */,
 				07742D4420F4B458004C80AA /* LBXScanViewController.swift in Sources */,
 				074F903820E9FA9A00951B27 /* ReplyTableViewCell.swift in Sources */,

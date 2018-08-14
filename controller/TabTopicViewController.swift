@@ -9,7 +9,6 @@
 import UIKit
 import XLPagerTabStrip
 import Moya
-import Toast_Swift
 
 class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     
@@ -24,8 +23,6 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
         self.tableView.register(TopicTableViewCell.self, forCellReuseIdentifier: "cell")
         
         // 添加下拉刷新组件
@@ -61,7 +58,7 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
                 self.tableView.reloadData()
             case .failure(let error):
                 self.tableView.mj_header.endRefreshing()
-                self.view.makeToast(error.errorDescription)
+                UIAlertController.showAlert(message: error.errorDescription!)
             }
         }
     }
@@ -82,7 +79,7 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
                 self.tableView.reloadData()
             case .failure(let error):
                 self.tableView.mj_footer.endRefreshing()
-                self.view.makeToast(error.errorDescription)
+                UIAlertController.showAlert(message: error.errorDescription!)
             }
         }
     }

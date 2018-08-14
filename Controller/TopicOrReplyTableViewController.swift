@@ -17,8 +17,6 @@ class TopicOrReplyTableViewController: UITableViewController, IndicatorInfoProvi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
         self.tableView.register(UserTopicsTableViewCell.self, forCellReuseIdentifier: "cell")
         
     }
