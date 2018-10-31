@@ -30,8 +30,8 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
         configuration.userContentController.add(self, name: "AppModel")
         
         var webView = WKWebView(frame: .zero, configuration: configuration)
-        webView.layer.borderColor = UIColor.red.cgColor
-        webView.layer.borderWidth = 1
+//        webView.layer.borderColor = UIColor.red.cgColor
+//        webView.layer.borderWidth = 1
 //        webView.scrollView.bounces = true
         webView.scrollView.alwaysBounceVertical = true
         webView.navigationDelegate = self
