@@ -16,7 +16,7 @@ class ReplyTableViewCell: UITableViewCell {
     var avatar: UIImageView = {
         let _avatar = UIImageView()
         _avatar.layer.masksToBounds = true
-        _avatar.layer.cornerRadius = 18
+        _avatar.layer.cornerRadius = 4
         return _avatar
     }()
     var usernameLabel: UILabel = {

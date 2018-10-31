@@ -15,7 +15,7 @@ class NotificationTableViewCell: UITableViewCell {
     var avatar: UIImageView = {
         var image = UIImageView()
         image.layer.masksToBounds = true
-        image.layer.cornerRadius = 18
+        image.layer.cornerRadius = 4
         return image
     }()
     var usernameLabel: UILabel = {

@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0715110A20E71D630014206D /* TopicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715110920E71D630014206D /* TopicDetailViewController.swift */; };
+		0715110A20E71D630014206D /* TopicDetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715110920E71D630014206D /* TopicDetailWebViewController.swift */; };
 		0715110C20E71FD80014206D /* LayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715110B20E71FD80014206D /* LayoutViewController.swift */; };
 		072ED80420F8EB8A00941953 /* UserTopicsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072ED80320F8EB8A00941953 /* UserTopicsTableViewCell.swift */; };
 		072ED80620F9FAA300941953 /* CollectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072ED80520F9FAA300941953 /* CollectTableViewController.swift */; };
+		072F1C562189494300BA1488 /* underscore.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 072F1C532189494300BA1488 /* underscore.min.js */; };
+		072F1C572189494300BA1488 /* topic_detail.html in Resources */ = {isa = PBXBuildFile; fileRef = 072F1C542189494300BA1488 /* topic_detail.html */; };
+		072F1C582189494300BA1488 /* app.css in Resources */ = {isa = PBXBuildFile; fileRef = 072F1C552189494300BA1488 /* app.css */; };
+		072F1C5A21897AA300BA1488 /* moment.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 072F1C5921897AA300BA1488 /* moment.min.js */; };
 		07446BF820E60C4B00768C90 /* LoadMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BF720E60C4B00768C90 /* LoadMoreView.swift */; };
 		07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BF920E60C9800768C90 /* CNodeService.swift */; };
 		07446BFC20E60DA400768C90 /* TabTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446BFB20E60DA400768C90 /* TabTopicViewController.swift */; };
@@ -43,21 +47,22 @@
 		079A88CB20E5C58100C1E76F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 079A88C920E5C58100C1E76F /* LaunchScreen.storyboard */; };
 		079A891720E5FD2100C1E76F /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A891620E5FD2100C1E76F /* NotificationViewController.swift */; };
 		07A5428020EBBE960068B99C /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A5427F20EBBE960068B99C /* RefreshView.swift */; };
-		07A5428220EBC2610068B99C /* app.css in Resources */ = {isa = PBXBuildFile; fileRef = 07A5428120EBC2610068B99C /* app.css */; };
 		07BE3EF120EBE1F600E097E0 /* TopicDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE3EF020EBE1F600E097E0 /* TopicDetailTableViewController.swift */; };
 		07BE3EF320EBE69E00E097E0 /* TopicDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE3EF220EBE69E00E097E0 /* TopicDetailTableViewCell.swift */; };
 		07C5540820F8E1600056E314 /* TabsTopicAndReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5540720F8E1600056E314 /* TabsTopicAndReplyViewController.swift */; };
 		07C5540A20F8E1BC0056E314 /* TopicOrReplyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5540920F8E1BC0056E314 /* TopicOrReplyTableViewController.swift */; };
 		636F8FB742041EF846EE3E20 /* Pods_CNodeJS_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */; };
-		681C6C26F0CEC1CF17FAF890 /* topic_detail.html in Resources */ = {isa = PBXBuildFile; fileRef = 684FE68948450D9F90F4E1EF /* topic_detail.html */; };
-		68857D55D6DCD14AE423E2A9 /* vue.js in Sources */ = {isa = PBXBuildFile; fileRef = 68BDBFF0627BB5B335DCD9DD /* vue.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0715110920E71D630014206D /* TopicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailViewController.swift; sourceTree = "<group>"; };
+		0715110920E71D630014206D /* TopicDetailWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailWebViewController.swift; sourceTree = "<group>"; };
 		0715110B20E71FD80014206D /* LayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutViewController.swift; sourceTree = "<group>"; };
 		072ED80320F8EB8A00941953 /* UserTopicsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTopicsTableViewCell.swift; sourceTree = "<group>"; };
 		072ED80520F9FAA300941953 /* CollectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectTableViewController.swift; sourceTree = "<group>"; };
+		072F1C532189494300BA1488 /* underscore.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = underscore.min.js; sourceTree = "<group>"; };
+		072F1C542189494300BA1488 /* topic_detail.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = topic_detail.html; sourceTree = "<group>"; };
+		072F1C552189494300BA1488 /* app.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = app.css; sourceTree = "<group>"; };
+		072F1C5921897AA300BA1488 /* moment.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = moment.min.js; sourceTree = "<group>"; };
 		07446BF720E60C4B00768C90 /* LoadMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreView.swift; sourceTree = "<group>"; };
 		07446BF920E60C9800768C90 /* CNodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNodeService.swift; sourceTree = "<group>"; };
 		07446BFB20E60DA400768C90 /* TabTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTopicViewController.swift; sourceTree = "<group>"; };
@@ -92,14 +97,11 @@
 		079A88CC20E5C58100C1E76F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		079A891620E5FD2100C1E76F /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		07A5427F20EBBE960068B99C /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
-		07A5428120EBC2610068B99C /* app.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = app.css; sourceTree = "<group>"; };
 		07BE3EF020EBE1F600E097E0 /* TopicDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailTableViewController.swift; sourceTree = "<group>"; };
 		07BE3EF220EBE69E00E097E0 /* TopicDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailTableViewCell.swift; sourceTree = "<group>"; };
 		07C5540720F8E1600056E314 /* TabsTopicAndReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsTopicAndReplyViewController.swift; sourceTree = "<group>"; };
 		07C5540920F8E1BC0056E314 /* TopicOrReplyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicOrReplyTableViewController.swift; sourceTree = "<group>"; };
 		627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNodeJS_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		684FE68948450D9F90F4E1EF /* topic_detail.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = topic_detail.html; sourceTree = "<group>"; };
-		68BDBFF0627BB5B335DCD9DD /* vue.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = vue.js; sourceTree = "<group>"; };
 		C5A9CD8FB6D3186E894505EB /* Pods-CNodeJS-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNodeJS-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift.release.xcconfig"; sourceTree = "<group>"; };
 		D5FFCA14473FEE46461B9308 /* Pods-CNodeJS-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNodeJS-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +118,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		072F1C522189494300BA1488 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				072F1C532189494300BA1488 /* underscore.min.js */,
+				072F1C542189494300BA1488 /* topic_detail.html */,
+				072F1C552189494300BA1488 /* app.css */,
+				072F1C5921897AA300BA1488 /* moment.min.js */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		07446BF620E60C3900768C90 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +158,7 @@
 		079A88B420E5C58000C1E76F = {
 			isa = PBXGroup;
 			children = (
+				072F1C522189494300BA1488 /* Resource */,
 				07742D3920F4B405004C80AA /* SwiftScan */,
 				079A891A20E608F900C1E76F /* Cell */,
 				079A88BF20E5C58000C1E76F /* CNodeJS-Swift */,
@@ -153,7 +167,6 @@
 				079A891920E608F500C1E76F /* Model */,
 				91E81104980A73FD48F70BFC /* Pods */,
 				079A88BE20E5C58000C1E76F /* Products */,
-				68A37A4354DB9DB388B19696 /* Resource */,
 				07446BF620E60C3900768C90 /* Util */,
 			);
 			sourceTree = "<group>";
@@ -187,7 +200,7 @@
 				07446BFD20E6115900768C90 /* UserViewController.swift */,
 				079A88C220E5C58000C1E76F /* TabsViewController.swift */,
 				07446BFB20E60DA400768C90 /* TabTopicViewController.swift */,
-				0715110920E71D630014206D /* TopicDetailViewController.swift */,
+				0715110920E71D630014206D /* TopicDetailWebViewController.swift */,
 				07BE3EF020EBE1F600E097E0 /* TopicDetailTableViewController.swift */,
 				07742D4820F5912F004C80AA /* UserCenterViewController.swift */,
 				07C5540720F8E1600056E314 /* TabsTopicAndReplyViewController.swift */,
@@ -229,16 +242,6 @@
 				627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		68A37A4354DB9DB388B19696 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				684FE68948450D9F90F4E1EF /* topic_detail.html */,
-				07A5428120EBC2610068B99C /* app.css */,
-				68BDBFF0627BB5B335DCD9DD /* vue.js */,
-			);
-			path = Resource;
 			sourceTree = "<group>";
 		};
 		91E81104980A73FD48F70BFC /* Pods */ = {
@@ -310,11 +313,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072F1C562189494300BA1488 /* underscore.min.js in Resources */,
+				072F1C572189494300BA1488 /* topic_detail.html in Resources */,
+				072F1C5A21897AA300BA1488 /* moment.min.js in Resources */,
 				079A88CB20E5C58100C1E76F /* LaunchScreen.storyboard in Resources */,
+				072F1C582189494300BA1488 /* app.css in Resources */,
 				079A88C820E5C58100C1E76F /* Assets.xcassets in Resources */,
 				079A88C620E5C58000C1E76F /* Main.storyboard in Resources */,
-				07A5428220EBC2610068B99C /* app.css in Resources */,
-				681C6C26F0CEC1CF17FAF890 /* topic_detail.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +340,7 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
@@ -348,6 +354,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
@@ -417,9 +424,8 @@
 				074F903820E9FA9A00951B27 /* ReplyTableViewCell.swift in Sources */,
 				07742D4620F4B458004C80AA /* LBXScanWrapper.swift in Sources */,
 				07446C0220E61BD300768C90 /* Constants.swift in Sources */,
-				0715110A20E71D630014206D /* TopicDetailViewController.swift in Sources */,
+				0715110A20E71D630014206D /* TopicDetailWebViewController.swift in Sources */,
 				07446C0620E6270800768C90 /* Result.swift in Sources */,
-				68857D55D6DCD14AE423E2A9 /* vue.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

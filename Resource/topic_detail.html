@@ -2,29 +2,85 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no" />
   <link rel="stylesheet" href="app.css">
-  <script src="vue.js"></script>
+  <script src="underscore.min.js"></script>
+  <script src="moment.min.js"></script>
 </head>
 
 <body>
-<div id="app">
-  <div class="header">
-    <img :src="topic.author.avatar_url" alt="" class="avatar">
-    <div class="title">{{topic.title}}</div>
-  </div>
-</div>
-<script type="text/javascript">
-  function init(topic) {
-    console.log(topic)
-  }
+  <div id="app"></div>
+  <script type="text/template" id="tpl">
+    <div class="header">
+      <img src="<%=author.avatar_url%>" class="avatar"/>
+      <div class="info">
+        <div class="info1">
+          <div class="loginname"><%=author.loginname%></div>
+          <div class="tab">
+            <% if(tab === 'share') { %>
+              分享
+            <% } else if(tab === 'ask') { %>
+              问答
+            <% } else if(tab === 'dev') { %>
+              客户端测试
+            <% } else if(tab === 'job') { %>
+              招聘
+            <% } %>
+          </div>
+        </div>
+        <div>发布于 <%=moment(create_at).fromNow()%>&nbsp;•&nbsp;<%=visit_count%>次浏览</div>
+      </div>
+    </div>
+    <div class="title"><%=title%></div>
+    <hr>
+    <div class="content"><%=content%></div>
+    <div class="panel">
+      <%=replies.length%>回复
+    </div>
+    <div class="replies">
+      <% _.each(replies, function(v, i) { %>
+        <div class="reply">
+          <img src="<%=v.author.avatar_url%>" class="avatar-sm"/>
+          <div class="info">
+            <div class="info1">
+              <div class="loginname">
+                <%=v.author.loginname%>
+                <% if(v.author.loginname === author.loginname){ %>
+                  <span class="op">[楼主]</span>
+                <% } %>
+              </div>
+            </div>
+            <div><%=i + 1%>楼&nbsp;•&nbsp;发布于 <%=moment(v.create_at).fromNow()%></div>
+          </div>
+        </div>
+        <div class="reply-content"><%=v.content%></div>
+      <% }) %>
+    </div>
+    <div class="no-more">没有更多回复了</div>
+  </script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <script type="text/javascript">
+    function init(topic) {
+      _topic = topic;
+      var appTpl = _.template(document.getElementById('tpl').innerHTML);
+      document.getElementById("app").innerHTML = appTpl(topic.data);
+    }
 
-  function clickMe() {
-    window.webkit.messageHandlers.AppModel.postMessage("1")
-  }
-</script>
+    function clickMe() {
+      window.webkit.messageHandlers.AppModel.postMessage("1")
+    }
+
+    function test() {
+      $.getJSON('https://cnodejs.org/api/v1/topic/5627045be570e3f6488fa40c', function (data) {
+        var appTpl = _.template(document.getElementById('tpl').innerHTML);
+        document.getElementById("app").innerHTML = appTpl(data.data);
+      })
+    }
+
+    // test();
+
+  </script>
 </body>
 
 </html>

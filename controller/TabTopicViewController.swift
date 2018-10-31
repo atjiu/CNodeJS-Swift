@@ -96,10 +96,10 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let topic = data[indexPath.row]
-        let topicDetailViewController = TopicDetailTableViewController()
+        let topicDetailWebViewController = TopicDetailWebViewController()
 //        let topicDetailViewController = TopicDetailViewController()
-        topicDetailViewController.topic = topic
-        self.navigationController?.pushViewController(topicDetailViewController, animated: true)
+        topicDetailWebViewController.topic = topic
+        self.navigationController?.pushViewController(topicDetailWebViewController, animated: true)
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {

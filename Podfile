@@ -15,5 +15,6 @@ target 'CNodeJS-Swift' do
   pod 'UIColor_Hex_Swift'
   pod 'DeviceKit'
   pod 'YYText'
+  pod 'SwiftyJSON'
 
 end
