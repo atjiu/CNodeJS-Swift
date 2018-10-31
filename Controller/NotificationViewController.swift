@@ -51,6 +51,7 @@ class NotificationViewController: UITableViewController {
             UIAlertController.showAlert(message: "请先登录!")
             self.data = [Message]()
             self.tableView.mj_header.endRefreshing()
+            self.tableView.reloadData()
         } else {
             provider.request(.messages(token: token!)) { (res) in
                 switch res {
@@ -69,27 +70,6 @@ class NotificationViewController: UITableViewController {
         }
     }
     
-//    @objc func loadMoreData() {
-//        provider.request(.collect(loginname: UserDefaults.standard.string(forKey: "loginname")!, page: self.page)) { (res) in
-//            switch res {
-//            case .success(let response):
-//                self.page += 1
-//                let decoder = JSONDecoder()
-//                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-//                let result = try! decoder.decode(Result<Notification>.self, from: response.data)
-//                self.data += result.data!.has
-//                self.tableView.mj_footer.endRefreshing()
-//                if result.data!.count < 50 {
-//                    self.tableView.mj_footer.endRefreshingWithNoMoreData()
-//                }
-//                self.tableView.reloadData()
-//            case .failure(let error):
-//                self.tableView.mj_footer.endRefreshing()
-//                self.view.makeToast(error.errorDescription)
-//            }
-//        }
-//    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
@@ -102,10 +82,9 @@ class NotificationViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let message = data[indexPath.row]
-        let topicDetailViewController = TopicDetailTableViewController()
-        //        let topicDetailViewController = TopicDetailViewController()
-        topicDetailViewController.topic = message.topic
-        self.navigationController?.pushViewController(topicDetailViewController, animated: true)
+        let topicDetailWebViewController = TopicDetailWebViewController()
+        topicDetailWebViewController.topic = message.topic
+        self.navigationController?.pushViewController(topicDetailWebViewController, animated: true)
     }
     
 

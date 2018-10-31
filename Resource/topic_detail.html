@@ -57,7 +57,9 @@
         <div class="reply-content"><%=v.content%></div>
       <% }) %>
     </div>
-    <div class="no-more">没有更多回复了</div>
+    <% if(replies.length > 0){ %>
+      <div class="no-more">没有更多回复了</div>
+    <% } %>
   </script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
   <script type="text/javascript">

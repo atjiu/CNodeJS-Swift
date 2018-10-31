@@ -97,7 +97,6 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let topic = data[indexPath.row]
         let topicDetailWebViewController = TopicDetailWebViewController()
-//        let topicDetailViewController = TopicDetailViewController()
         topicDetailWebViewController.topic = topic
         self.navigationController?.pushViewController(topicDetailWebViewController, animated: true)
     }

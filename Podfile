@@ -16,5 +16,6 @@ target 'CNodeJS-Swift' do
   pod 'DeviceKit'
   pod 'YYText'
   pod 'SwiftyJSON'
+  pod 'Toast-Swift'
 
 end

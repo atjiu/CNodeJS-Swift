@@ -12,6 +12,7 @@ import SnapKit
 import Moya
 import WebKit
 import SwiftyJSON
+import Toast_Swift
 
 class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
     
@@ -97,15 +98,35 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     
     @objc func menuClick() {
         let alertController = UIAlertController(title: "Hello World", message: "WebView加载HTML才是王道", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "收藏", style: .default, handler: self.collectHandler))
-        alertController.addAction(UIAlertAction(title: "分享", style: .default, handler: self.shareHandler))
         alertController.addAction(UIAlertAction(title: "回复", style: .default, handler: self.replyHandler))
+        alertController.addAction(UIAlertAction(title: "分享", style: .default, handler: self.shareHandler))
+        alertController.addAction(UIAlertAction(title: "收藏", style: .default, handler: self.collectHandler))
         alertController.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
+    @objc func replyClick() {
+        let alertController = UIAlertController(title: "Hello World", message: "你想干点啥", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "点赞", style: .default, handler: self.upHandler))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func upHandler(alert: UIAlertAction) {
+        print(11)
+    }
+    
     func collectHandler(alert: UIAlertAction) {
         if UserDefaults.standard.string(forKey: "token") != nil {
+            self.view.makeToastActivity(.center)
+            provider.request(.favorite(UserDefaults.standard.string(forKey: "token")!, self.topic.id!)) { (res) in
+                switch res {
+                case .success(_):
+                    self.view.hideToastActivity()
+                    self.view.makeToast("收藏成功!")
+                case .failure(let error):
+                    UIAlertController.showAlert(message: error.errorDescription!)
+                }
+            }
         } else {
             UIAlertController.showAlert(message: "请先登录!")
         }
@@ -120,6 +141,9 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     
     func replyHandler(alert: UIAlertAction) {
         if UserDefaults.standard.string(forKey: "token") != nil {
+            let addReplyViewController = AddReplyViewController();
+            addReplyViewController.topic_id = topic.id!
+            present(UINavigationController(rootViewController: addReplyViewController), animated: true, completion: nil)
         } else {
             UIAlertController.showAlert(message: "请先登录")
         }
