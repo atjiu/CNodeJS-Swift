@@ -40,21 +40,23 @@
     </div>
     <div class="replies">
       <% _.each(replies, function(v, i) { %>
-        <div class="reply">
-          <img src="<%=v.author.avatar_url%>" class="avatar-sm"/>
-          <div class="info">
-            <div class="info1">
-              <div class="loginname">
-                <%=v.author.loginname%>
-                <% if(v.author.loginname === author.loginname){ %>
-                  <span class="op">[楼主]</span>
-                <% } %>
+        <div class="tap" data-id="<%=v.id%>" data-loginname="<%=v.author.loginname%>">
+          <div class="reply">
+            <img src="<%=v.author.avatar_url%>" class="avatar-sm"/>
+            <div class="info">
+              <div class="info1">
+                <div class="loginname">
+                  <%=v.author.loginname%>
+                  <% if(v.author.loginname === author.loginname){ %>
+                    <span class="op">[楼主]</span>
+                  <% } %>
+                </div>
               </div>
+              <div><%=i + 1%>楼&nbsp;•&nbsp;发布于 <%=moment(v.create_at).fromNow()%></div>
             </div>
-            <div><%=i + 1%>楼&nbsp;•&nbsp;发布于 <%=moment(v.create_at).fromNow()%></div>
           </div>
+          <div class="reply-content"><%=v.content%></div>
         </div>
-        <div class="reply-content"><%=v.content%></div>
       <% }) %>
     </div>
     <% if(replies.length > 0){ %>
@@ -67,20 +69,20 @@
       _topic = topic;
       var appTpl = _.template(document.getElementById('tpl').innerHTML);
       document.getElementById("app").innerHTML = appTpl(topic.data);
-    }
 
-    function clickMe() {
-      window.webkit.messageHandlers.AppModel.postMessage("1")
+      var replyDoms = document.getElementsByClassName('tap');
+      for (var i = 0; i < replyDoms.length; i++) {
+        (function (index) {
+          var reply_id = replyDoms[index].getAttribute('data-id');
+          var loginname = replyDoms[index].getAttribute('data-loginname');
+          replyDoms[index].addEventListener('click', function () {
+            window.webkit.messageHandlers.AppModel.postMessage(
+              JSON.stringify({ "type": "click_reply", "reply_id": reply_id, "loginname": loginname })
+            );
+          }, false);
+        })(i)
+      }
     }
-
-    function test() {
-      $.getJSON('https://cnodejs.org/api/v1/topic/5627045be570e3f6488fa40c', function (data) {
-        var appTpl = _.template(document.getElementById('tpl').innerHTML);
-        document.getElementById("app").innerHTML = appTpl(data.data);
-      })
-    }
-
-    // test();
 
   </script>
 </body>

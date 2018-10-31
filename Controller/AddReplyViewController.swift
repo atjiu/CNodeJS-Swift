@@ -17,6 +17,7 @@ class AddReplyViewController: UIViewController {
     
     var topic_id : String!
     var reply_id : String?
+    var detail_reply_loginname: String?
     
     lazy var textView: UITextView = {
         var textView = UITextView()
@@ -35,7 +36,6 @@ class AddReplyViewController: UIViewController {
         //设置返回按钮为白色
         self.navigationController?.navigationBar.tintColor = .white
         
-        
         //添加菜单
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(AddReplyViewController.leftClick))
         let menuButton = UIButton()
@@ -48,6 +48,11 @@ class AddReplyViewController: UIViewController {
         
         textView.snp.makeConstraints { (make) in
             make.edges.equalTo(0)
+        }
+        
+        // 判断是否是回复其它用户
+        if (detail_reply_loginname != nil) {
+            textView.text = "@\(detail_reply_loginname!) "
         }
     }
     

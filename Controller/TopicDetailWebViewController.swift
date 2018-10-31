@@ -19,6 +19,9 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     var provider = MoyaProvider<CNodeService>()
     
     var topic: Topic!
+    var detail_reply_id: String?
+    var detail_reply_loginname: String?
+    
     var refreshControl = UIRefreshControl()
     
     lazy var webView: WKWebView = {
@@ -107,12 +110,27 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     
     @objc func replyClick() {
         let alertController = UIAlertController(title: "Hello World", message: "你想干点啥", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "回复", style: .default, handler: self.replyHandler))
         alertController.addAction(UIAlertAction(title: "点赞", style: .default, handler: self.upHandler))
+        alertController.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
     func upHandler(alert: UIAlertAction) {
-        print(11)
+        if UserDefaults.standard.string(forKey: "token") != nil {
+            self.view.makeToastActivity(.center)
+            provider.request(.up(self.detail_reply_id!, UserDefaults.standard.string(forKey: "token")!)) { (res) in
+                switch res {
+                case .success(_):
+                    self.view.hideToastActivity()
+                    self.view.makeToast("点赞成功!")
+                case .failure(let error):
+                    UIAlertController.showAlert(message: error.errorDescription!)
+                }
+            }
+        } else {
+            UIAlertController.showAlert(message: "请先登录!")
+        }
     }
     
     func collectHandler(alert: UIAlertAction) {
@@ -143,6 +161,8 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
         if UserDefaults.standard.string(forKey: "token") != nil {
             let addReplyViewController = AddReplyViewController();
             addReplyViewController.topic_id = topic.id!
+            addReplyViewController.reply_id = detail_reply_id
+            addReplyViewController.detail_reply_loginname = detail_reply_loginname
             present(UINavigationController(rootViewController: addReplyViewController), animated: true, completion: nil)
         } else {
             UIAlertController.showAlert(message: "请先登录")
@@ -158,6 +178,12 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print(message.body)
+        print(message.body, type(of: message.body))
+        let msg = JSON(parseJSON: message.body as! String)
+        if (msg["type"] == "click_reply") {
+            detail_reply_id = msg["reply_id"].rawString()
+            detail_reply_loginname = msg["loginname"].rawString()
+            replyClick()
+        }
     }
 }

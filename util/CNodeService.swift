@@ -18,6 +18,7 @@ enum CNodeService {
     case messages(token: String)
     case favorite(_ token: String, _ topic_id: String)
     case addReply(_ topic_id: String, _ accesstoken: String, _ content: String, _ reply_id: String?)
+    case up(_ reply_id: String, _ accesstoken: String)
 }
 
 extension CNodeService: TargetType {
@@ -43,6 +44,8 @@ extension CNodeService: TargetType {
             return "/topic_collect/collect"
         case .addReply(let topic_id, _, _, _):
             return "/topic/\(topic_id)/replies"
+        case .up(let reply_id, _):
+            return "/reply/\(reply_id)/ups"
         }
     }
     
@@ -50,7 +53,7 @@ extension CNodeService: TargetType {
         switch self {
         case .topics, .topicDetail, .user, .collect, .messages:
             return .get
-        case .accessToken, .favorite, .addReply:
+        case .accessToken, .favorite, .addReply, .up:
             return .post
         }
     }
@@ -75,6 +78,8 @@ extension CNodeService: TargetType {
             return .requestParameters(parameters: ["accesstoken": accesstoken, "topic_id": topic_id], encoding: JSONEncoding.default)
         case .addReply(let topic_id, let accesstoken, let content, let reply_id):
             return .requestParameters(parameters: ["topic_id": topic_id, "accesstoken": accesstoken, "content": content, "reply_id": reply_id as Any], encoding: JSONEncoding.default)
+        case .up(let reply_id, let accesstoken):
+            return .requestParameters(parameters: ["reply_id": reply_id, "accesstoken": accesstoken], encoding: JSONEncoding.default)
         }
     }
     
