@@ -124,7 +124,6 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
                 switch res {
                 case .success(let response):
                     let json = try! JSON(data: response.data)
-                    print(json["data"], type(of: json["data"]))
                     self.setBadge?(Int(json["data"].rawString()!)!)
                 case .failure(_):
                     self.navigationController?.view.makeToast("获取未读通知失败")

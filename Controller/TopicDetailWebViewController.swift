@@ -91,7 +91,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                 topicJsonStr = topicJsonStr?.replacingOccurrences(of: "\n", with: "")
                 topicJsonStr = topicJsonStr?.replacingOccurrences(of: "\\/\\/static.cnodejs.org", with: "https:\\/\\/static.cnodejs.org")
                 self.webView.evaluateJavaScript("init(\(topicJsonStr!))", completionHandler: { (res, err) in
-                    //                    print(11, res, err)
+                    //print(11, res, err)
                 })
             case .failure(let error):
                 UIAlertController.showAlert(message: error.errorDescription!)
@@ -165,7 +165,17 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
             addReplyViewController.topic_id = self.topic_id
             addReplyViewController.reply_id = detail_reply_id
             addReplyViewController.detail_reply_loginname = detail_reply_loginname
-            present(UINavigationController(rootViewController: addReplyViewController), animated: true, completion: nil)
+            // 回复成功被调用用来显示toast
+            addReplyViewController.reply_success = {[weak self] in
+                self?.navigationController?.view.makeToast("回复成功")
+                self?.refreshControl.beginRefreshing()
+                self?.fetch()
+            }
+            present(UINavigationController(rootViewController: addReplyViewController), animated: true, completion: {() in
+                // 回复成功后，刷新当前页面
+                // 调用 self.fetch() 不生效，也不知道为啥
+//                self.view.makeToast("回复成功") 这个也没效果，只好用block了。。
+            })
         } else {
             UIAlertController.showAlert(message: "请先登录")
         }

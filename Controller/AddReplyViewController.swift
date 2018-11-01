@@ -60,16 +60,19 @@ class AddReplyViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    var reply_success: (() -> Void)?
+    
     @objc func rightClick() {
         if self.textView.text == nil || self.textView.text.count <= 0 {
             return;
         }
+        self.textView.resignFirstResponder()
         self.view.makeToastActivity(.center)
         provider.request(.addReply(topic_id, UserDefaults.standard.string(forKey: "token")!, self.textView.text + REPLY_TAIL, self.reply_id)) { (res) in
             switch res {
             case .success(_):
                 self.view.hideToastActivity()
-                self.view.makeToast("回复成功")
+                self.reply_success?()
                 self.leftClick()
             case .failure(let error):
                 UIAlertController.showAlert(message: error.errorDescription!)
