@@ -186,6 +186,11 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
             detail_reply_id = msg["reply_id"].rawString()
             detail_reply_loginname = msg["loginname"].rawString()
             replyClick()
+        } else if (msg["type"] == "to_user_center") {
+            let userCenterViewController = UserCenterViewController()
+            userCenterViewController.type = 1
+            userCenterViewController.loginname = msg["loginname"].rawString()
+            self.navigationController?.pushViewController(userCenterViewController, animated: true)
         }
     }
 }

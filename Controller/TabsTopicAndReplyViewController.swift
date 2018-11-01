@@ -9,11 +9,9 @@
 import UIKit
 import XLPagerTabStrip
 import UIColor_Hex_Swift
-import Moya
 
 class TabsTopicAndReplyViewController: ButtonBarPagerTabStripViewController {
     
-    let provider = MoyaProvider<CNodeService>()
     var author: Author!
     let topicsVC = TopicOrReplyTableViewController()
     let repliesVC = TopicOrReplyTableViewController()
@@ -47,18 +45,11 @@ class TabsTopicAndReplyViewController: ButtonBarPagerTabStripViewController {
         
         super.viewDidLoad()
         
-        provider.request(.user(loginname: UserDefaults.standard.string(forKey: "loginname")!)) { (res) in
-            switch res {
-            case .success(let response):
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-                let result = try! decoder.decode(Result<Author>.self, from: response.data)
-                self.topicsVC.reloadData((result.data?.recent_topics)!)
-                self.repliesVC.reloadData((result.data?.recent_replies)!)
-            case .failure(let error):
-                UIAlertController.showAlert(message: error.errorDescription!)
-            }
-        }
+    }
+    
+    func reloadData(topics: [Topic], replies: [Topic]) {
+        self.topicsVC.reloadData(topics)
+        self.repliesVC.reloadData(replies)
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {

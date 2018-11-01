@@ -8,11 +8,14 @@
 
 import UIKit
 import SnapKit
+import Moya
+import Toast_Swift
 
 class UserCenterViewController: UIViewController {
     
+    let provider = MoyaProvider<CNodeService>()
+    var type: Int!
     var loginname: String!
-    
     let tabsTopicAndReplyViewController = TabsTopicAndReplyViewController()
     let header = UserHeaderTableViewCell()
 
@@ -36,6 +39,28 @@ class UserCenterViewController: UIViewController {
         tabsTopicAndReplyViewController.view.snp.makeConstraints { (make) in
             make.top.equalTo(self.header.snp.bottom)
             make.left.right.bottom.equalTo(0)
+        }
+        
+        self.view.makeToastActivity(.center)
+        
+        // 请求用户信息
+        provider.request(.user(loginname: loginname)) { (res) in
+            switch res {
+            case .success(let response):
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                let result = try! decoder.decode(Result<Author>.self, from: response.data)
+//                self.topicsVC.reloadData((result.data?.recent_topics)!)
+//                self.repliesVC.reloadData((result.data?.recent_replies)!)
+                // 传参
+                self.header.type = self.type
+                self.header.author = result.data!
+                self.header.bind()
+                self.tabsTopicAndReplyViewController.reloadData(topics: (result.data?.recent_topics)!, replies: (result.data?.recent_replies)!)
+                self.view.hideToastActivity()
+            case .failure(let error):
+                UIAlertController.showAlert(message: error.errorDescription!)
+            }
         }
     }
 

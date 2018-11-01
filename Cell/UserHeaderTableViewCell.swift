@@ -15,6 +15,9 @@ import Moya
 class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
     
     let provider = MoyaProvider<CNodeService>()
+    // 0: 当前用户的个人中心 1: 其它用户的个人中心
+    var type: Int!
+    var author: Author!
     
     lazy var avatar: UIImageView = {
         var avatar = UIImageView()
@@ -56,7 +59,6 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
         self.addSubview(score)
         
         addConstraints()
-        bind()
         
         // 添加事件
         self.avatar.isUserInteractionEnabled = true
@@ -93,25 +95,32 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
     }
     
     func bind() {
-        if UserDefaults.standard.string(forKey: "token") != nil {
-            let avatar_url = UserDefaults.standard.string(forKey: "avatar_url")
-            let username = UserDefaults.standard.string(forKey: "loginname")
-            let create_at = UserDefaults.standard.string(forKey: "create_at")
-            let score = UserDefaults.standard.string(forKey: "score")
-            if avatar_url != nil {
-                self.avatar.kf.setImage(with: URL(string: avatar_url!))
+        if type == 0 {
+            if UserDefaults.standard.string(forKey: "token") != nil {
+                let avatar_url = UserDefaults.standard.string(forKey: "avatar_url")
+                let username = UserDefaults.standard.string(forKey: "loginname")
+                let create_at = UserDefaults.standard.string(forKey: "create_at")
+                let score = UserDefaults.standard.string(forKey: "score")
+                if avatar_url != nil {
+                    self.avatar.kf.setImage(with: URL(string: avatar_url!))
+                }
+                if username != nil {
+                    self.username.text = username
+                }
+                if create_at != nil {
+                    self.registerTime.text = "注册于" + create_at!
+                }
+                if score != nil {
+                    self.score.text = "积分:\(score!)"
+                }
+            } else {
+                self.username.text = "点击头像扫码登录"
             }
-            if username != nil {
-                self.username.text = username
-            }
-            if create_at != nil {
-                self.registerTime.text = "注册于" + create_at!
-            }
-            if score != nil {
-                self.score.text = "积分:\(score!)"
-            }
-        } else {
-            self.username.text = "点击头像扫码登录"
+        } else if type == 1 {
+            self.avatar.kf.setImage(with: URL(string: author.avatar_url!))
+            self.username.text = author.loginname
+            self.registerTime.text = "注册于 \((author.create_at?.getElapsedInterval())!)"
+            self.score.text = "积分:\(author.score!)"
         }
     }
     

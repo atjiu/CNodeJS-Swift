@@ -90,6 +90,7 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TopicTableViewCell
+        cell.tabTopicViewController = self
         cell.bind(topic: data[indexPath.row])
         return cell
     }

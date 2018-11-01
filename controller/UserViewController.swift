@@ -12,6 +12,7 @@ class UserViewController: UITableViewController {
     
     lazy var headerView: UserHeaderTableViewCell = {
         var cell = UserHeaderTableViewCell()
+        cell.type = 0
         cell.scanQrCodeViewController = { [weak self] vc in
             self?.navigationController?.pushViewController(vc!, animated: true)
         }
@@ -50,6 +51,9 @@ class UserViewController: UITableViewController {
         let footerView = UIView()
         footerView.backgroundColor = UIColor.clear
         self.tableView.tableFooterView = footerView
+        
+        // 加载当前用户信息
+        self.headerView.bind();
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -96,6 +100,7 @@ class UserViewController: UITableViewController {
             let menuName = data[indexPath.section].1[indexPath.row].1
             if menuName == "个人中心" {
                 let userCenterViewController = UserCenterViewController()
+                userCenterViewController.type = 0
                 userCenterViewController.loginname = UserDefaults.standard.string(forKey: "loginname")
                 self.navigationController?.pushViewController(userCenterViewController, animated: true)
             } else if menuName == "我的收藏" {

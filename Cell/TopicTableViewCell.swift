@@ -13,6 +13,8 @@ import UIColor_Hex_Swift
 
 class TopicTableViewCell: UITableViewCell {
     
+    var tabTopicViewController: TabTopicViewController!
+    
     var avatar: UIImageView = {
         let _avatar = UIImageView()
         _avatar.layer.masksToBounds = true
@@ -125,12 +127,21 @@ class TopicTableViewCell: UITableViewCell {
         self.usernameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TopicTableViewCell.usernameLabelTap)))
     }
     
+    //点击头像跳转用户页
     @objc func avatarTap() {
-        print(self.topic?.author?.loginname)
+        let userCenterViewController = UserCenterViewController()
+        userCenterViewController.type = 1
+        userCenterViewController.loginname = self.topic?.author?.loginname
+        self.tabTopicViewController.navigationController?.pushViewController(userCenterViewController, animated: true)
     }
     
+    //点击用户名跳转用户页
+    // 跟上面方法一样的，可以合并成一个方法
     @objc func usernameLabelTap() {
-        print(self.topic?.author?.loginname)
+        let userCenterViewController = UserCenterViewController()
+        userCenterViewController.type = 1
+        userCenterViewController.loginname = self.topic?.author?.loginname
+        self.tabTopicViewController.navigationController?.pushViewController(userCenterViewController, animated: true)
     }
     
     required init?(coder aDecoder: NSCoder) {
