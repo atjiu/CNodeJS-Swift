@@ -34,6 +34,7 @@
 - DeviceKit
 - SwiftyJSON
 - Toast-Swift
+- YBImageBrowser
 
 ## Donate
 
