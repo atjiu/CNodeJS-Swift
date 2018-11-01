@@ -15,6 +15,6 @@ target 'CNodeJS-Swift' do
   pod 'UIColor_Hex_Swift'
   pod 'DeviceKit'
   pod 'SwiftyJSON'
-  pod 'Toast-Swift'
+  pod 'YBImageBrowser'
 
 end

@@ -12,13 +12,13 @@ import SnapKit
 import Moya
 import WebKit
 import SwiftyJSON
-import Toast_Swift
+import YBImageBrowser
 
 class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
     
     var provider = MoyaProvider<CNodeService>()
     
-    var topic: Topic!
+    var topic_id: String!
     var detail_reply_id: String?
     var detail_reply_loginname: String?
     
@@ -82,7 +82,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     
     @objc func fetch() {
         //刷新页面
-        provider.request(.topicDetail(id: topic.id!)) { (res) in
+        provider.request(.topicDetail(id: self.topic_id)) { (res) in
             switch res {
             case .success(let response):
                 self.refreshControl.endRefreshing()
@@ -138,7 +138,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     func collectHandler(alert: UIAlertAction) {
         if UserDefaults.standard.string(forKey: "token") != nil {
             self.view.makeToastActivity(.center)
-            provider.request(.favorite(UserDefaults.standard.string(forKey: "token")!, self.topic.id!)) { (res) in
+            provider.request(.favorite(UserDefaults.standard.string(forKey: "token")!, self.topic_id)) { (res) in
                 switch res {
                 case .success(_):
                     self.view.hideToastActivity()
@@ -153,7 +153,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     }
     
     func shareHandler(alert: UIAlertAction) {
-        let shareUrl = URL.init(string: "\(BASE_URL)/topic/\(topic.id!)")
+        let shareUrl = URL.init(string: "\(BASE_URL)/topic/\(self.topic_id!)")
         let shareArr = [shareUrl!]
         let activityController = UIActivityViewController.init(activityItems: shareArr, applicationActivities: nil)
         self.present(activityController, animated: true, completion: nil)
@@ -162,7 +162,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     func replyHandler(alert: UIAlertAction) {
         if UserDefaults.standard.string(forKey: "token") != nil {
             let addReplyViewController = AddReplyViewController();
-            addReplyViewController.topic_id = topic.id!
+            addReplyViewController.topic_id = self.topic_id
             addReplyViewController.reply_id = detail_reply_id
             addReplyViewController.detail_reply_loginname = detail_reply_loginname
             present(UINavigationController(rootViewController: addReplyViewController), animated: true, completion: nil)
@@ -186,6 +186,64 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
             userCenterViewController.type = 1
             userCenterViewController.loginname = msg["loginname"].rawString()
             self.navigationController?.pushViewController(userCenterViewController, animated: true)
+        } else if (msg["type"] == "click_a") {
+            var href = msg["href"].rawString()
+//            print(href)
+            
+            let urlComponents = URLComponents(string: href!)!
+//            if let scheme = urlComponents.scheme {
+//                print("scheme: \(scheme)")
+//            }
+//            if let user = urlComponents.user {
+//                print("user: \(user)")
+//            }
+//            if let password = urlComponents.password {
+//                print("password: \(password)")
+//
+//            }
+//            if let host = urlComponents.host {
+//                print("host: \(host)")
+//
+//            }
+//            if let port = urlComponents.port {
+//                print("port: \(port)")
+//
+//            }
+//            print("path: \(urlComponents.path)")
+//            if let query = urlComponents.query {
+//                print("query: \(query)")
+//            }
+//            if let queryItems = urlComponents.queryItems {
+//                print("queryItems: \(queryItems)")
+//                for (index, queryItem) in queryItems.enumerated() {
+//                    print("第\(index)个queryItem name:\(queryItem.name)")
+//                    if let value = queryItem.value {
+//                        print("第\(index)个queryItem value:\(value)")
+//                    }
+//                }
+//            }
+            
+            if urlComponents.scheme != nil && urlComponents.host != "cnodejs.org" {
+                UIApplication.shared.open(URL(string: href!)!, options: [:], completionHandler: nil)
+            } else if urlComponents.scheme == nil && urlComponents.path.contains("/user") {
+                href = href?.replacingOccurrences(of: "/user/", with: "")
+                let userCenterViewController = UserCenterViewController()
+                userCenterViewController.type = 1
+                userCenterViewController.loginname = href
+                self.navigationController?.pushViewController(userCenterViewController, animated: true)
+            } else if urlComponents.scheme != nil && urlComponents.host == "cnodejs.org" {
+                let _topic_id = urlComponents.path.replacingOccurrences(of: "/topic/", with: "")
+                let topicDetailWebViewController = TopicDetailWebViewController()
+                topicDetailWebViewController.topic_id = _topic_id
+                self.navigationController?.pushViewController(topicDetailWebViewController, animated: true)
+            }
+        } else if (msg["type"] == "click_img") {
+            let img_src = msg["img_src"].rawString()
+            let imageBrowser = YBImageBrowser()
+            let cellData = YBImageBrowseCellData()
+            cellData.url = URL(string: img_src!)
+            imageBrowser.dataSourceArray = [cellData]
+            imageBrowser.show()
         }
     }
 }

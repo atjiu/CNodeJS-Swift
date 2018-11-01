@@ -160,16 +160,21 @@ class TopicTableViewCell: UITableViewCell {
             _tab = "博客"
         } else if topic.tab == "share" {
             _tab = "分享"
+        } else if topic.tab == "dev" {
+            _tab = "调试"
         }
         if topic.good ?? false {
-            self.tabLabel.backgroundColor = UIColor(CNodeColor.tabColor)
-            self.tabLabel.textColor = UIColor.white
             _tab = "精华"
         }
         if topic.top ?? false {
+            _tab = "置顶"
+        }
+        if topic.good ?? false || topic.top ?? false {
             self.tabLabel.backgroundColor = UIColor(CNodeColor.tabColor)
             self.tabLabel.textColor = UIColor.white
-            _tab = "置顶"
+        } else {
+            self.tabLabel.backgroundColor = UIColor(CNodeColor.grayColor)
+            self.tabLabel.textColor = .gray
         }
         self.tabLabel.text = _tab
         self.titleLabel.text = topic.title

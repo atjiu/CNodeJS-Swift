@@ -83,7 +83,7 @@ class NotificationViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let message = data[indexPath.row]
         let topicDetailWebViewController = TopicDetailWebViewController()
-        topicDetailWebViewController.topic = message.topic
+        topicDetailWebViewController.topic_id = message.topic.id
         self.navigationController?.pushViewController(topicDetailWebViewController, animated: true)
     }
     

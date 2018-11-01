@@ -41,7 +41,7 @@
       <%=title%>
     </div>
     <hr>
-    <div class="content"><%=content%></div>
+    <div class="content deal-link"><%=content%></div>
     <div class="panel">
       <%=replies.length%>回复
     </div>
@@ -62,7 +62,7 @@
               <div><%=i + 1%>楼&nbsp;•&nbsp;发布于 <%=moment(v.create_at).fromNow()%></div>
             </div>
           </div>
-          <div class="reply-content"><%=v.content%></div>
+          <div class="reply-content deal-link"><%=v.content%></div>
         </div>
       <% }) %>
     </div>
@@ -88,6 +88,37 @@
             event.stopPropagation()
           }, false);
         })(iii)
+      }
+
+      // 处理内容中链接的点击
+      var linkDoms = document.querySelectorAll('.deal-link a');
+      for (var i = 0; i < linkDoms.length; i++) {
+        (function (index) {
+          var href = linkDoms[index].getAttribute('href');
+          linkDoms[index].addEventListener('click', function (event) {
+            // 阻止链接跳转
+            event.preventDefault();
+            // 跟app交互处理链接打开方式
+            window.webkit.messageHandlers.AppModel.postMessage(
+              JSON.stringify({ "type": "click_a", "href": href })
+            );
+            event.stopPropagation();
+          }, false);
+        })(i)
+      }
+
+      // 处理内容中图片的点击
+      var imgDoms = document.querySelectorAll('.deal-link img');
+      for (var i = 0; i < imgDoms.length; i++) {
+        (function (index) {
+          var img_src = imgDoms[index].getAttribute('src');
+          imgDoms[index].addEventListener('click', function (event) {
+            window.webkit.messageHandlers.AppModel.postMessage(
+              JSON.stringify({ "type": "click_img", "img_src": img_src })
+            );
+            event.stopPropagation();
+          }, false);
+        })(i)
       }
 
       // 点击回复列表事件
