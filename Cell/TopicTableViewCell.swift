@@ -23,7 +23,7 @@ class TopicTableViewCell: UITableViewCell {
     }()
     var titleLabel: UILabel = {
         var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 15)
         label.numberOfLines = 0
         return label
     }()
@@ -81,7 +81,7 @@ class TopicTableViewCell: UITableViewCell {
         self.addSubview(tabLabel)
         
         avatar.snp.makeConstraints { (make) in
-            make.width.height.equalTo(36)
+            make.width.height.equalTo(32)
             make.top.left.equalTo(10)
         }
         
@@ -122,22 +122,13 @@ class TopicTableViewCell: UITableViewCell {
         }
         
         self.avatar.isUserInteractionEnabled = true
-        self.avatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TopicTableViewCell.avatarTap)))
+        self.avatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TopicTableViewCell.toUserCenter)))
         self.usernameLabel.isUserInteractionEnabled = true
-        self.usernameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TopicTableViewCell.usernameLabelTap)))
+        self.usernameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TopicTableViewCell.toUserCenter)))
     }
     
-    //点击头像跳转用户页
-    @objc func avatarTap() {
-        let userCenterViewController = UserCenterViewController()
-        userCenterViewController.type = 1
-        userCenterViewController.loginname = self.topic?.author?.loginname
-        self.tabTopicViewController.navigationController?.pushViewController(userCenterViewController, animated: true)
-    }
-    
-    //点击用户名跳转用户页
-    // 跟上面方法一样的，可以合并成一个方法
-    @objc func usernameLabelTap() {
+    //跳转用户页
+    @objc func toUserCenter() {
         let userCenterViewController = UserCenterViewController()
         userCenterViewController.type = 1
         userCenterViewController.loginname = self.topic?.author?.loginname
@@ -152,7 +143,11 @@ class TopicTableViewCell: UITableViewCell {
         self.avatar.kf.setImage(with: URL(string: (topic.author?.avatar_url)!)!)
         self.usernameLabel.text = topic.author?.loginname
         self.createTimeLabel.text = "创建于 \((topic.create_at?.getElapsedInterval())!)"
-        self.lastReplyTimeLabel.text = "最后回复 \((topic.last_reply_at?.getElapsedInterval())!)"
+        if topic.reply_count ?? 0 > 0 {
+            self.lastReplyTimeLabel.text = "最后回复 \((topic.last_reply_at?.getElapsedInterval())!)"
+        } else {
+            self.lastReplyTimeLabel.text = ""
+        }
         self.viewLabel.text = "/\(topic.visit_count ?? 0)"
         self.replyCountLabel.text = String(topic.reply_count ?? 0)
         // 格式化分类

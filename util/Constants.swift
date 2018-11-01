@@ -50,18 +50,23 @@ extension DateFormatter {
 
 extension Date {
     func getElapsedInterval() -> String {
-        let interval = Calendar.current.dateComponents([.year, .month, .day], from: self, to: Date())
+        let interval = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self, to: Date())
         if let year = interval.year, year > 0 {
-            return year == 1 ? "\(year)" + " " + "年前　　" :
-                "\(year)" + " " + "年前"
+            return "\(year) 年前"
         } else if let month = interval.month, month > 0 {
-            return month == 1 ? "\(month)" + " " + "月前" :
-                "\(month)" + " " + "月前"
+            let day = interval.day!
+            return day < 15 ? "\(month) 月前" : "\(month + 1) 月前"
         } else if let day = interval.day, day > 0 {
-            return day == 1 ? "\(day)" + " " + "天前" :
-                "\(day)" + " " + "天前"
+            let hour = interval.hour!
+            return hour < 12 ? "\(day) 天前" : "\(day + 1) 天前"
+        } else if let hour = interval.hour, hour > 0 {
+            let minute = interval.minute!
+            return minute < 30 ? "\(hour) 时前" : "\(hour + 1) 时前"
+        } else if let minute = interval.minute, minute > 0 {
+            let second = interval.second!
+            return second < 30 ? "\(minute) 分前" : "\(minute + 1) 分前"
         } else {
-            return "几秒前"
+            return "\(interval.second!)" + " 秒前"
         }
     }
 }

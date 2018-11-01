@@ -20,18 +20,18 @@ class UserTopicsTableViewCell: UITableViewCell {
     }()
     var titleLabel: UILabel = {
         var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 15)
         label.numberOfLines = 0
         return label
     }()
     var usernameLabel: UILabel = {
         var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     var createTimeLabel: UILabel = {
         var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = UIColor(CNodeColor.timeColor)
         return label
     }()
@@ -45,7 +45,7 @@ class UserTopicsTableViewCell: UITableViewCell {
         self.addSubview(titleLabel)
         
         avatar.snp.makeConstraints { (make) in
-            make.width.height.equalTo(36)
+            make.width.height.equalTo(20)
             make.top.left.equalTo(10)
         }
         

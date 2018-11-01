@@ -20,33 +20,33 @@ class NotificationTableViewCell: UITableViewCell {
     }()
     var usernameLabel: UILabel = {
         var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = UIColor(CNodeColor.timeColor)
         return label
     }()
     var timeLabel: UILabel = {
         var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = UIColor(CNodeColor.timeColor)
         return label
     }()
     var statusLabel: UILabel = {
         var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = UIColor(CNodeColor.timeColor)
         return label
     }()
     var descLabel: UILabel = {
         var label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = UIColor(CNodeColor.timeColor)
         label.numberOfLines = 0
         return label
     }()
     var titleLabel: UILabelPadding = {
-        var label = UILabelPadding(withInsets: 10, 10, 10, 10)
+        var label = UILabelPadding(withInsets: 7,7,7,7)
         label.backgroundColor = UIColor(CNodeColor.grayColor)
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 15)
         label.numberOfLines = 0
         return label
     }()
@@ -63,7 +63,7 @@ class NotificationTableViewCell: UITableViewCell {
         
         avatar.snp.makeConstraints { (make) in
             make.top.left.equalTo(16)
-            make.width.height.equalTo(36)
+            make.width.height.equalTo(32)
         }
         usernameLabel.snp.makeConstraints { (make) in
             make.left.equalTo(avatar.snp.right).offset(10)
