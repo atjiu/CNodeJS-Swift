@@ -42,6 +42,8 @@ class TabsViewController: ButtonBarPagerTabStripViewController {
         super.viewDidLoad()
     }
     
+    var setBadge: ((_ count: Int) -> Void)?
+    
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let tabs = [
             ("全部", ""),
@@ -57,6 +59,10 @@ class TabsViewController: ButtonBarPagerTabStripViewController {
             tabTopicViewController.tabText = tab.0
             tabTopicViewController.tab = tab.1
             uiViewControllers.append(tabTopicViewController)
+            
+            tabTopicViewController.setBadge = {[weak self] count in
+                self?.setBadge?(count)
+            }
         }
         return uiViewControllers
     }

@@ -76,7 +76,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     func addConstraints() {
         webView.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(0)
-            make.top.equalTo(64)
+            make.top.equalTo(NavigationBarHeight)
         }
     }
     
@@ -125,7 +125,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                 switch res {
                 case .success(_):
                     self.view.hideToastActivity()
-                    self.view.makeToast("点赞成功!")
+                    self.navigationController?.view.makeToast("点赞成功!")
                 case .failure(let error):
                     UIAlertController.showAlert(message: error.errorDescription!)
                 }
@@ -142,7 +142,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                 switch res {
                 case .success(_):
                     self.view.hideToastActivity()
-                    self.view.makeToast("收藏成功!")
+                    self.navigationController?.view.makeToast("收藏成功!")
                 case .failure(let error):
                     UIAlertController.showAlert(message: error.errorDescription!)
                 }

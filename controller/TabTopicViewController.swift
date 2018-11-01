@@ -9,6 +9,7 @@
 import UIKit
 import XLPagerTabStrip
 import Moya
+import SwiftyJSON
 
 class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     
@@ -46,6 +47,8 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
         
         //加载数据
         self.tableView.mj_header.beginRefreshing()
+        
+        self.message_count()
     }
     
     @objc func refreshData() {
@@ -115,6 +118,23 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
         // Dispose of any resources that can be recreated.
     }
     
+    func message_count() {
+        if UserDefaults.standard.string(forKey: "token") != nil {
+            provider.request(.message_count(UserDefaults.standard.string(forKey: "token")!)) { (res) in
+                switch res {
+                case .success(let response):
+                    let json = try! JSON(data: response.data)
+                    print(json["data"], type(of: json["data"]))
+                    self.setBadge?(Int(json["data"].rawString()!)!)
+                case .failure(_):
+                    self.navigationController?.view.makeToast("获取未读通知失败")
+                }
+            }
+        }
+    }
+    
+    var setBadge: ((_ count: Int) -> Void)?
+    
     static var lastLeaveTime = Date()
     @objc func applicationWillEnterForeground(){
         //计算上次离开的时间与当前时间差
@@ -122,6 +142,7 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
         let interval = -1 * TabTopicViewController.lastLeaveTime.timeIntervalSinceNow
         if interval > 120 {
             self.tableView.mj_header.beginRefreshing()
+            self.message_count()
         }
     }
     @objc func applicationDidEnterBackground(){

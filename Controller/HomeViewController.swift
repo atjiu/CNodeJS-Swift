@@ -27,7 +27,13 @@ class HomeViewController: UIViewController {
             make.top.equalToSuperview().offset(NavigationBarHeight)
             make.left.right.bottom.equalTo(0)
         }
+        
+        tabsViewController.setBadge = { [weak self] count in
+            self?.setBadge?(count)
+        }
     }
+    
+    var setBadge: ((_ count: Int) -> Void)?
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

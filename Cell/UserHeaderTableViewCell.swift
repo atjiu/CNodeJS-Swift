@@ -144,6 +144,7 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
     }
     
     var scanQrCodeViewController: ((_ vc: LBXScanViewController?) -> Void)?
+    var reloadData : (() -> Void)?
     func scanQrCode() {
         //设置扫码区域参数
         var style = LBXScanViewStyle()
@@ -171,6 +172,7 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
     var startReloadDataRefreshing: (() -> Void)?
     var endReloadDataRefreshing: (() -> Void)?
     var toastMessage: ((_ msg: String) -> Void)?
+    var updateMenuStatus : (() -> Void)?
     func scanFinished(scanResult: LBXScanResult, error: String?) {
         let token = scanResult.strScanned
         self.startReloadDataRefreshing?()
@@ -194,6 +196,7 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
                         UserDefaults.standard.set(result.data?.score, forKey: "score")
                         UserDefaults.standard.set(result.data?.create_at?.getElapsedInterval(), forKey: "create_at")
                         self.bind()
+                        self.updateMenuStatus?()
                         self.endReloadDataRefreshing?()
                     case .failure(let error):
                         self.toastMessage?(error.errorDescription!)

@@ -9,13 +9,13 @@
 import UIKit
 
 class LayoutViewController: UITabBarController {
+    
+    let homeViewController = HomeViewController()
+    let notificationViewController = NotificationViewController()
+    let userViewController = UserViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let homeViewController = HomeViewController()
-        let notificationViewController = NotificationViewController()
-        let userViewController = UserViewController()
         
         //修改文字颜色
         //        homeViewController.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor(CNodeColor.tabColor)], for: .selected)
@@ -30,10 +30,32 @@ class LayoutViewController: UITabBarController {
         notificationViewController.tabBarItem.image = UIImage(named: "baseline_notifications_black_24pt")
         userViewController.tabBarItem.image = UIImage(named: "baseline_account_circle_black_24pt")
         
+        // 添加角标
+//        notificationViewController.tabBarItem.badgeValue = "10"
+//        notificationViewController.tabBarItem.badgeColor = UIColor.red
+        // 清除角标
+//        notificationViewController.tabBarItem.badgeValue = nil
+        
         self.viewControllers = [homeViewController, notificationViewController, userViewController]
         // 文字图片颜色一块修改
         self.tabBar.tintColor = UIColor(CNodeColor.tabColor)
         
+        homeViewController.setBadge = {[weak self] count in
+            if count == 0 {
+                self?.notificationViewController.tabBarItem.badgeValue = nil
+            } else {
+                self?.notificationViewController.tabBarItem.badgeValue = "\(count)"
+                self?.notificationViewController.tabBarItem.badgeColor = UIColor.red
+            }
+        }
+        notificationViewController.setBadge = {[weak self] count in
+            if count == 0 {
+                self?.notificationViewController.tabBarItem.badgeValue = nil
+            } else {
+                self?.notificationViewController.tabBarItem.badgeValue = "\(count)"
+                self?.notificationViewController.tabBarItem.badgeColor = UIColor.red
+            }
+        }
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

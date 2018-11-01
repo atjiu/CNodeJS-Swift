@@ -16,6 +16,15 @@ class UserViewController: UITableViewController {
         cell.scanQrCodeViewController = { [weak self] vc in
             self?.navigationController?.pushViewController(vc!, animated: true)
         }
+        cell.startReloadDataRefreshing = { [weak self] in
+            self?.view.makeToastActivity(.center)
+        }
+        cell.endReloadDataRefreshing = { [weak self] in
+            self?.view.hideToastActivity()
+        }
+        cell.updateMenuStatus = { [weak self] in
+            self?.tableView.reloadData()
+        }
         return cell
     }()
     
@@ -84,6 +93,11 @@ class UserViewController: UITableViewController {
             if indexPath.section == 3 {
                 cell.textLabel?.textColor = UIColor.red
                 cell.textLabel?.textAlignment = .center
+                if UserDefaults.standard.string(forKey: "token") == nil {
+                    cell.isUserInteractionEnabled = false
+                } else {
+                    cell.isUserInteractionEnabled = true
+                }
             }
             cell.imageView?.tintColor = UIColor.black
             cell.textLabel?.text = data[indexPath.section].1[indexPath.row].1

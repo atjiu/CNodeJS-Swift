@@ -95,6 +95,11 @@ class NotificationTableViewCell: UITableViewCell {
         avatar.kf.setImage(with: URL(string: message.author.avatar_url!))
         usernameLabel.text = message.author.loginname
         timeLabel.text = message.reply.create_at?.getElapsedInterval()
+        if message.has_read {
+            statusLabel.textColor = UIColor(CNodeColor.timeColor)
+        } else {
+            statusLabel.textColor = UIColor(CNodeColor.tabColor)
+        }
         statusLabel.text = message.has_read ? "已读" : "未读"
         switch message.type {
         case "at":

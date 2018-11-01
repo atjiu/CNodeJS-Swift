@@ -31,7 +31,7 @@ class UserCenterViewController: UIViewController {
         self.view.addSubview(tabsTopicAndReplyViewController.view)
         
         header.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(64)
+            make.top.equalToSuperview().offset(NavigationBarHeight)
             make.left.right.equalTo(0)
         }
         

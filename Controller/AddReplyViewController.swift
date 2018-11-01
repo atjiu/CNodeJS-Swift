@@ -23,6 +23,7 @@ class AddReplyViewController: UIViewController {
         textView.keyboardType = .default
 //        textView.keyboardAppearance = .default
         textView.keyboardDismissMode = .interactive
+        textView.font = UIFont.systemFont(ofSize: 16)
         return textView
     }()
 

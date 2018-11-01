@@ -45,6 +45,8 @@ class NotificationViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
+    var setBadge: ((_ count: Int) -> Void)?
+    
     @objc func refreshData() {
         let token = UserDefaults.standard.string(forKey: "token")
         if token == nil {
@@ -59,12 +61,29 @@ class NotificationViewController: UITableViewController {
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                     let result = try! decoder.decode(Result<Notification>.self, from: response.data)
-                    self.data = (result.data?.has_read_messages)! + (result.data?.hasnot_read_messages)!
+                    self.data = (result.data?.hasnot_read_messages)! + (result.data?.has_read_messages)!
                     self.tableView.mj_header.endRefreshing()
                     self.tableView.reloadData()
+                    if let hasnot_read_count = result.data?.hasnot_read_messages.count, hasnot_read_count > 0 {
+                        self.navigationController?.view.makeToast("更新到了\(hasnot_read_count)条未读消息")
+                    }
+                    self.message_mark_all()
                 case .failure(let error):
                     self.tableView.mj_header.endRefreshing()
                     UIAlertController.showAlert(message: error.errorDescription!)
+                }
+            }
+        }
+    }
+    
+    func message_mark_all() {
+        if UserDefaults.standard.string(forKey: "token") != nil {
+            provider.request(.message_mark_all(UserDefaults.standard.string(forKey: "token")!)) { (res) in
+                switch res {
+                case .success(_):
+                    self.setBadge?(0)
+                case .failure(_):
+                    self.view.makeToast("标记未读通知已读失败")
                 }
             }
         }

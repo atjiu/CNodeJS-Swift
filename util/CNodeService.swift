@@ -19,6 +19,8 @@ enum CNodeService {
     case favorite(_ token: String, _ topic_id: String)
     case addReply(_ topic_id: String, _ accesstoken: String, _ content: String, _ reply_id: String?)
     case up(_ reply_id: String, _ accesstoken: String)
+    case message_count(_ accesstoken: String)
+    case message_mark_all(_ accesstoken: String)
 }
 
 extension CNodeService: TargetType {
@@ -46,14 +48,18 @@ extension CNodeService: TargetType {
             return "/topic/\(topic_id)/replies"
         case .up(let reply_id, _):
             return "/reply/\(reply_id)/ups"
+        case .message_count:
+            return "/message/count"
+        case .message_mark_all:
+            return "/message/mark_all"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .topics, .topicDetail, .user, .collect, .messages:
+        case .topics, .topicDetail, .user, .collect, .messages, .message_count:
             return .get
-        case .accessToken, .favorite, .addReply, .up:
+        case .accessToken, .favorite, .addReply, .up, .message_mark_all:
             return .post
         }
     }
@@ -68,7 +74,7 @@ extension CNodeService: TargetType {
             return .requestParameters(parameters: ["page": page, "tab": tab, "limit": 50], encoding: URLEncoding.default)
         case .topicDetail:
             return .requestPlain
-        case .accessToken(let token), .messages(let token):
+        case .accessToken(let token), .messages(let token), .message_count(let token), .message_mark_all(let token):
             return .requestParameters(parameters: ["accesstoken": token], encoding: URLEncoding(destination: .queryString))
         case .user:
             return .requestPlain
