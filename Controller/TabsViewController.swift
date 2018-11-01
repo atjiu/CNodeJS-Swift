@@ -49,7 +49,7 @@ class TabsViewController: ButtonBarPagerTabStripViewController {
             ("分享", "share"),
             ("问答", "ask"),
             ("招聘", "job"),
-            ("调试", "dev")
+//            ("调试", "dev")
         ]
         var uiViewControllers = [TabTopicViewController]()
         for tab in tabs {
