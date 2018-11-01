@@ -29,7 +29,6 @@
 		07446C0C20E63C4200768C90 /* UILabelPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07446C0B20E63C4200768C90 /* UILabelPadding.swift */; };
 		074D0BAB2122A9870055B10E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D0BAA2122A9870055B10E /* Message.swift */; };
 		074D0BAD2122AE500055B10E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D0BAC2122AE500055B10E /* Notification.swift */; };
-		074F903820E9FA9A00951B27 /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */; };
 		0770F8952109604900157EF2 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0770F8942109604900157EF2 /* NotificationTableViewCell.swift */; };
 		07742D4120F4B458004C80AA /* LBXScanNetAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D3A20F4B458004C80AA /* LBXScanNetAnimation.swift */; };
 		07742D4220F4B458004C80AA /* LBXScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07742D3B20F4B458004C80AA /* LBXScanView.swift */; };
@@ -76,7 +75,6 @@
 		07446C0B20E63C4200768C90 /* UILabelPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelPadding.swift; sourceTree = "<group>"; };
 		074D0BAA2122A9870055B10E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		074D0BAC2122AE500055B10E /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
 		0770F8942109604900157EF2 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		07742D3A20F4B458004C80AA /* LBXScanNetAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanNetAnimation.swift; sourceTree = "<group>"; };
 		07742D3B20F4B458004C80AA /* LBXScanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBXScanView.swift; sourceTree = "<group>"; };
@@ -225,7 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				07446C0320E6242600768C90 /* TopicTableViewCell.swift */,
-				074F903720E9FA9A00951B27 /* ReplyTableViewCell.swift */,
 				07742D4A20F596FC004C80AA /* UserHeaderTableViewCell.swift */,
 				072ED80320F8EB8A00941953 /* UserTopicsTableViewCell.swift */,
 				0770F8942109604900157EF2 /* NotificationTableViewCell.swift */,
@@ -418,7 +415,6 @@
 				074D0BAB2122A9870055B10E /* Message.swift in Sources */,
 				07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */,
 				07742D4420F4B458004C80AA /* LBXScanViewController.swift in Sources */,
-				074F903820E9FA9A00951B27 /* ReplyTableViewCell.swift in Sources */,
 				072F1C5C2189AA5F00BA1488 /* AddReplyViewController.swift in Sources */,
 				07742D4620F4B458004C80AA /* LBXScanWrapper.swift in Sources */,
 				07446C0220E61BD300768C90 /* Constants.swift in Sources */,

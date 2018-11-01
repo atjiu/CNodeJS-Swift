@@ -25,9 +25,13 @@ class UserViewController: UITableViewController {
 //            ("baseline_view_list_black_24pt","我的话题"),
 //            ("baseline_reply_all_black_24pt","我的回复"),
             ("baseline_collections_bookmark_black_24pt","我的收藏"),
-            ("baseline_settings_black_24pt","设置")
+//            ("baseline_settings_black_24pt","设置")
         ]),
-        ("", [("baseline_warning_white_24pt","登出")])
+        ("", [
+            ("baseline_code_black_24pt","开源地址"),
+            ("baseline_bug_report_black_24pt","反馈BUG")
+        ]),
+        ("", [("baseline_warning_white_24pt","注销当前帐号")])
     ]
     
     override func viewDidLoad() {
@@ -49,7 +53,7 @@ class UserViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return data.count
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -61,7 +65,7 @@ class UserViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return [200, 0, 20][section]
+        return [200, 0, 20, 20][section]
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,13 +77,16 @@ class UserViewController: UITableViewController {
             return UITableViewCell()
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
-            if indexPath.section == 2 {
-                cell.selectionStyle = .none
-                cell.textLabel?.textColor = UIColor.white
-                cell.backgroundColor = UIColor.red
+            if indexPath.section == 3 {
+//                cell.selectionStyle = .none
+                cell.textLabel?.textColor = UIColor.red
+//                cell.backgroundColor = UIColor.red
+                cell.textLabel?.textAlignment = .center
             }
             cell.textLabel?.text = data[indexPath.section].1[indexPath.row].1
-            cell.imageView?.image = UIImage(named: data[indexPath.section].1[indexPath.row].0)
+            if indexPath.section != 3 {
+                cell.imageView?.image = UIImage(named: data[indexPath.section].1[indexPath.row].0)
+            }
             return cell
         }
     }
@@ -94,8 +101,16 @@ class UserViewController: UITableViewController {
             } else if menuName == "我的收藏" {
                 let collectVC = CollectTableViewController()
                 self.navigationController?.pushViewController(collectVC, animated: true)
-            } else if menuName == "登出" {
-                UIAlertController.showConfirm(message: "确定要登出吗？") { (_) in
+            } else if menuName == "开源地址" {
+                UIApplication.shared.open(URL(string: "https://github.com/tomoya92/CNodeJS-Swift")!, options: [:]) { (success) in
+                    //打开浏览器成功了，做点其它的东东
+                }
+            } else if menuName == "反馈BUG" {
+                UIApplication.shared.open(URL(string: "https://github.com/tomoya92/CNodeJS-Swift/issues")!, options: [:]) { (success) in
+                    //打开浏览器成功了，做点其它的东东
+                }
+            } else if menuName == "注销当前帐号" {
+                UIAlertController.showConfirm(message: "确定要注销当前帐号吗？") { (_) in
                     let domain = Bundle.main.bundleIdentifier!
                     UserDefaults.standard.removePersistentDomain(forName: domain)
                     UserDefaults.standard.synchronize()

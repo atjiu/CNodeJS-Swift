@@ -54,7 +54,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
         //添加菜单
         let menuButton = UIButton()
         menuButton.contentMode = .center
-        menuButton.setImage(UIImage(named: "baseline_menu_white_24pt"), for: UIControlState.normal)
+        menuButton.setImage(UIImage(named: "baseline_more_vert_white_24pt"), for: UIControlState.normal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
         menuButton.addTarget(self, action: #selector(TopicDetailWebViewController.menuClick), for: .touchUpInside)
 
@@ -100,7 +100,8 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     }
     
     @objc func menuClick() {
-        let alertController = UIAlertController(title: "Hello World", message: "WebView加载HTML才是王道", preferredStyle: .actionSheet)
+//        let alertController = UIAlertController(title: "Hello World", message: "WebView加载HTML才是王道", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "回复", style: .default, handler: self.replyHandler))
         alertController.addAction(UIAlertAction(title: "分享", style: .default, handler: self.shareHandler))
         alertController.addAction(UIAlertAction(title: "收藏", style: .default, handler: self.collectHandler))
@@ -109,7 +110,8 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     }
     
     @objc func replyClick() {
-        let alertController = UIAlertController(title: "Hello World", message: "你想干点啥", preferredStyle: .actionSheet)
+//        let alertController = UIAlertController(title: "Hello World", message: "你想干点啥", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "回复", style: .default, handler: self.replyHandler))
         alertController.addAction(UIAlertAction(title: "点赞", style: .default, handler: self.upHandler))
         alertController.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))

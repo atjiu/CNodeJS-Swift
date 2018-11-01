@@ -10,6 +10,8 @@ import UIKit
 import DeviceKit
 
 let BASE_URL = "https://cnodejs.org"
+//回复小尾巴
+let REPLY_TAIL = "\n\n来自实用的 [CNodeJS-Swift](https://github.com/tomoya92/CNodeJS-Swift)"
 //屏幕宽度
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width;
 //屏幕高度

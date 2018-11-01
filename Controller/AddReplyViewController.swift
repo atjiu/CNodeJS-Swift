@@ -65,7 +65,7 @@ class AddReplyViewController: UIViewController {
             return;
         }
         self.view.makeToastActivity(.center)
-        provider.request(.addReply(topic_id, UserDefaults.standard.string(forKey: "token")!, self.textView.text, self.reply_id)) { (res) in
+        provider.request(.addReply(topic_id, UserDefaults.standard.string(forKey: "token")!, self.textView.text + REPLY_TAIL, self.reply_id)) { (res) in
             switch res {
             case .success(_):
                 self.view.hideToastActivity()

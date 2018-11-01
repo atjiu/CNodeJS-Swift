@@ -94,12 +94,12 @@ class TopicTableViewCell: UITableViewCell {
         }
         
         lastReplyTimeLabel.snp.makeConstraints { (make) in
-            make.right.equalTo(-10)
-            make.top.equalTo(self.avatar.snp.top)
+            make.left.equalTo(self.createTimeLabel.snp.right).offset(10)
+            make.top.equalTo(self.createTimeLabel.snp.top)
         }
         
         viewLabel.snp.makeConstraints { (make) in
-            make.right.equalTo(self.lastReplyTimeLabel.snp.left).offset(-5)
+            make.right.equalTo(self.tabLabel.snp.left).offset(-5)
             make.top.equalTo(self.avatar.snp.top)
         }
         
@@ -110,7 +110,7 @@ class TopicTableViewCell: UITableViewCell {
         
         tabLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.avatar.snp.top)
-            make.right.equalTo(self.replyCountLabel.snp.left).offset(-5)
+            make.right.equalTo(-10)
         }
         
         titleLabel.snp.makeConstraints { (make) in
@@ -140,11 +140,32 @@ class TopicTableViewCell: UITableViewCell {
     func bind(topic: Topic) {
         self.avatar.kf.setImage(with: URL(string: (topic.author?.avatar_url)!)!)
         self.usernameLabel.text = topic.author?.loginname
-        self.createTimeLabel.text = "创建于 " + (topic.create_at?.getElapsedInterval())!
-        self.lastReplyTimeLabel.text = topic.last_reply_at?.getElapsedInterval()
+        self.createTimeLabel.text = "创建于 \((topic.create_at?.getElapsedInterval())!)"
+        self.lastReplyTimeLabel.text = "最后回复 \((topic.last_reply_at?.getElapsedInterval())!)"
         self.viewLabel.text = "/\(topic.visit_count ?? 0)"
         self.replyCountLabel.text = String(topic.reply_count ?? 0)
-        self.tabLabel.text = topic.tab
+        // 格式化分类
+        var _tab = "分享";
+        if topic.tab == "job" {
+            _tab = "招聘"
+        } else if topic.tab == "ask" {
+            _tab = "问答"
+        } else if topic.tab == "blog" {
+            _tab = "博客"
+        } else if topic.tab == "share" {
+            _tab = "分享"
+        }
+        if topic.good ?? false {
+            self.tabLabel.backgroundColor = UIColor(CNodeColor.tabColor)
+            self.tabLabel.textColor = UIColor.white
+            _tab = "精华"
+        }
+        if topic.top ?? false {
+            self.tabLabel.backgroundColor = UIColor(CNodeColor.tabColor)
+            self.tabLabel.textColor = UIColor.white
+            _tab = "置顶"
+        }
+        self.tabLabel.text = _tab
         self.titleLabel.text = topic.title
         
         self.topic = topic

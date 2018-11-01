@@ -23,7 +23,9 @@
             <% } else if(tab === 'ask') { %>
               问答
             <% } else if(tab === 'dev') { %>
-              客户端测试
+              调试
+            <% } else if(tab === 'blog') { %>
+              博客
             <% } else if(tab === 'job') { %>
               招聘
             <% } %>
@@ -32,7 +34,12 @@
         <div>发布于 <%=moment(create_at).fromNow()%>&nbsp;•&nbsp;<%=visit_count%>次浏览</div>
       </div>
     </div>
-    <div class="title"><%=title%></div>
+    <div class="title">
+      <% if (good) { %>
+        [精]
+      <% } %>
+      <%=title%>
+    </div>
     <hr>
     <div class="content"><%=content%></div>
     <div class="panel">
@@ -66,7 +73,6 @@
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
   <script type="text/javascript">
     function init(topic) {
-      _topic = topic;
       var appTpl = _.template(document.getElementById('tpl').innerHTML);
       document.getElementById("app").innerHTML = appTpl(topic.data);
 
