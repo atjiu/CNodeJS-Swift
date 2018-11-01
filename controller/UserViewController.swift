@@ -82,11 +82,10 @@ class UserViewController: UITableViewController {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
             if indexPath.section == 3 {
-//                cell.selectionStyle = .none
                 cell.textLabel?.textColor = UIColor.red
-//                cell.backgroundColor = UIColor.red
                 cell.textLabel?.textAlignment = .center
             }
+            cell.imageView?.tintColor = UIColor.black
             cell.textLabel?.text = data[indexPath.section].1[indexPath.row].1
             if indexPath.section != 3 {
                 cell.imageView?.image = UIImage(named: data[indexPath.section].1[indexPath.row].0)

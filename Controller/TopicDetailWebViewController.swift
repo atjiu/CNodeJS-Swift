@@ -171,16 +171,11 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
         }
     }
 
-    func world(message: String) {
-        print("message: \(message)")
-    }
-    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         fetch();
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print(message.body, type(of: message.body))
         let msg = JSON(parseJSON: message.body as! String)
         if (msg["type"] == "click_reply") {
             detail_reply_id = msg["reply_id"].rawString()

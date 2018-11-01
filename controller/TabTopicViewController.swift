@@ -23,6 +23,10 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
+        //监听程序即将进入前台运行、进入后台休眠 事件
+        NotificationCenter.default.addObserver(self, selector: #selector(TabTopicViewController.applicationWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TabTopicViewController.applicationDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        
         self.tableView.register(TopicTableViewCell.self, forCellReuseIdentifier: "cell")
         
         // 添加下拉刷新组件
@@ -111,7 +115,19 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
         // Dispose of any resources that can be recreated.
     }
     
-
+    static var lastLeaveTime = Date()
+    @objc func applicationWillEnterForeground(){
+        //计算上次离开的时间与当前时间差
+        //如果超过2分钟，则自动刷新本页面。
+        let interval = -1 * TabTopicViewController.lastLeaveTime.timeIntervalSinceNow
+        if interval > 120 {
+            self.tableView.mj_header.beginRefreshing()
+        }
+    }
+    @objc func applicationDidEnterBackground(){
+        TabTopicViewController.lastLeaveTime = Date()
+    }
+    
     /*
     // MARK: - Navigation
 
