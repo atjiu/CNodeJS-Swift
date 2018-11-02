@@ -83,7 +83,8 @@ class NotificationViewController: UITableViewController {
                 case .success(_):
                     self.setBadge?(0)
                 case .failure(_):
-                    self.view.makeToast("标记未读通知已读失败")
+                    print("标记未读通知已读失败")
+//                    self.view.makeToast("标记未读通知已读失败")
                 }
             }
         }
