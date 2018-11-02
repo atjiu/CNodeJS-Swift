@@ -36,6 +36,8 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>详情页查看内容里图片保存时要用到相册权限</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
