@@ -11,6 +11,7 @@ import SnapKit
 import Kingfisher
 import MJRefresh
 import Moya
+import SwiftyJSON
 
 class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
     
@@ -175,11 +176,23 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
     var updateMenuStatus : (() -> Void)?
     func scanFinished(scanResult: LBXScanResult, error: String?) {
         let token = scanResult.strScanned
+        if token == nil {
+            return;
+        }
+        if token!.count != 36 {
+            return;
+        }
         self.startReloadDataRefreshing?()
         // fetch user
         provider.request(.accessToken(token: token!)) { (res) in
             switch res {
             case .success(let response):
+                let json = JSON(response.data)
+                if json["success"] == false {
+                    self.toastMessage?("错误的accesstoken")
+                    self.endReloadDataRefreshing?()
+                    return;
+                }
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                 let author = try! decoder.decode(Author.self, from: response.data)
@@ -203,7 +216,6 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
                         self.endReloadDataRefreshing?()
                     }
                 })
-                
             case .failure(let error):
                 self.toastMessage?(error.errorDescription!)
                 self.endReloadDataRefreshing?()

@@ -25,6 +25,9 @@ class UserViewController: UITableViewController {
         cell.updateMenuStatus = { [weak self] in
             self?.tableView.reloadData()
         }
+        cell.toastMessage = {[weak self] msg in
+            self?.navigationController?.view.makeToast(msg)
+        }
         return cell
     }()
     
