@@ -1,8 +1,8 @@
 > 感谢 [@Finb](https://github.com/Finb) 大佬开源的 V2ex-Swift 代码写的太赞了
-> 
+>
 > 项目LOGO以及某些素材来自大佬[@TakWolf](https://github.com/TakWolf)开源的CNode-Material-Design
-> 
-> 向大佬们致敬 
+>
+> 向大佬们致敬
 
 ## CNodeJS Swift
 
@@ -10,7 +10,7 @@
 
 ## Download
 
-没有证书，只能自己打包了。。
+没有证书，只能自己通过xcode安装到自己手机上了。。
 
 ## Screenshots
 
@@ -25,16 +25,17 @@
 
 ## Dependencies
 
-- Moya
-- Kingfisher
-- SnapKit
-- MJRefresh
-- XLPagerTabStrip
-- UIColor_Hex_Swift
-- DeviceKit
-- SwiftyJSON
-- Toast-Swift
-- YBImageBrowser
+- [Moya](https://github.com/Moya/Moya)
+- [Kingfisher](https://github.com/onevcat/Kingfisher)
+- [SnapKit](https://github.com/SnapKit/SnapKit)
+- [MJRefresh](https://github.com/CoderMJLee/MJRefresh)
+- [XLPagerTabStrip](https://github.com/xmartlabs/XLPagerTabStrip)
+- [UIColor_Hex_Swift](https://github.com/yeahdongcn/UIColor-Hex-Swift)
+- [DeviceKit](https://github.com/dennisweissmann/DeviceKit)
+- [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
+- [Toast-Swift](https://github.com/scalessec/Toast-Swift)
+- [YBImageBrowser](https://github.com/indulgeIn/YBImageBrowser)
+- [FDFullscreenPopGesture](https://github.com/forkingdog/FDFullscreenPopGesture)
 
 ## Donate
 
@@ -43,4 +44,4 @@
 
 ## License
 
- Apache-2.0 
+ Apache-2.0

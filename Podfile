@@ -16,5 +16,6 @@ target 'CNodeJS-Swift' do
   pod 'DeviceKit'
   pod 'SwiftyJSON'
   pod 'YBImageBrowser'
+  pod 'FDFullscreenPopGesture'
 
 end
