@@ -22,9 +22,9 @@ class LayoutViewController: UITabBarController {
         //        notificationViewController.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor(CNodeColor.tabColor)], for: .selected)
         //        userViewController.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor(CNodeColor.tabColor)], for: .selected)
         
-        homeViewController.tabBarItem.title = "话题"
-        notificationViewController.tabBarItem.title = "通知"
-        userViewController.tabBarItem.title = "我"
+        homeViewController.tabBarItem.title = NSLocalizedString("tablayout_topic", comment: "")
+        notificationViewController.tabBarItem.title = NSLocalizedString("tablayout_notification", comment: "")
+        userViewController.tabBarItem.title = NSLocalizedString("tablayout_my", comment: "")
         
         homeViewController.tabBarItem.image = UIImage(named: "baseline_home_black_24pt")
         notificationViewController.tabBarItem.image = UIImage(named: "baseline_notifications_black_24pt")

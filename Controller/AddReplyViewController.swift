@@ -30,14 +30,14 @@ class AddReplyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "添加回复"
+        self.title = NSLocalizedString("reply_add", comment: "")
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barStyle = .black
         //设置返回按钮为白色
         self.navigationController?.navigationBar.tintColor = .white
         
         //添加菜单
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(AddReplyViewController.leftClick))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("alert_cancel", comment: ""), style: .plain, target: self, action: #selector(AddReplyViewController.leftClick))
         let menuButton = UIButton()
         menuButton.contentMode = .center
         menuButton.setImage(UIImage(named: "baseline_send_white_24pt"), for: UIControlState.normal)

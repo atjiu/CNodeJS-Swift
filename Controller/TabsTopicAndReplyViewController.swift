@@ -53,8 +53,8 @@ class TabsTopicAndReplyViewController: ButtonBarPagerTabStripViewController {
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        topicsVC.tabTitle = "话题"
-        repliesVC.tabTitle = "回复"
+        topicsVC.tabTitle = NSLocalizedString("tablayout_topic", comment: "")
+        repliesVC.tabTitle = NSLocalizedString("topic_reply", comment: "")
         
         return [topicsVC, repliesVC]
     }

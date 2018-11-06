@@ -1,0 +1,71 @@
+/* 
+  Localizable.strings
+  CNodeJS-Swift
+
+  Created by H on 2018/11/6.
+  Copyright © 2018 H. All rights reserved.
+*/
+
+// tab
+tab_all = "All";
+tab_top = "Top";
+tab_good = "Good";
+tab_ask = "Ask";
+tab_share = "Share";
+tab_blog = "Blog";
+tab_job = "Job";
+tab_dev = "Dev";
+
+// tablayout item
+tablayout_topic = "Topic";
+tablayout_notification = "Notification";
+tablayout_my = "My";
+
+// topic
+topic_detail = "Detail";
+topic_reply = "Reply";
+topic_share = "Share";
+topic_collect = "Collect";
+topic_cancel = "Cancel";
+topic_up = "Up";
+topic_create_at = "create at ";
+topic_last_reply_at = "last reply at ";
+
+// reply
+reply_add = "Add Reply";
+
+// my menu
+my_user_center = "My Center";
+my_collect = "My Collect";
+my_open_source = "Source Code";
+my_issues = "Report Problem";
+my_logout = "Logout";
+my_logout_tip = "Are you sure you want to logout your account?";
+my_login_tip = "Please Login!";
+
+// user header
+user_header_sign_in = "Sign In: ";
+user_header_score = "Score: ";
+user_header_scanner_tip = "Tap the avatar scan code to login";
+
+// notification
+note_read = "Read";
+note_unread = "UnRead";
+note_at_msg = "@ you in the topic";
+note_reply_msg = "reply in your topic";
+note_update_unread_tip = "Update to unread message ";
+note_mark_unread_tip = "Mark unread notification failed";
+
+// alert
+alert_success = "Success";
+alert_failure = "Failure";
+alert_confirm = "Confirm";
+alert_cancel = "Cancel";
+
+// time
+time_year = "year age";
+time_month = "month age";
+time_day = "day age";
+time_hour = "hour age";
+time_minute = "minute age";
+time_second = "second age";

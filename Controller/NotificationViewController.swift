@@ -18,7 +18,7 @@ class NotificationViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.title = "通知"
+        self.tabBarController?.title = NSLocalizedString("tablayout_notification", comment: "")
         self.view.backgroundColor = .white
         
         self.navigationController?.navigationBar.barStyle = .black
@@ -50,7 +50,7 @@ class NotificationViewController: UITableViewController {
     @objc func refreshData() {
         let token = UserDefaults.standard.string(forKey: "token")
         if token == nil {
-            UIAlertController.showAlert(message: "请先登录!")
+            UIAlertController.showAlert(message: NSLocalizedString("my_login_tip", comment: ""))
             self.data = [Message]()
             self.tableView.mj_header.endRefreshing()
             self.tableView.reloadData()
@@ -65,7 +65,7 @@ class NotificationViewController: UITableViewController {
                     self.tableView.mj_header.endRefreshing()
                     self.tableView.reloadData()
                     if let hasnot_read_count = result.data?.hasnot_read_messages.count, hasnot_read_count > 0 {
-                        self.navigationController?.view.makeToast("更新到了\(hasnot_read_count)条未读消息")
+                        self.navigationController?.view.makeToast("\(NSLocalizedString("note_update_unread_tip", comment: ""))\(hasnot_read_count)")
                     }
                     self.message_mark_all()
                 case .failure(let error):
@@ -83,7 +83,7 @@ class NotificationViewController: UITableViewController {
                 case .success(_):
                     self.setBadge?(0)
                 case .failure(_):
-                    print("标记未读通知已读失败")
+                    print(NSLocalizedString("note_mark_unread_tip", comment: ""))
 //                    self.view.makeToast("标记未读通知已读失败")
                 }
             }

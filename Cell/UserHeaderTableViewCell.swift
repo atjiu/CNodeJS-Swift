@@ -109,25 +109,25 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
                     self.username.text = username
                 }
                 if create_at != nil {
-                    self.registerTime.text = "注册于" + create_at!
+                    self.registerTime.text = "\(NSLocalizedString("user_header_sign_in", comment: ""))" + create_at!
                 }
                 if score != nil {
-                    self.score.text = "积分:\(score!)"
+                    self.score.text = "\(NSLocalizedString("user_header_score", comment: ""))\(score!)"
                 }
             } else {
-                self.username.text = "点击头像扫码登录"
+                self.username.text = NSLocalizedString("user_header_scanner_tip", comment: "")
             }
         } else if type == 1 {
             self.avatar.kf.setImage(with: URL(string: author.avatar_url!))
             self.username.text = author.loginname
-            self.registerTime.text = "注册于 \((author.create_at?.getElapsedInterval())!)"
-            self.score.text = "积分:\(author.score!)"
+            self.registerTime.text = "\(NSLocalizedString("user_header_sign_in", comment: ""))\((author.create_at?.getElapsedInterval())!)"
+            self.score.text = "\(NSLocalizedString("user_header_score", comment: ""))\(author.score!)"
         }
     }
     
     func unbind() {
         self.avatar.image = UIImage(named: "baseline_account_circle_white_24pt")
-        self.username.text = "点击头像扫码登录"
+        self.username.text = NSLocalizedString("user_header_scanner_tip", comment: "")
         self.registerTime.text = ""
         self.score.text = ""
     }
@@ -189,7 +189,7 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
             case .success(let response):
                 let json = JSON(response.data)
                 if json["success"] == false {
-                    self.toastMessage?("错误的accesstoken")
+                    self.toastMessage?("accesstoken error")
                     self.endReloadDataRefreshing?()
                     return;
                 }

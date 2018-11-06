@@ -71,21 +71,21 @@ extension Date {
     func getElapsedInterval() -> String {
         let interval = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self, to: Date())
         if let year = interval.year, year > 0 {
-            return "\(year) 年前"
+            return "\(year) \(NSLocalizedString("time_year", comment: ""))"
         } else if let month = interval.month, month > 0 {
             let day = interval.day!
-            return day < 15 ? "\(month) 月前" : "\(month + 1) 月前"
+            return day < 15 ? "\(month) \(NSLocalizedString("time_month", comment: ""))" : "\(month + 1) \(NSLocalizedString("time_month", comment: ""))"
         } else if let day = interval.day, day > 0 {
             let hour = interval.hour!
-            return hour < 12 ? "\(day) 天前" : "\(day + 1) 天前"
+            return hour < 12 ? "\(day) \(NSLocalizedString("time_day", comment: ""))" : "\(day + 1) \(NSLocalizedString("time_day", comment: ""))"
         } else if let hour = interval.hour, hour > 0 {
             let minute = interval.minute!
-            return minute < 30 ? "\(hour) 时前" : "\(hour + 1) 时前"
+            return minute < 30 ? "\(hour) \(NSLocalizedString("time_hour", comment: ""))" : "\(hour + 1) \(NSLocalizedString("time_hour", comment: ""))"
         } else if let minute = interval.minute, minute > 0 {
             let second = interval.second!
-            return second < 30 ? "\(minute) 分前" : "\(minute + 1) 分前"
+            return second < 30 ? "\(minute) \(NSLocalizedString("time_minute", comment: ""))" : "\(minute + 1) \(NSLocalizedString("time_minute", comment: ""))"
         } else {
-            return "\(interval.second!)" + " 秒前"
+            return "\(interval.second!)" + " \(NSLocalizedString("time_second", comment: ""))"
         }
     }
 }
@@ -108,7 +108,7 @@ extension UIAlertController {
     //在指定视图控制器上弹出普通消息提示框
     static func showAlert(message: String, in viewController: UIViewController) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "确定", style: .cancel))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("alert_confirm", comment: ""), style: .cancel))
         viewController.present(alert, animated: true)
     }
     
@@ -123,8 +123,8 @@ extension UIAlertController {
     static func showConfirm(message: String, in viewController: UIViewController,
                             confirm: ((UIAlertAction)->Void)?) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel))
-        alert.addAction(UIAlertAction(title: "确定", style: .default, handler: confirm))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("alert_cancel", comment: ""), style: .cancel))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("alert_confirm", comment: ""), style: .default, handler: confirm))
         viewController.present(alert, animated: true)
     }
     

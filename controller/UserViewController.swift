@@ -34,22 +34,22 @@ class UserViewController: UITableViewController {
     var data = [
         ("", []),
         ("", [
-            ("baseline_account_circle_black_24pt","个人中心"),
+            ("baseline_account_circle_black_24pt",NSLocalizedString("my_user_center", comment: "")),
 //            ("baseline_view_list_black_24pt","我的话题"),
 //            ("baseline_reply_all_black_24pt","我的回复"),
-            ("baseline_collections_bookmark_black_24pt","我的收藏"),
+            ("baseline_collections_bookmark_black_24pt",NSLocalizedString("my_collect", comment: "")),
 //            ("baseline_settings_black_24pt","设置")
         ]),
         ("", [
-            ("baseline_code_black_24pt","开源地址"),
-            ("baseline_bug_report_black_24pt","反馈BUG")
+            ("baseline_code_black_24pt",NSLocalizedString("my_open_source", comment: "")),
+            ("baseline_bug_report_black_24pt",NSLocalizedString("my_issues", comment: ""))
         ]),
-        ("", [("baseline_warning_white_24pt","注销当前帐号")])
+        ("", [("baseline_warning_white_24pt",NSLocalizedString("my_logout", comment: ""))])
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.title = "我"
+        self.tabBarController?.title = NSLocalizedString("tablayout_my", comment: "")
         self.view.backgroundColor = UIColor(CNodeColor.grayColor)
         
         self.navigationController?.navigationBar.barStyle = .black
@@ -119,19 +119,19 @@ class UserViewController: UITableViewController {
                 userCenterViewController.type = 0
                 userCenterViewController.loginname = UserDefaults.standard.string(forKey: "loginname")
                 self.navigationController?.pushViewController(userCenterViewController, animated: true)
-            } else if menuName == "我的收藏" {
+            } else if menuName == NSLocalizedString("my_collect", comment: "") {
                 let collectVC = CollectTableViewController()
                 self.navigationController?.pushViewController(collectVC, animated: true)
-            } else if menuName == "开源地址" {
+            } else if menuName == NSLocalizedString("my_open_source", comment: "") {
                 UIApplication.shared.open(URL(string: "https://github.com/tomoya92/CNodeJS-Swift")!, options: [:]) { (success) in
                     //打开浏览器成功了，做点其它的东东
                 }
-            } else if menuName == "反馈BUG" {
+            } else if menuName == NSLocalizedString("my_issues", comment: "") {
                 UIApplication.shared.open(URL(string: "https://github.com/tomoya92/CNodeJS-Swift/issues")!, options: [:]) { (success) in
                     //打开浏览器成功了，做点其它的东东
                 }
-            } else if menuName == "注销当前帐号" {
-                UIAlertController.showConfirm(message: "确定要注销当前帐号吗？") { (_) in
+            } else if menuName == NSLocalizedString("my_logout", comment: "") {
+                UIAlertController.showConfirm(message: NSLocalizedString("my_logout_tip", comment: "")) { (_) in
                     let domain = Bundle.main.bundleIdentifier!
                     UserDefaults.standard.removePersistentDomain(forName: domain)
                     UserDefaults.standard.synchronize()
@@ -140,7 +140,7 @@ class UserViewController: UITableViewController {
                 }
             }
         } else {
-            UIAlertController.showAlert(message: "请先登录!")
+            UIAlertController.showAlert(message: NSLocalizedString("my_login_tip", comment: ""))
         }
     }
     

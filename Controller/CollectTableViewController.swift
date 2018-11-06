@@ -19,7 +19,7 @@ class CollectTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "我的收藏"
+        self.title = NSLocalizedString("my_collect", comment: "")
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barStyle = .black
         //设置返回按钮为白色

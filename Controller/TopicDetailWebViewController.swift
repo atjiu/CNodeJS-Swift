@@ -45,7 +45,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "详情"
+        self.title = NSLocalizedString("topic_detail", comment: "")
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barStyle = .black
         //设置返回按钮为白色
@@ -102,19 +102,19 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     @objc func menuClick() {
 //        let alertController = UIAlertController(title: "Hello World", message: "WebView加载HTML才是王道", preferredStyle: .actionSheet)
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "回复", style: .default, handler: self.replyHandler))
-        alertController.addAction(UIAlertAction(title: "分享", style: .default, handler: self.shareHandler))
-        alertController.addAction(UIAlertAction(title: "收藏", style: .default, handler: self.collectHandler))
-        alertController.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_reply", comment: ""), style: .default, handler: self.replyHandler))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_share", comment: ""), style: .default, handler: self.shareHandler))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_collect", comment: ""), style: .default, handler: self.collectHandler))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_cancel", comment: ""), style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
     @objc func replyClick() {
 //        let alertController = UIAlertController(title: "Hello World", message: "你想干点啥", preferredStyle: .actionSheet)
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "回复", style: .default, handler: self.replyHandler))
-        alertController.addAction(UIAlertAction(title: "点赞", style: .default, handler: self.upHandler))
-        alertController.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_reply", comment: ""), style: .default, handler: self.replyHandler))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_up", comment: ""), style: .default, handler: self.upHandler))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_cancel", comment: ""), style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -125,13 +125,13 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                 switch res {
                 case .success(_):
                     self.view.hideToastActivity()
-                    self.navigationController?.view.makeToast("点赞成功!")
+                    self.navigationController?.view.makeToast(NSLocalizedString("alert_success", comment: ""))
                 case .failure(let error):
                     UIAlertController.showAlert(message: error.errorDescription!)
                 }
             }
         } else {
-            UIAlertController.showAlert(message: "请先登录!")
+            UIAlertController.showAlert(message: NSLocalizedString("my_login_tip", comment: ""))
         }
     }
     
@@ -142,13 +142,13 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                 switch res {
                 case .success(_):
                     self.view.hideToastActivity()
-                    self.navigationController?.view.makeToast("收藏成功!")
+                    self.navigationController?.view.makeToast(NSLocalizedString("alert_success", comment: ""))
                 case .failure(let error):
                     UIAlertController.showAlert(message: error.errorDescription!)
                 }
             }
         } else {
-            UIAlertController.showAlert(message: "请先登录!")
+            UIAlertController.showAlert(message: NSLocalizedString("my_login_tip", comment: ""))
         }
     }
     
@@ -167,7 +167,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
             addReplyViewController.detail_reply_loginname = detail_reply_loginname
             // 回复成功被调用用来显示toast
             addReplyViewController.reply_success = {[weak self] in
-                self?.navigationController?.view.makeToast("回复成功")
+                self?.navigationController?.view.makeToast(NSLocalizedString("alert_success", comment: ""))
                 self?.refreshControl.beginRefreshing()
                 self?.fetch()
             }
@@ -177,7 +177,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
 //                self.view.makeToast("回复成功") 这个也没效果，只好用block了。。
             })
         } else {
-            UIAlertController.showAlert(message: "请先登录")
+            UIAlertController.showAlert(message: NSLocalizedString("my_login_tip", comment: ""))
         }
     }
 

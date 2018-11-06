@@ -46,11 +46,12 @@ class TabsViewController: ButtonBarPagerTabStripViewController {
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let tabs = [
-            ("全部", ""),
-            ("精华", "good"),
-            ("分享", "share"),
-            ("问答", "ask"),
-            ("招聘", "job"),
+            (NSLocalizedString("tab_all", comment: ""), ""),
+            (NSLocalizedString("tab_good", comment: ""), "good"),
+            (NSLocalizedString("tab_ask", comment: ""), "ask"),
+            (NSLocalizedString("tab_share", comment: ""), "share"),
+//            ("博客", "blog"), // 接口中没有提供这个tab
+            (NSLocalizedString("tab_job", comment: ""), "job"),
 //            ("调试", "dev")
         ]
         var uiViewControllers = [TabTopicViewController]()

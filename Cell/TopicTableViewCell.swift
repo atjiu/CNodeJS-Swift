@@ -142,32 +142,32 @@ class TopicTableViewCell: UITableViewCell {
     func bind(topic: Topic) {
         self.avatar.kf.setImage(with: URL(string: (topic.author?.avatar_url)!)!)
         self.usernameLabel.text = topic.author?.loginname
-        self.createTimeLabel.text = "创建于 \((topic.create_at?.getElapsedInterval())!)"
+        self.createTimeLabel.text = "\(NSLocalizedString("topic_create_at", comment: ""))\((topic.create_at?.getElapsedInterval())!)"
         if topic.reply_count ?? 0 > 0 {
-            self.lastReplyTimeLabel.text = "最后回复 \((topic.last_reply_at?.getElapsedInterval())!)"
+            self.lastReplyTimeLabel.text = "\(NSLocalizedString("topic_last_reply_at", comment: ""))\((topic.last_reply_at?.getElapsedInterval())!)"
         } else {
             self.lastReplyTimeLabel.text = ""
         }
         self.viewLabel.text = "/\(topic.visit_count ?? 0)"
         self.replyCountLabel.text = String(topic.reply_count ?? 0)
         // 格式化分类
-        var _tab = "分享";
+        var _tab = NSLocalizedString("tab_share", comment: "");
         if topic.tab == "job" {
-            _tab = "招聘"
+            _tab = NSLocalizedString("tab_job", comment: "")
         } else if topic.tab == "ask" {
-            _tab = "问答"
+            _tab = NSLocalizedString("tab_ask", comment: "")
         } else if topic.tab == "blog" {
-            _tab = "博客"
+            _tab = NSLocalizedString("tab_blog", comment: "")
         } else if topic.tab == "share" {
-            _tab = "分享"
+            _tab = NSLocalizedString("tab_share", comment: "")
         } else if topic.tab == "dev" {
-            _tab = "调试"
+            _tab = NSLocalizedString("tab_dev", comment: "")
         }
         if topic.good ?? false {
-            _tab = "精华"
+            _tab = NSLocalizedString("tab_good", comment: "")
         }
         if topic.top ?? false {
-            _tab = "置顶"
+            _tab = NSLocalizedString("tab_top", comment: "")
         }
         if topic.good ?? false || topic.top ?? false {
             self.tabLabel.backgroundColor = UIColor(CNodeColor.tabColor)

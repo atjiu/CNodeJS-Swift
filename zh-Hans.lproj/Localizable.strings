@@ -1,0 +1,71 @@
+/* 
+  Localizable.strings
+  CNodeJS-Swift
+
+  Created by H on 2018/11/6.
+  Copyright © 2018 H. All rights reserved.
+*/
+
+// tab
+tab_all = "全部";
+tab_top = "置顶";
+tab_good = "精华";
+tab_ask = "问答";
+tab_share = "分享";
+tab_blog = "博客";
+tab_job = "招聘";
+tab_dev = "调试";
+
+// tablayout item
+tablayout_topic = "话题";
+tablayout_notification = "通知";
+tablayout_my = "我的";
+
+// topic
+topic_detail = "详情";
+topic_reply = "回复";
+topic_share = "分享";
+topic_collect = "收藏";
+topic_cancel = "取消";
+topic_up = "点赞";
+topic_create_at = "发布于 ";
+topic_last_reply_at = "最后回复于 ";
+
+// reply
+reply_add = "添加回复";
+
+// my menu
+my_user_center = "个人中心";
+my_collect = "我的收藏";
+my_open_source = "开源地址";
+my_issues = "提交Bug";
+my_logout = "注销";
+my_logout_tip = "确定要注销当前帐号吗？";
+my_login_tip = "请登录!";
+
+// user header
+user_header_sign_in = "注册于: ";
+user_header_score = "积分: ";
+user_header_scanner_tip = "点击头像扫码登录";
+
+// notification
+note_read = "已读";
+note_unread = "未读";
+note_at_msg = "在话题中@了你";
+note_reply_msg = "在话题中回复了你";
+note_update_unread_tip = "更新到未读消息 ";
+note_mark_unread_tip = "标记未读通知失败";
+
+// alert
+alert_success = "成功";
+alert_failure = "失败";
+alert_confirm = "确定";
+alert_cancel = "取消";
+
+// time
+time_year = "年前";
+time_month = "月前";
+time_day = "天前";
+time_hour = "时间";
+time_minute = "分前";
+time_second = "秒前";

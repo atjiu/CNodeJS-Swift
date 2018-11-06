@@ -100,12 +100,12 @@ class NotificationTableViewCell: UITableViewCell {
         } else {
             statusLabel.textColor = UIColor(CNodeColor.tabColor)
         }
-        statusLabel.text = message.has_read ? "已读" : "未读"
+        statusLabel.text = message.has_read ? NSLocalizedString("read", comment: "") : NSLocalizedString("unread", comment: "")
         switch message.type {
         case "at":
-            descLabel.text = "\(message.author.loginname!)在话题中@了你"
+            descLabel.text = "\(message.author.loginname!)\(NSLocalizedString("note_at_msg", comment: ""))"
         case "reply":
-            descLabel.text = "\(message.author.loginname!)在话题中回复了你"
+            descLabel.text = "\(message.author.loginname!)\(NSLocalizedString("note_reply_msg", comment: ""))"
         default:
             print("")
         }
