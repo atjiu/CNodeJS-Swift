@@ -114,7 +114,7 @@ class UserViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if UserDefaults.standard.string(forKey: "token") != nil {
             let menuName = data[indexPath.section].1[indexPath.row].1
-            if menuName == "个人中心" {
+            if menuName == NSLocalizedString("my_user_center", comment: "") {
                 let userCenterViewController = UserCenterViewController()
                 userCenterViewController.type = 0
                 userCenterViewController.loginname = UserDefaults.standard.string(forKey: "loginname")
