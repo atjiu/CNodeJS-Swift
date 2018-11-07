@@ -19,19 +19,19 @@
           <div class="loginname to-user-center" data-loginname="<%=author.loginname%>"><%=author.loginname%></div>
           <div class="tab">
             <% if(tab === 'share') { %>
-              分享
+              <%=locale.tab_share%>
             <% } else if(tab === 'ask') { %>
-              问答
+              <%=locale.tab_ask%>
             <% } else if(tab === 'dev') { %>
-              调试
+              <%=locale.tab_dev%>
             <% } else if(tab === 'blog') { %>
-              博客
+              <%=locale.tab_blog%>
             <% } else if(tab === 'job') { %>
-              招聘
+              <%=locale.tab_job%>
             <% } %>
           </div>
         </div>
-        <div>发布于 <%=moment(create_at).fromNow()%>&nbsp;•&nbsp;<%=visit_count%>次浏览</div>
+        <div><%=locale.topic_create_at%> <%=moment(create_at).fromNow()%>&nbsp;•&nbsp;<%=visit_count%><%=locale.topic_visit_count%></div>
       </div>
     </div>
     <div class="title">
@@ -45,7 +45,7 @@
       <%=content%>
     </div>
     <div class="panel">
-      <%=replies.length%> 回复
+      <%=replies.length%> <%=locale.replies%>
     </div>
     <div class="replies">
       <% _.each(replies, function(v, i) { %>
@@ -57,11 +57,11 @@
                 <div class="loginname to-user-center" data-loginname="<%=v.author.loginname%>">
                   <%=v.author.loginname%>
                   <% if(v.author.loginname === author.loginname){ %>
-                    <span class="op">[楼主]</span>
+                    <span class="op">[<%=locale.reply_author%>]</span>
                   <% } %>
                 </div>
               </div>
-              <div><%=i + 1%>楼&nbsp;•&nbsp;发布于 <%=moment(v.create_at).fromNow()%></div>
+              <div><%=i + 1%><%=locale.reply_floor%>&nbsp;•&nbsp;<%=locale.topic_create_at%> <%=moment(v.create_at).fromNow()%></div>
             </div>
           </div>
           <div class="reply-content deal-link"><%=v.content%></div>
@@ -69,13 +69,14 @@
       <% }) %>
     </div>
     <% if(replies.length > 0){ %>
-      <div class="no-more">没有更多回复了</div>
+      <div class="no-more"><%=locale.reply_no_more%></div>
     <% } %>
   </script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
   <script type="text/javascript">
     function init(topic) {
       var appTpl = _.template(document.getElementById('tpl').innerHTML);
+      moment.locale(topic.data.locale.time_i18n);
       document.getElementById("app").innerHTML = appTpl(topic.data);
 
       // 点击回复列表里用户名事件

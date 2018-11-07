@@ -30,9 +30,14 @@ topic_cancel = "取消";
 topic_up = "点赞";
 topic_create_at = "发布于 ";
 topic_last_reply_at = "最后回复于 ";
+topic_visit_count = "次浏览";
 
 // reply
 reply_add = "添加回复";
+reply_floor = "楼";
+reply_no_more = "没有更多了";
+reply_author = "楼主";
+replies = "回复";
 
 // my menu
 my_user_center = "个人中心";
@@ -69,3 +74,4 @@ time_day = "天前";
 time_hour = "时间";
 time_minute = "分前";
 time_second = "秒前";
+time_i18n = "zh-cn";

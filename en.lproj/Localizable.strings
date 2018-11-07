@@ -30,9 +30,14 @@ topic_cancel = "Cancel";
 topic_up = "Up";
 topic_create_at = "create at ";
 topic_last_reply_at = "last reply at ";
+topic_visit_count = "visit";
 
 // reply
 reply_add = "Add Reply";
+reply_floor = "floor";
+reply_no_more = "No More";
+reply_author = "Author";
+replies = "Replies";
 
 // my menu
 my_user_center = "My Center";
@@ -69,3 +74,4 @@ time_day = "day ago";
 time_hour = "hour ago";
 time_minute = "minute ago";
 time_second = "second ago";
+time_i18n = "en";

@@ -86,7 +86,26 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
             switch res {
             case .success(let response):
                 self.refreshControl.endRefreshing()
-                let topicJson = JSON(response.data)
+                var topicJson = JSON(response.data)
+//                NSLocalizedString("topic_reply", comment: "")
+                
+                var _locale = Dictionary<String, String>()
+                _locale = [
+                    "tab_good": NSLocalizedString("tab_good", comment: ""),
+                    "tab_share": NSLocalizedString("tab_share", comment: ""),
+                    "tab_dev": NSLocalizedString("tab_dev", comment: ""),
+                    "tab_ask": NSLocalizedString("tab_ask", comment: ""),
+                    "tab_blog": NSLocalizedString("tab_blog", comment: ""),
+                    "tab_job": NSLocalizedString("tab_job", comment: ""),
+                    "topic_visit_count": NSLocalizedString("topic_visit_count", comment: ""),
+                    "replies": NSLocalizedString("replies", comment: ""),
+                    "reply_floor": NSLocalizedString("reply_floor", comment: ""),
+                    "reply_no_more": NSLocalizedString("reply_no_more", comment: ""),
+                    "reply_author": NSLocalizedString("reply_author", comment: ""),
+                    "time_i18n": NSLocalizedString("time_i18n", comment: ""),
+                ]
+                topicJson["data"]["locale"] = JSON(_locale)
+                
                 var topicJsonStr = topicJson.rawString();
                 topicJsonStr = topicJsonStr?.replacingOccurrences(of: "\n", with: "")
                 topicJsonStr = topicJsonStr?.replacingOccurrences(of: "\\/\\/static.cnodejs.org", with: "https:\\/\\/static.cnodejs.org")
