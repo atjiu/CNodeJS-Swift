@@ -8,6 +8,7 @@
 
 import UIKit
 import Moya
+import NightNight
 
 class NotificationViewController: UITableViewController {
     
@@ -19,12 +20,12 @@ class NotificationViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.title = NSLocalizedString("tablayout_notification", comment: "")
-        self.view.backgroundColor = .white
         
-        self.navigationController?.navigationBar.barStyle = .black
-        self.navigationController?.navigationBar.tintColor = .white
+        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
+        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
         
         self.tableView.register(NotificationTableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.separatorStyle = .none
         
         self.tableView.mj_header = RefreshView(refreshingBlock: {
             [weak self] () -> Void in

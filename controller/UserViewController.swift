@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NightNight
 
 class UserViewController: UITableViewController {
     
@@ -35,30 +36,29 @@ class UserViewController: UITableViewController {
         ("", []),
         ("", [
             ("baseline_account_circle_black_24pt",NSLocalizedString("my_user_center", comment: "")),
-//            ("baseline_view_list_black_24pt","我的话题"),
-//            ("baseline_reply_all_black_24pt","我的回复"),
-            ("baseline_collections_bookmark_black_24pt",NSLocalizedString("my_collect", comment: "")),
-//            ("baseline_settings_black_24pt","设置")
+//            ("baseline_view_list_black_24pt",NSLocalizedString("my_topics", comment: "")),
+//            ("baseline_reply_all_black_24pt",NSLocalizedString("my_replies", comment: "")),
+            ("baseline_collections_bookmark_black_24pt",NSLocalizedString("my_collects", comment: "")),
         ]),
-        ("", [
-            ("baseline_code_black_24pt",NSLocalizedString("my_open_source", comment: "")),
-            ("baseline_bug_report_black_24pt",NSLocalizedString("my_issues", comment: ""))
-        ]),
-        ("", [("baseline_warning_white_24pt",NSLocalizedString("my_logout", comment: ""))])
+//        ("", [
+//            ("baseline_code_black_24pt",NSLocalizedString("settings_open_source", comment: "")),
+//            ("baseline_bug_report_black_24pt",NSLocalizedString("settings_issues", comment: ""))
+//        ]),
+//        ("", [("baseline_warning_white_24pt",NSLocalizedString("settings_logout", comment: ""))])
+        ("", [("baseline_settings_black_24pt",NSLocalizedString("my_settings", comment: ""))])
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.title = NSLocalizedString("tablayout_my", comment: "")
-        self.view.backgroundColor = UIColor(CNodeColor.grayColor)
         
-        self.navigationController?.navigationBar.barStyle = .black
-        self.navigationController?.navigationBar.tintColor = .white
+        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
+        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
         
         self.tableView.addSubview(headerView)
     
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "userCell")
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "logoutCell")
+        self.tableView.register(SimpleTableViewCell.self, forCellReuseIdentifier: "userCell")
+        self.tableView.separatorStyle = .none
         
         let footerView = UIView()
         footerView.backgroundColor = UIColor.clear
@@ -81,7 +81,7 @@ class UserViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return [200, 0, 20, 20][section]
+        return [200, 0, 20][section]
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,56 +91,33 @@ class UserViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             return UITableViewCell()
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
-            if indexPath.section == 3 {
-                cell.textLabel?.textColor = UIColor.red
-                cell.textLabel?.textAlignment = .center
-                if UserDefaults.standard.string(forKey: "token") == nil {
-                    cell.isUserInteractionEnabled = false
-                } else {
-                    cell.isUserInteractionEnabled = true
-                }
-            }
-            cell.imageView?.tintColor = UIColor.black
-            cell.textLabel?.text = data[indexPath.section].1[indexPath.row].1
-            if indexPath.section != 3 {
-                cell.imageView?.image = UIImage(named: data[indexPath.section].1[indexPath.row].0)
-            }
+        } else if indexPath.section == 1 || indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! SimpleTableViewCell
+            cell.bind(icon: data[indexPath.section].1[indexPath.row].0, title: data[indexPath.section].1[indexPath.row].1)
             return cell
+        } else {
+            return UITableViewCell()
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let menuName = data[indexPath.section].1[indexPath.row].1
         if UserDefaults.standard.string(forKey: "token") != nil {
-            let menuName = data[indexPath.section].1[indexPath.row].1
             if menuName == NSLocalizedString("my_user_center", comment: "") {
                 let userCenterViewController = UserCenterViewController()
                 userCenterViewController.type = 0
                 userCenterViewController.loginname = UserDefaults.standard.string(forKey: "loginname")
                 self.navigationController?.pushViewController(userCenterViewController, animated: true)
-            } else if menuName == NSLocalizedString("my_collect", comment: "") {
-                let collectVC = CollectTableViewController()
-                self.navigationController?.pushViewController(collectVC, animated: true)
-            } else if menuName == NSLocalizedString("my_open_source", comment: "") {
-                UIApplication.shared.open(URL(string: "https://github.com/tomoya92/CNodeJS-Swift")!, options: [:]) { (success) in
-                    //打开浏览器成功了，做点其它的东东
-                }
-            } else if menuName == NSLocalizedString("my_issues", comment: "") {
-                UIApplication.shared.open(URL(string: "https://github.com/tomoya92/CNodeJS-Swift/issues")!, options: [:]) { (success) in
-                    //打开浏览器成功了，做点其它的东东
-                }
-            } else if menuName == NSLocalizedString("my_logout", comment: "") {
-                UIAlertController.showConfirm(message: NSLocalizedString("my_logout_tip", comment: "")) { (_) in
-                    let domain = Bundle.main.bundleIdentifier!
-                    UserDefaults.standard.removePersistentDomain(forName: domain)
-                    UserDefaults.standard.synchronize()
-                    self.headerView.unbind()
-                    self.tableView.reloadData()
-                }
+            } else if menuName == NSLocalizedString("my_collects", comment: "") {
+                let collectTableViewController = CollectTableViewController()
+                self.navigationController?.pushViewController(collectTableViewController, animated: true)
             }
         } else {
             UIAlertController.showAlert(message: NSLocalizedString("my_login_tip", comment: ""))
+        }
+        if menuName == NSLocalizedString("my_settings", comment: "") {
+            let settingsTableViewController = SettingsTableViewController()
+            self.navigationController?.pushViewController(settingsTableViewController, animated: true)
         }
     }
     

@@ -13,6 +13,7 @@ import Moya
 import WebKit
 import SwiftyJSON
 import YBImageBrowser
+import NightNight
 
 class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
     
@@ -46,10 +47,11 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("topic_detail", comment: "")
-        self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barStyle = .black
-        //设置返回按钮为白色
-        self.navigationController?.navigationBar.tintColor = .white
+        
+        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
+        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
+        // 设置返回颜色
+        self.navigationController?.navigationBar.mixedTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor_dark), night: UIColor(CNodeColor.navigationBackgroundColor))
         
         //添加菜单
         let menuButton = UIButton()
@@ -190,7 +192,9 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                 self?.refreshControl.beginRefreshing()
                 self?.fetch()
             }
-            present(UINavigationController(rootViewController: addReplyViewController), animated: true, completion: {() in
+            let navigationController = UINavigationController(rootViewController: addReplyViewController)
+            navigationController.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
+            present(navigationController, animated: true, completion: {() in
                 // 回复成功后，刷新当前页面
                 // 调用 self.fetch() 不生效，也不知道为啥
 //                self.view.makeToast("回复成功") 这个也没效果，只好用block了。。

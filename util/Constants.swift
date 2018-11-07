@@ -50,10 +50,25 @@ extension UIDevice {
 }
 
 class CNodeColor {
+    // default theme
+    static let titleColor = "#0f0f0f"
+    static let cellBackgroundColor = "#fff"
+    static let navigationBackgroundColor = "#f9f9f9"
+    static let backgroundColor = "#f2f3f5"
     static let tabColor = "#80bd01"
-    static let timeColor = "#5d5d5d"
-    static let grayColor = "#f5f5f5"
-    static let tableViewHeaderColor = "#f7f7f7"
+    static let usernameColor = "#353535"
+    static let timeColor = "#778087"
+    static let tabBackgroundColor = "#f3f3f3"
+    
+    // dark theme
+    static let titleColor_dark = "#919191"
+    static let cellBackgroundColor_dark = "#232227"
+    static let navigationBackgroundColor_dark = "#1d1d1f"
+    static let backgroundColor_dark = "#201f24"
+    static let tabColor_dark = "#80bd01"
+    static let usernameColor_dark = "#7d7d7d"
+    static let timeColor_dark = "#778087"
+    static let tabBackgroundColor_dark = "#282828"
 }
 
 extension DateFormatter {

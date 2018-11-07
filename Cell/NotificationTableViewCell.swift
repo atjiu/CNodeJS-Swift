@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import NightNight
 
 class NotificationTableViewCell: UITableViewCell {
     
@@ -21,45 +22,64 @@ class NotificationTableViewCell: UITableViewCell {
     var usernameLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor(CNodeColor.timeColor)
+        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.usernameColor), night: UIColor(CNodeColor.usernameColor_dark))
         return label
     }()
     var timeLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor(CNodeColor.timeColor)
+        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.timeColor), night: UIColor(CNodeColor.timeColor_dark))
         return label
     }()
     var statusLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor(CNodeColor.timeColor)
+        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.usernameColor), night: UIColor(CNodeColor.usernameColor_dark))
         return label
     }()
     var descLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor(CNodeColor.timeColor)
+        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.timeColor), night: UIColor(CNodeColor.timeColor_dark))
         label.numberOfLines = 0
         return label
     }()
     var titleLabel: UILabelPadding = {
         var label = UILabelPadding(withInsets: 7,7,7,7)
-        label.backgroundColor = UIColor(CNodeColor.grayColor)
+        label.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
+        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.titleColor), night: UIColor(CNodeColor.titleColor_dark))
         label.font = UIFont.systemFont(ofSize: 15)
         label.numberOfLines = 0
         return label
     }()
     
+    // 装上面定义的那些元素的容器
+    var contentPanel:UIView = {
+        var contentPanel = UIView()
+        contentPanel.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.cellBackgroundColor), night: UIColor(CNodeColor.cellBackgroundColor_dark))
+        return contentPanel
+    }()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubview(avatar)
-        addSubview(usernameLabel)
-        addSubview(timeLabel)
-        addSubview(statusLabel)
-        addSubview(descLabel)
-        addSubview(titleLabel)
+        self.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
+        let selectedBackgroundView = UIView()
+        self.selectedBackgroundView = selectedBackgroundView
+        selectedBackgroundView.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
+        
+        self.contentView.addSubview(self.contentPanel)
+        self.contentPanel.addSubview(avatar)
+        self.contentPanel.addSubview(usernameLabel)
+        self.contentPanel.addSubview(timeLabel)
+        self.contentPanel.addSubview(statusLabel)
+        self.contentPanel.addSubview(descLabel)
+        self.contentPanel.addSubview(titleLabel)
+        
+        contentPanel.snp.makeConstraints { (make) in
+            make.top.left.right.equalTo(self.contentView)
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(-1)
+        }
         
         avatar.snp.makeConstraints { (make) in
             make.top.left.equalTo(16)
@@ -96,9 +116,9 @@ class NotificationTableViewCell: UITableViewCell {
         usernameLabel.text = message.author.loginname
         timeLabel.text = message.reply.create_at?.getElapsedInterval()
         if message.has_read {
-            statusLabel.textColor = UIColor(CNodeColor.timeColor)
+            statusLabel.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.usernameColor), night: UIColor(CNodeColor.usernameColor_dark))
         } else {
-            statusLabel.textColor = UIColor(CNodeColor.tabColor)
+            statusLabel.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.tabColor), night: UIColor(CNodeColor.tabColor_dark))
         }
         statusLabel.text = message.has_read ? NSLocalizedString("read", comment: "") : NSLocalizedString("unread", comment: "")
         switch message.type {

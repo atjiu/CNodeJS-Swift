@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import NightNight
 
 class HomeViewController: UIViewController {
     
@@ -16,9 +17,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.title = NSLocalizedString("tablayout_topic", comment: "")
-        self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barStyle = .black
-        self.navigationController?.navigationBar.tintColor = .white
+        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
+        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
         
         self.addChildViewController(tabsViewController)
         self.view.addSubview(tabsViewController.view)

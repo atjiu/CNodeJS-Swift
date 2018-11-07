@@ -51,6 +51,9 @@
 		07A821382191C04200141475 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07A8213A2191C04200141475 /* Localizable.strings */; };
 		07C5540820F8E1600056E314 /* TabsTopicAndReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5540720F8E1600056E314 /* TabsTopicAndReplyViewController.swift */; };
 		07C5540A20F8E1BC0056E314 /* TopicOrReplyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5540920F8E1BC0056E314 /* TopicOrReplyTableViewController.swift */; };
+		07D77EED2192E381002D8849 /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D77EEC2192E381002D8849 /* SimpleTableViewCell.swift */; };
+		07D77EEF2192F92C002D8849 /* SwitchButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D77EEE2192F92C002D8849 /* SwitchButtonTableViewCell.swift */; };
+		07D77EF12192FC31002D8849 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D77EF02192FC31002D8849 /* SettingsTableViewController.swift */; };
 		636F8FB742041EF846EE3E20 /* Pods_CNodeJS_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +107,9 @@
 		07A8213D2191C06900141475 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		07C5540720F8E1600056E314 /* TabsTopicAndReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsTopicAndReplyViewController.swift; sourceTree = "<group>"; };
 		07C5540920F8E1BC0056E314 /* TopicOrReplyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicOrReplyTableViewController.swift; sourceTree = "<group>"; };
+		07D77EEC2192E381002D8849 /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
+		07D77EEE2192F92C002D8849 /* SwitchButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchButtonTableViewCell.swift; sourceTree = "<group>"; };
+		07D77EF02192FC31002D8849 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		627EDB689CD3A0B23E88F623 /* Pods_CNodeJS_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CNodeJS_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A9CD8FB6D3186E894505EB /* Pods-CNodeJS-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNodeJS-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift.release.xcconfig"; sourceTree = "<group>"; };
 		D5FFCA14473FEE46461B9308 /* Pods-CNodeJS-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CNodeJS-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CNodeJS-Swift/Pods-CNodeJS-Swift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -169,7 +175,6 @@
 		079A88B420E5C58000C1E76F = {
 			isa = PBXGroup;
 			children = (
-				07A8213A2191C04200141475 /* Localizable.strings */,
 				072F1C61218AFDA300BA1488 /* Toast-Swift */,
 				072F1C522189494300BA1488 /* Resource */,
 				07742D3920F4B405004C80AA /* SwiftScan */,
@@ -200,6 +205,7 @@
 				079A88C720E5C58100C1E76F /* Assets.xcassets */,
 				079A88C920E5C58100C1E76F /* LaunchScreen.storyboard */,
 				079A88CC20E5C58100C1E76F /* Info.plist */,
+				07A8213A2191C04200141475 /* Localizable.strings */,
 			);
 			path = "CNodeJS-Swift";
 			sourceTree = "<group>";
@@ -219,6 +225,7 @@
 				07C5540920F8E1BC0056E314 /* TopicOrReplyTableViewController.swift */,
 				072ED80520F9FAA300941953 /* CollectTableViewController.swift */,
 				072F1C5B2189AA5F00BA1488 /* AddReplyViewController.swift */,
+				07D77EF02192FC31002D8849 /* SettingsTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -239,6 +246,8 @@
 		079A891A20E608F900C1E76F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				07D77EEC2192E381002D8849 /* SimpleTableViewCell.swift */,
+				07D77EEE2192F92C002D8849 /* SwitchButtonTableViewCell.swift */,
 				07446C0320E6242600768C90 /* TopicTableViewCell.swift */,
 				07742D4A20F596FC004C80AA /* UserHeaderTableViewCell.swift */,
 				072ED80320F8EB8A00941953 /* UserTopicsTableViewCell.swift */,
@@ -352,6 +361,7 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/NightNight/NightNight.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -369,6 +379,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NightNight.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -422,16 +433,19 @@
 				07446C0020E619C300768C90 /* HomeViewController.swift in Sources */,
 				074D0BAD2122AE500055B10E /* Notification.swift in Sources */,
 				07742D4920F5912F004C80AA /* UserCenterViewController.swift in Sources */,
+				07D77EF12192FC31002D8849 /* SettingsTableViewController.swift in Sources */,
 				079A88C120E5C58000C1E76F /* AppDelegate.swift in Sources */,
 				07742D4120F4B458004C80AA /* LBXScanNetAnimation.swift in Sources */,
 				07742D4220F4B458004C80AA /* LBXScanView.swift in Sources */,
 				07446C0420E6242600768C90 /* TopicTableViewCell.swift in Sources */,
 				07742D4320F4B458004C80AA /* LBXPermissions.swift in Sources */,
 				079A891720E5FD2100C1E76F /* NotificationViewController.swift in Sources */,
+				07D77EED2192E381002D8849 /* SimpleTableViewCell.swift in Sources */,
 				07742D4520F4B458004C80AA /* LBXScanViewStyle.swift in Sources */,
 				07446BFC20E60DA400768C90 /* TabTopicViewController.swift in Sources */,
 				07A5428020EBBE960068B99C /* RefreshView.swift in Sources */,
 				07446C0A20E6285300768C90 /* Author.swift in Sources */,
+				07D77EEF2192F92C002D8849 /* SwitchButtonTableViewCell.swift in Sources */,
 				072ED80620F9FAA300941953 /* CollectTableViewController.swift in Sources */,
 				072ED80420F8EB8A00941953 /* UserTopicsTableViewCell.swift in Sources */,
 				078B340720E9CD6A006AD5D1 /* Reply.swift in Sources */,

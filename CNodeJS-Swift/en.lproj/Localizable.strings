@@ -41,12 +41,10 @@ replies = "Replies";
 
 // my menu
 my_user_center = "My Center";
-my_collect = "My Collect";
-my_open_source = "Source Code";
-my_issues = "Report Problem";
-my_logout = "Logout";
-my_logout_tip = "Are you sure you want to logout your account?";
-my_login_tip = "Please Login!";
+my_collects = "My Collects";
+my_topics = "My Topics";
+my_replies = "My Replies";
+my_settings = "Settings";
 
 // user header
 user_header_sign_in = "Sign In: ";
@@ -75,3 +73,11 @@ time_hour = "hour ago";
 time_minute = "minute ago";
 time_second = "second ago";
 time_i18n = "en";
+
+// settings
+settings_theme = "Night Mode";
+settings_open_source = "Source Code";
+settings_issues = "Report Problem";
+settings_logout = "Logout";
+settings_logout_tip = "Are you sure you want to logout your account?";
+settings_login_tip = "Please Login!";

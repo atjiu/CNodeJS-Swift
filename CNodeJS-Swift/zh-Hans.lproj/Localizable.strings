@@ -41,12 +41,10 @@ replies = "回复";
 
 // my menu
 my_user_center = "个人中心";
-my_collect = "我的收藏";
-my_open_source = "开源地址";
-my_issues = "提交Bug";
-my_logout = "注销";
-my_logout_tip = "确定要注销当前帐号吗？";
-my_login_tip = "请登录!";
+my_collects = "我的收藏";
+my_topics = "我的话题";
+my_replies = "我的回复";
+my_settings = "设置";
 
 // user header
 user_header_sign_in = "注册于: ";
@@ -75,3 +73,11 @@ time_hour = "时间";
 time_minute = "分前";
 time_second = "秒前";
 time_i18n = "zh-cn";
+
+// settings
+settings_theme = "夜间模式";
+settings_open_source = "开源地址";
+settings_issues = "提交Bug";
+settings_logout = "注销";
+settings_logout_tip = "确定要注销当前帐号吗？";
+settings_login_tip = "请登录!";

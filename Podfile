@@ -17,5 +17,6 @@ target 'CNodeJS-Swift' do
   pod 'SwiftyJSON'
   pod 'YBImageBrowser'
   pod 'FDFullscreenPopGesture'
+  pod 'NightNight'
 
 end

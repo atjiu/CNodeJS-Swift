@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Moya
+import NightNight
 
 class AddReplyViewController: UIViewController {
     
@@ -21,9 +22,11 @@ class AddReplyViewController: UIViewController {
     lazy var textView: UITextView = {
         var textView = UITextView()
         textView.keyboardType = .default
-//        textView.keyboardAppearance = .default
+        textView.keyboardAppearance = NightNight.theme == .normal ? .default : .dark
         textView.keyboardDismissMode = .interactive
         textView.font = UIFont.systemFont(ofSize: 16)
+        textView.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.titleColor), night: UIColor(CNodeColor.titleColor_dark))
+        textView.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
         return textView
     }()
 
@@ -31,10 +34,11 @@ class AddReplyViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("reply_add", comment: "")
-        self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barStyle = .black
-        //设置返回按钮为白色
-        self.navigationController?.navigationBar.tintColor = .white
+        
+        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
+        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
+        // 设置返回颜色
+        self.navigationController?.navigationBar.mixedTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor_dark), night: UIColor(CNodeColor.navigationBackgroundColor))
         
         //添加菜单
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("alert_cancel", comment: ""), style: .plain, target: self, action: #selector(AddReplyViewController.leftClick))

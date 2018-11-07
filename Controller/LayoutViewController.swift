@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NightNight
 
 class LayoutViewController: UITabBarController {
     
@@ -39,6 +40,7 @@ class LayoutViewController: UITabBarController {
         self.viewControllers = [homeViewController, notificationViewController, userViewController]
         // 文字图片颜色一块修改
         self.tabBar.tintColor = UIColor(CNodeColor.tabColor)
+        self.tabBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
         
         homeViewController.setBadge = {[weak self] count in
             if count == 0 {

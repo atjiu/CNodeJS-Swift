@@ -9,22 +9,36 @@
 import UIKit
 import XLPagerTabStrip
 import UIColor_Hex_Swift
+import NightNight
 
 class TabsViewController: ButtonBarPagerTabStripViewController {
 
     override func viewDidLoad() {
-        self.settings.style.buttonBarItemFont = .systemFont(ofSize: 16)
+        self.settings.style.buttonBarBackgroundColor = UIColor(red: 21/255.0, green: 21/255.0, blue: 24/255.0, alpha: 1.0)
+        self.settings.style.buttonBarItemBackgroundColor = UIColor(red: 19/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1.0)
+        self.settings.style.buttonBarItemFont = .systemFont(ofSize: 14)
         self.settings.style.buttonBarItemTitleColor = UIColor(CNodeColor.tabColor)
-        self.settings.style.buttonBarHeight = 40
-        self.settings.style.buttonBarBackgroundColor = .white
-        self.settings.style.buttonBarItemBackgroundColor = .white
+        self.settings.style.buttonBarHeight = 35
+        //
+//        settings.style.buttonBarMinimumLineSpacing = 0
+//        settings.style.buttonBarItemsShouldFillAvailableWidth = true
+        //
+        // 根据主题换色
+        if NightNight.theme == .normal {
+            self.settings.style.buttonBarBackgroundColor = UIColor(CNodeColor.backgroundColor)
+            self.settings.style.buttonBarItemBackgroundColor = UIColor(CNodeColor.backgroundColor)
+        } else {
+            self.settings.style.buttonBarBackgroundColor = UIColor(CNodeColor.backgroundColor_dark)
+            self.settings.style.buttonBarItemBackgroundColor = UIColor(CNodeColor.backgroundColor_dark)
+        }
+        
         self.settings.style.selectedBarHeight = 2
         self.settings.style.selectedBarBackgroundColor = UIColor(CNodeColor.tabColor)
         
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             
-            oldCell?.label.textColor = .black
+            oldCell?.label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor_dark), night: UIColor(CNodeColor.backgroundColor))
             newCell?.label.textColor = UIColor(CNodeColor.tabColor)
             
             if animated {

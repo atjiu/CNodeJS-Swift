@@ -10,6 +10,7 @@ import UIKit
 import XLPagerTabStrip
 import Moya
 import SwiftyJSON
+import NightNight
 
 class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     
@@ -22,13 +23,14 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
         
         //监听程序即将进入前台运行、进入后台休眠 事件
         NotificationCenter.default.addObserver(self, selector: #selector(TabTopicViewController.applicationWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(TabTopicViewController.applicationDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
         
         self.tableView.register(TopicTableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none;
         
         // 添加下拉刷新组件
 //        self.view.addSubview(refresh)

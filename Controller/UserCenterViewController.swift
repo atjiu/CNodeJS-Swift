@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Moya
+import NightNight
 
 class UserCenterViewController: UIViewController {
     
@@ -21,10 +22,11 @@ class UserCenterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = loginname
-        self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barStyle = .black
-        //设置返回按钮为白色
-        self.navigationController?.navigationBar.tintColor = .white
+        
+        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
+        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
+        // 设置返回颜色
+        self.navigationController?.navigationBar.mixedTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor_dark), night: UIColor(CNodeColor.navigationBackgroundColor))
         
         self.view.addSubview(header)
         self.addChildViewController(tabsTopicAndReplyViewController)

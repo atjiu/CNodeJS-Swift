@@ -9,6 +9,7 @@
 import UIKit
 import Moya
 import MJRefresh
+import NightNight
 
 class CollectTableViewController: UITableViewController {
     
@@ -19,13 +20,15 @@ class CollectTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("my_collect", comment: "")
-        self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barStyle = .black
-        //设置返回按钮为白色
-        self.navigationController?.navigationBar.tintColor = .white
+        self.title = NSLocalizedString("my_collects", comment: "")
+        
+        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
+        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
+        // 设置返回颜色
+        self.navigationController?.navigationBar.mixedTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor_dark), night: UIColor(CNodeColor.navigationBackgroundColor))
 
         self.tableView.register(UserTopicsTableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.separatorStyle = .none
         
         self.tableView.mj_header = RefreshView(refreshingBlock: {
             [weak self] () -> Void in

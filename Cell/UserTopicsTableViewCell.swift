@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import NightNight
 
 class UserTopicsTableViewCell: UITableViewCell {
     
@@ -20,29 +21,50 @@ class UserTopicsTableViewCell: UITableViewCell {
     }()
     var titleLabel: UILabel = {
         var label = UILabel()
+        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.titleColor), night: UIColor(CNodeColor.titleColor_dark))
         label.font = UIFont.systemFont(ofSize: 15)
         label.numberOfLines = 0
         return label
     }()
     var usernameLabel: UILabel = {
         var label = UILabel()
+        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.usernameColor), night: UIColor(CNodeColor.usernameColor_dark))
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     var createTimeLabel: UILabel = {
         var label = UILabel()
+        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.timeColor), night: UIColor(CNodeColor.timeColor_dark))
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor(CNodeColor.timeColor)
         return label
+    }()
+    
+    // 装上面定义的那些元素的容器
+    var contentPanel:UIView = {
+        var contentPanel = UIView()
+        contentPanel.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.cellBackgroundColor), night: UIColor(CNodeColor.cellBackgroundColor_dark))
+        return contentPanel
     }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(avatar)
-        self.addSubview(usernameLabel)
-        self.addSubview(createTimeLabel)
-        self.addSubview(titleLabel)
+        self.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
+        let selectedBackgroundView = UIView()
+        self.selectedBackgroundView = selectedBackgroundView
+        selectedBackgroundView.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
+        
+        self.contentView.addSubview(self.contentPanel)
+        
+        self.contentPanel.addSubview(avatar)
+        self.contentPanel.addSubview(usernameLabel)
+        self.contentPanel.addSubview(createTimeLabel)
+        self.contentPanel.addSubview(titleLabel)
+        
+        contentPanel.snp.makeConstraints { (make) in
+            make.top.left.right.equalTo(self.contentView)
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(-8)
+        }
         
         avatar.snp.makeConstraints { (make) in
             make.width.height.equalTo(20)
