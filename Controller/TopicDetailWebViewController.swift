@@ -152,7 +152,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                 }
             }
         } else {
-            UIAlertController.showAlert(message: NSLocalizedString("my_login_tip", comment: ""))
+            UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
         }
     }
     
@@ -169,7 +169,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                 }
             }
         } else {
-            UIAlertController.showAlert(message: NSLocalizedString("my_login_tip", comment: ""))
+            UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
         }
     }
     
@@ -200,7 +200,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
 //                self.view.makeToast("回复成功") 这个也没效果，只好用block了。。
             })
         } else {
-            UIAlertController.showAlert(message: NSLocalizedString("my_login_tip", comment: ""))
+            UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
         }
     }
 

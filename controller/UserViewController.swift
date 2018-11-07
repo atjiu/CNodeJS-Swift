@@ -89,6 +89,7 @@ class UserViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(NightNight.theme.rawValue)
         if indexPath.section == 0 {
             return UITableViewCell()
         } else if indexPath.section == 1 || indexPath.section == 2 {
@@ -102,6 +103,11 @@ class UserViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let menuName = data[indexPath.section].1[indexPath.row].1
+        if menuName == NSLocalizedString("my_settings", comment: "") {
+            let settingsTableViewController = SettingsTableViewController()
+            self.navigationController?.pushViewController(settingsTableViewController, animated: true)
+            return;
+        }
         if UserDefaults.standard.string(forKey: "token") != nil {
             if menuName == NSLocalizedString("my_user_center", comment: "") {
                 let userCenterViewController = UserCenterViewController()
@@ -113,11 +119,7 @@ class UserViewController: UITableViewController {
                 self.navigationController?.pushViewController(collectTableViewController, animated: true)
             }
         } else {
-            UIAlertController.showAlert(message: NSLocalizedString("my_login_tip", comment: ""))
-        }
-        if menuName == NSLocalizedString("my_settings", comment: "") {
-            let settingsTableViewController = SettingsTableViewController()
-            self.navigationController?.pushViewController(settingsTableViewController, animated: true)
+            UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
         }
     }
     

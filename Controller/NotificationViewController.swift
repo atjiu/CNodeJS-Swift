@@ -51,7 +51,7 @@ class NotificationViewController: UITableViewController {
     @objc func refreshData() {
         let token = UserDefaults.standard.string(forKey: "token")
         if token == nil {
-            UIAlertController.showAlert(message: NSLocalizedString("my_login_tip", comment: ""))
+            UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
             self.data = [Message]()
             self.tableView.mj_header.endRefreshing()
             self.tableView.reloadData()
