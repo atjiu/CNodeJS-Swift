@@ -63,9 +63,9 @@ alert_confirm = "Confirm";
 alert_cancel = "Cancel";
 
 // time
-time_year = "year age";
-time_month = "month age";
-time_day = "day age";
-time_hour = "hour age";
-time_minute = "minute age";
-time_second = "second age";
+time_year = "year ago";
+time_month = "month ago";
+time_day = "day ago";
+time_hour = "hour ago";
+time_minute = "minute ago";
+time_second = "second ago";
