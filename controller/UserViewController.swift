@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NightNight
 
 class UserViewController: UITableViewController {
     
@@ -52,12 +51,10 @@ class UserViewController: UITableViewController {
         super.viewDidLoad()
         self.tabBarController?.title = NSLocalizedString("tablayout_my", comment: "")
         
-        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
-        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
-        
         self.tableView.addSubview(headerView)
     
         self.tableView.register(SimpleTableViewCell.self, forCellReuseIdentifier: "userCell")
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "settings_cell")
         self.tableView.separatorStyle = .none
         
         let footerView = UIView()
@@ -66,6 +63,11 @@ class UserViewController: UITableViewController {
         
         // 加载当前用户信息
         self.headerView.bind();
+        
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.view.backgroundColor = AppColor.colors.backgroundColor
+//            self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -89,12 +91,24 @@ class UserViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(NightNight.theme.rawValue)
         if indexPath.section == 0 {
             return UITableViewCell()
-        } else if indexPath.section == 1 || indexPath.section == 2 {
+        } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! SimpleTableViewCell
             cell.bind(icon: data[indexPath.section].1[indexPath.row].0, title: data[indexPath.section].1[indexPath.row].1)
+            return cell
+        } else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "settings_cell", for: indexPath)
+            let selectedBackgroundView = UIView()
+            cell.selectedBackgroundView = selectedBackgroundView
+            cell.imageView?.image = UIImage(named: data[indexPath.section].1[indexPath.row].0)?.withRenderingMode(.alwaysTemplate)
+            cell.imageView?.tintColor = AppColor.colors.titleColor
+            cell.textLabel?.textColor = AppColor.colors.titleColor
+            cell.textLabel?.text = data[indexPath.section].1[indexPath.row].1
+            cell.themeChangedHandler = {[weak self] (style) -> Void in
+                cell.backgroundColor = AppColor.colors.cellBackgroundColor
+                selectedBackgroundView.backgroundColor = AppColor.colors.backgroundColor
+            }
             return cell
         } else {
             return UITableViewCell()
@@ -126,6 +140,13 @@ class UserViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if UserDefaults.standard.string(forKey: "token") == nil {
+            self.headerView.unbind()
+        }
+        self.tableView.reloadData()
     }
     
     

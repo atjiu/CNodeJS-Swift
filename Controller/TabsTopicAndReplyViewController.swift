@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import XLPagerTabStrip
+//import XLPagerTabStrip
 import UIColor_Hex_Swift
-import NightNight
 
 class TabsTopicAndReplyViewController: ButtonBarPagerTabStripViewController {
     
@@ -22,22 +21,15 @@ class TabsTopicAndReplyViewController: ButtonBarPagerTabStripViewController {
         self.settings.style.buttonBarItemTitleColor = UIColor(CNodeColor.tabColor)
         self.settings.style.buttonBarHeight = 35
         
-        // 根据主题换色
-        if NightNight.theme == .normal {
-            self.settings.style.buttonBarBackgroundColor = UIColor(CNodeColor.backgroundColor)
-            self.settings.style.buttonBarItemBackgroundColor = UIColor(CNodeColor.backgroundColor)
-        } else {
-            self.settings.style.buttonBarBackgroundColor = UIColor(CNodeColor.backgroundColor_dark)
-            self.settings.style.buttonBarItemBackgroundColor = UIColor(CNodeColor.backgroundColor_dark)
-        }
-        
         self.settings.style.selectedBarHeight = 2
         self.settings.style.selectedBarBackgroundColor = UIColor(CNodeColor.tabColor)
         
         changeCurrentIndexProgressive = { (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             
-            oldCell?.label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor_dark), night: UIColor(CNodeColor.backgroundColor))
+            self.themeChangedHandler = {[weak self] (style) -> Void in
+                oldCell?.label.textColor = AppColor.colors.tabStripOldColor
+            }
             newCell?.label.textColor = UIColor(CNodeColor.tabColor)
             
             if animated {
@@ -50,6 +42,11 @@ class TabsTopicAndReplyViewController: ButtonBarPagerTabStripViewController {
                 newCell?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                 oldCell?.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             }
+        }
+        
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.settings.style.buttonBarBackgroundColor = AppColor.colors.backgroundColor
+            self?.settings.style.buttonBarItemBackgroundColor = AppColor.colors.backgroundColor
         }
         
         super.viewDidLoad()

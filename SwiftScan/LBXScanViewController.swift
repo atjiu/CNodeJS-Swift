@@ -47,6 +47,10 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
               // [self.view addSubview:_qRScanView];
         self.view.backgroundColor = UIColor.black
         self.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
+        
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.navigationController?.navigationBar.tintColor = AppColor.colors.navigationBackgroundColor
+        }
     }
     
     open func setNeedCodeImage(needCodeImg:Bool)

@@ -22,8 +22,8 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
     
     lazy var avatar: UIImageView = {
         var avatar = UIImageView()
-        avatar.image = UIImage(named: "baseline_account_circle_white_24pt")
-        avatar.layer.cornerRadius = 50
+        avatar.image = UIImage(named: "not_login_user_avatar")
+        avatar.layer.cornerRadius = 51
         avatar.layer.masksToBounds = true
         return avatar
     }()
@@ -126,7 +126,7 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
     }
     
     func unbind() {
-        self.avatar.image = UIImage(named: "baseline_account_circle_white_24pt")
+        self.avatar.image = UIImage(named: "not_login_user_avatar")
         self.username.text = NSLocalizedString("user_header_scanner_tip", comment: "")
         self.registerTime.text = ""
         self.score.text = ""
@@ -221,17 +221,6 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
                 self.endReloadDataRefreshing?()
             }
         }
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

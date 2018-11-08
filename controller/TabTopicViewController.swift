@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import XLPagerTabStrip
+//import XLPagerTabStrip
 import Moya
 import SwiftyJSON
-import NightNight
 
 class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     
@@ -23,7 +22,6 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
         
         //监听程序即将进入前台运行、进入后台休眠 事件
         NotificationCenter.default.addObserver(self, selector: #selector(TabTopicViewController.applicationWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
@@ -51,6 +49,10 @@ class TabTopicViewController: UITableViewController, IndicatorInfoProvider {
         self.tableView.mj_header.beginRefreshing()
         
         self.message_count()
+        
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.view.backgroundColor = AppColor.colors.backgroundColor
+        }
     }
     
     @objc func refreshData() {

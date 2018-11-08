@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Kingfisher
 import UIColor_Hex_Swift
-import NightNight
 
 class TopicTableViewCell: UITableViewCell {
     
@@ -24,68 +23,53 @@ class TopicTableViewCell: UITableViewCell {
     }()
     var titleLabel: UILabel = {
         var label = UILabel()
-        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.titleColor), night: UIColor(CNodeColor.titleColor_dark))
         label.font = UIFont.systemFont(ofSize: 15)
         label.numberOfLines = 0
         return label
     }()
     var usernameLabel: UILabel = {
         var label = UILabel()
-        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.usernameColor), night: UIColor(CNodeColor.usernameColor_dark))
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     var createTimeLabel: UILabel = {
         var label = UILabel()
-        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.timeColor), night: UIColor(CNodeColor.timeColor_dark))
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     var lastReplyTimeLabel: UILabel = {
         var label = UILabel()
-        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.timeColor), night: UIColor(CNodeColor.timeColor_dark))
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     var replyCountLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor(CNodeColor.tabColor)
         return label
     }()
     var viewLabel: UILabel = {
         var label = UILabel()
-        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.timeColor), night: UIColor(CNodeColor.timeColor_dark))
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     var tabLabel: UILabelPadding = {
         var label = UILabelPadding(withInsets: 0, 0, 3, 3)
         label.font = UIFont.systemFont(ofSize: 13)
-        label.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.tabBackgroundColor), night: UIColor(CNodeColor.tabBackgroundColor_dark))
-        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.timeColor), night: UIColor(CNodeColor.timeColor_dark))
         label.layer.cornerRadius = 4
         label.layer.masksToBounds = true
         return label
     }()
     
     // 装上面定义的那些元素的容器
-    var contentPanel:UIView = {
-        var contentPanel = UIView()
-        contentPanel.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.cellBackgroundColor), night: UIColor(CNodeColor.cellBackgroundColor_dark))
-        return contentPanel
-    }()
+    var contentPanel = UIView()
     
     var topic: Topic?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
-        
         let selectedBackgroundView = UIView()
         self.selectedBackgroundView = selectedBackgroundView
-        selectedBackgroundView.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
         
         self.contentView.addSubview(self.contentPanel)
         self.contentPanel.addSubview(avatar)
@@ -147,6 +131,20 @@ class TopicTableViewCell: UITableViewCell {
         self.avatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TopicTableViewCell.toUserCenter)))
         self.usernameLabel.isUserInteractionEnabled = true
         self.usernameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(TopicTableViewCell.toUserCenter)))
+        
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.titleLabel.textColor = AppColor.colors.titleColor
+            self?.usernameLabel.textColor = AppColor.colors.usernameColor
+            self?.createTimeLabel.textColor = AppColor.colors.timeColor
+            self?.lastReplyTimeLabel.textColor = AppColor.colors.timeColor
+            self?.replyCountLabel.textColor = AppColor.colors.tabColor
+            self?.tabLabel.textColor = AppColor.colors.timeColor
+            self?.tabLabel.backgroundColor = AppColor.colors.tabBackgroundColor
+            self?.viewLabel.textColor = AppColor.colors.timeColor
+            self?.contentPanel.backgroundColor = AppColor.colors.cellBackgroundColor
+            self?.backgroundColor = AppColor.colors.backgroundColor
+            selectedBackgroundView.backgroundColor = AppColor.colors.backgroundColor
+        }
     }
     
     //跳转用户页
@@ -195,8 +193,8 @@ class TopicTableViewCell: UITableViewCell {
             self.tabLabel.backgroundColor = UIColor(CNodeColor.tabColor)
             self.tabLabel.textColor = UIColor.white
         } else {
-            self.tabLabel.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.tabBackgroundColor), night: UIColor(CNodeColor.tabBackgroundColor_dark))
-            self.tabLabel.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.timeColor), night: UIColor(CNodeColor.timeColor_dark))
+            self.tabLabel.backgroundColor = AppColor.colors.tabBackgroundColor
+            self.tabLabel.textColor = AppColor.colors.timeColor
         }
         self.tabLabel.text = _tab
         self.titleLabel.text = topic.title

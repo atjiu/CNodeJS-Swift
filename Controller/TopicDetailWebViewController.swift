@@ -13,7 +13,6 @@ import Moya
 import WebKit
 import SwiftyJSON
 import YBImageBrowser
-import NightNight
 
 class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
     
@@ -48,11 +47,6 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
         super.viewDidLoad()
         self.title = NSLocalizedString("topic_detail", comment: "")
         
-        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
-        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
-        // 设置返回颜色
-        self.navigationController?.navigationBar.mixedTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor_dark), night: UIColor(CNodeColor.navigationBackgroundColor))
-        
         //添加菜单
         let menuButton = UIButton()
         menuButton.contentMode = .center
@@ -69,6 +63,13 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
         addSubView()
         addConstraints()
         
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.view.backgroundColor = AppColor.colors.backgroundColor
+            self?.navigationController?.navigationBar.tintColor = AppColor.colors.navigationBackgroundColor
+            self?.webView.backgroundColor = AppColor.colors.backgroundColor
+            self?.webView.scrollView.backgroundColor = AppColor.colors.backgroundColor
+//            self?.navigationController?.navigationBar.barTintColor = AppColor.colors.navigationBackgroundColor
+        }
     }
     
     func addSubView() {
@@ -107,6 +108,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                     "time_i18n": NSLocalizedString("time_i18n", comment: ""),
                 ]
                 topicJson["data"]["locale"] = JSON(_locale)
+                topicJson["data"]["_theme"] = JSON(AppColor.sharedInstance.style)
                 
                 var topicJsonStr = topicJson.rawString();
                 topicJsonStr = topicJsonStr?.replacingOccurrences(of: "\n", with: "")
@@ -193,7 +195,6 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                 self?.fetch()
             }
             let navigationController = UINavigationController(rootViewController: addReplyViewController)
-            navigationController.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
             present(navigationController, animated: true, completion: {() in
                 // 回复成功后，刷新当前页面
                 // 调用 self.fetch() 不生效，也不知道为啥

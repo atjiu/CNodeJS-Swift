@@ -8,7 +8,6 @@
 
 import UIKit
 import MJRefresh
-import NightNight
 
 class LoadMoreView: MJRefreshAutoFooter {
     
@@ -39,11 +38,7 @@ class LoadMoreView: MJRefreshAutoFooter {
         super.prepare()
         self.mj_h = 50
         
-        if NightNight.theme == .normal {
-            self.loadingView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        } else {
-            self.loadingView = UIActivityIndicatorView(activityIndicatorStyle: .white)
-        }
+        self.loadingView = AppColor.sharedInstance.style == AppColor.AppColorStyleDefault ? UIActivityIndicatorView(activityIndicatorStyle: .gray) : UIActivityIndicatorView(activityIndicatorStyle: .white)
         
         self.stateLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
         self.stateLabel?.textAlignment = .center

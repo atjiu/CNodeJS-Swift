@@ -7,12 +7,9 @@
 //
 
 import UIKit
-import NightNight
 
 class SettingsTableViewController: UITableViewController {
     
-    var parentVC: UserViewController?
-
     var data = [
         ("", []),
         ("", [("baseline_brightness_2_black_24pt",NSLocalizedString("settings_theme", comment: ""))]),
@@ -25,20 +22,20 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.title = NSLocalizedString("my_settings", comment: "")
-        
-        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
-        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
-        // 设置返回颜色
-        self.navigationController?.navigationBar.mixedTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor_dark), night: UIColor(CNodeColor.navigationBackgroundColor))
         
         self.tableView.register(SimpleTableViewCell.self, forCellReuseIdentifier: "simpleCell")
         self.tableView.register(SwitchButtonTableViewCell.self, forCellReuseIdentifier: "switchCell")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "logoutCell")
         self.tableView.separatorStyle = .none
+        
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.view.backgroundColor = AppColor.colors.backgroundColor
+            self?.navigationController?.navigationBar.tintColor = AppColor.colors.navigationBackgroundColor
+//            self?.navigationController?.navigationBar.barTintColor = AppColor.colors.navigationBackgroundColor
+        }
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -64,10 +61,10 @@ class SettingsTableViewController: UITableViewController {
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as! SwitchButtonTableViewCell
             cell.switchClick = {[weak self] in
-                if NightNight.theme == .normal {
-                    NightNight.theme = .night
+                if AppColor.sharedInstance.style == AppColor.AppColorStyleDefault {
+                    AppColor.sharedInstance.setStyleAndSave(AppColor.AppColorStyleDark)
                 } else {
-                    NightNight.theme = .normal
+                    AppColor.sharedInstance.setStyleAndSave(AppColor.AppColorStyleDefault)
                 }
             }
             return cell
@@ -80,9 +77,12 @@ class SettingsTableViewController: UITableViewController {
             
             let selectedBackgroundView = UIView()
             cell.selectedBackgroundView = selectedBackgroundView
-            selectedBackgroundView.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
             
-            cell.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.cellBackgroundColor), night: UIColor(CNodeColor.cellBackgroundColor_dark))
+            cell.themeChangedHandler = {[weak self] (style) -> Void in
+                cell.backgroundColor = AppColor.colors.cellBackgroundColor
+                selectedBackgroundView.backgroundColor = AppColor.colors.backgroundColor
+            }
+            
             cell.textLabel?.text = data[indexPath.section].1[indexPath.row].1
             cell.textLabel?.textColor = UIColor.red
             cell.textLabel?.textAlignment = .center
@@ -114,8 +114,7 @@ class SettingsTableViewController: UITableViewController {
                     let domain = Bundle.main.bundleIdentifier!
                     UserDefaults.standard.removePersistentDomain(forName: domain)
                     UserDefaults.standard.synchronize()
-                    self.parentVC?.headerView.unbind()
-                    self.parentVC?.tableView.reloadData()
+                    self.view.makeToast(NSLocalizedString("alert_success", comment: ""))
                 }
             }
         }

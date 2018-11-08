@@ -11,12 +11,12 @@ target 'CNodeJS-Swift' do
   pod 'Kingfisher'
   pod 'SnapKit'
   pod 'MJRefresh'
-  pod 'XLPagerTabStrip'
+#  pod 'XLPagerTabStrip'
   pod 'UIColor_Hex_Swift'
   pod 'DeviceKit'
   pod 'SwiftyJSON'
   pod 'YBImageBrowser'
   pod 'FDFullscreenPopGesture'
-  pod 'NightNight'
+  pod 'KVOController'
 
 end

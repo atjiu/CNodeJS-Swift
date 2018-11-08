@@ -150,3 +150,13 @@ extension UIAlertController {
         }
     }
 }
+
+extension UIImage {
+    class func imageUsedTemplateMode(_ named:String) -> UIImage? {
+        let image = UIImage(named: named)
+        if image == nil {
+            return nil
+        }
+        return image!.withRenderingMode(.alwaysTemplate)
+    }
+}

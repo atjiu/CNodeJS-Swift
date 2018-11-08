@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import XLPagerTabStrip
-import NightNight
+//import XLPagerTabStrip
 
 class TopicOrReplyTableViewController: UITableViewController, IndicatorInfoProvider {
     
@@ -18,10 +17,12 @@ class TopicOrReplyTableViewController: UITableViewController, IndicatorInfoProvi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
-        
         self.tableView.register(UserTopicsTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tableView.separatorStyle = .none
+        
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.view.backgroundColor = AppColor.colors.backgroundColor
+        }
         
     }
     

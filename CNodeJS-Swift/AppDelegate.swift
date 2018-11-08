@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NightNight
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,9 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let navigationController = UINavigationController(rootViewController: LayoutViewController())
-        navigationController.navigationBar.mixedBarStyle = MixedBarStyle(normal: .default, night: .black)
-        self.window?.rootViewController  = navigationController
         
+        self.themeChangedHandler = { [weak self] (style) -> Void in
+            navigationController.navigationBar.barStyle = style == AppColor.AppColorStyleDefault ? .default : .black
+        }
+        
+        self.window?.rootViewController  = navigationController
         return true
     }
 

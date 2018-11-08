@@ -8,7 +8,6 @@
 
 import UIKit
 import MJRefresh
-import NightNight
 
 class RefreshView: MJRefreshHeader {
     
@@ -44,16 +43,19 @@ class RefreshView: MJRefreshHeader {
         super.prepare()
         self.mj_h = 50
         
-        if NightNight.theme == .normal {
-            self.loadingView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        } else {
-            self.loadingView = UIActivityIndicatorView(activityIndicatorStyle: .white)
-        }
+        self.loadingView = AppColor.sharedInstance.style == AppColor.AppColorStyleDefault ? UIActivityIndicatorView(activityIndicatorStyle: .gray) : UIActivityIndicatorView(activityIndicatorStyle: .white)
 
-        self.arrowImage.mixedImage = MixedImage(normal: "baseline_arrow_downward_black_24pt", night: "baseline_arrow_downward_white_24pt")
-        self.arrowImage.mixedTintColor = MixedColor(normal: UIColor(CNodeColor.titleColor), night: UIColor(CNodeColor.titleColor_dark))
         self.addSubview(loadingView!)
         self.addSubview(arrowImage)
+        
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            if style == AppColor.AppColorStyleDefault {
+                self?.arrowImage.image = UIImage(named: "baseline_arrow_downward_black_24pt")
+            } else {
+                self?.arrowImage.image = UIImage(named: "baseline_arrow_downward_white_24pt")
+            }
+            self?.arrowImage.tintColor = AppColor.colors.titleColor
+        }
         
     }
     

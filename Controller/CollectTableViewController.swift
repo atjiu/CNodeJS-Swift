@@ -9,7 +9,6 @@
 import UIKit
 import Moya
 import MJRefresh
-import NightNight
 
 class CollectTableViewController: UITableViewController {
     
@@ -22,11 +21,6 @@ class CollectTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = NSLocalizedString("my_collects", comment: "")
         
-        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
-        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
-        // 设置返回颜色
-        self.navigationController?.navigationBar.mixedTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor_dark), night: UIColor(CNodeColor.navigationBackgroundColor))
-
         self.tableView.register(UserTopicsTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tableView.separatorStyle = .none
         
@@ -43,6 +37,12 @@ class CollectTableViewController: UITableViewController {
         
         //加载数据
         self.tableView.mj_header.beginRefreshing()
+        
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.view.backgroundColor = AppColor.colors.backgroundColor
+            self?.navigationController?.navigationBar.tintColor = AppColor.colors.navigationBackgroundColor
+//            self?.navigationController?.navigationBar.barTintColor = AppColor.colors.navigationBackgroundColor
+        }
     }
     
     

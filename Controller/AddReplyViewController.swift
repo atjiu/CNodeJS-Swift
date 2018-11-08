@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 import Moya
-import NightNight
 
 class AddReplyViewController: UIViewController {
     
@@ -22,11 +21,9 @@ class AddReplyViewController: UIViewController {
     lazy var textView: UITextView = {
         var textView = UITextView()
         textView.keyboardType = .default
-        textView.keyboardAppearance = NightNight.theme == .normal ? .default : .dark
+        textView.keyboardAppearance = AppColor.sharedInstance.style == AppColor.AppColorStyleDefault ? .default : .dark
         textView.keyboardDismissMode = .interactive
         textView.font = UIFont.systemFont(ofSize: 16)
-        textView.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.titleColor), night: UIColor(CNodeColor.titleColor_dark))
-        textView.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
         return textView
     }()
 
@@ -34,11 +31,6 @@ class AddReplyViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("reply_add", comment: "")
-        
-        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
-        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
-        // 设置返回颜色
-        self.navigationController?.navigationBar.mixedTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor_dark), night: UIColor(CNodeColor.navigationBackgroundColor))
         
         //添加菜单
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("alert_cancel", comment: ""), style: .plain, target: self, action: #selector(AddReplyViewController.leftClick))
@@ -57,6 +49,15 @@ class AddReplyViewController: UIViewController {
         // 判断是否是回复其它用户
         if (detail_reply_loginname != nil) {
             textView.text = "@\(detail_reply_loginname!) "
+        }
+        
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.navigationController?.navigationBar.barStyle = style == AppColor.AppColorStyleDefault ? .default : .black
+            self?.textView.textColor = AppColor.colors.titleColor
+            self?.textView.backgroundColor = AppColor.colors.backgroundColor
+            self?.view.backgroundColor = AppColor.colors.backgroundColor
+            self?.navigationController?.navigationBar.tintColor = AppColor.colors.navigationBackgroundColor
+//            self?.navigationController?.navigationBar.barTintColor = AppColor.colors.navigationBackgroundColor
         }
     }
     

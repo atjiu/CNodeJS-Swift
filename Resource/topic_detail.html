@@ -12,12 +12,12 @@
 <body>
   <div id="app"></div>
   <script type="text/template" id="tpl">
-    <div class="header">
+    <div class="header cellBackground_<%=_theme%>">
       <img src="<%=author.avatar_url%>" class="avatar to-user-center" data-loginname="<%=author.loginname%>"/>
       <div class="info">
         <div class="info1">
-          <div class="loginname to-user-center" data-loginname="<%=author.loginname%>"><%=author.loginname%></div>
-          <div class="tab">
+          <div class="loginname username_<%=_theme%> to-user-center" data-loginname="<%=author.loginname%>"><%=author.loginname%></div>
+          <div class="tab tabBackgroundColor_<%=_theme%> time_<%=_theme%>">
             <% if(tab === 'share') { %>
               <%=locale.tab_share%>
             <% } else if(tab === 'ask') { %>
@@ -31,45 +31,49 @@
             <% } %>
           </div>
         </div>
-        <div><%=locale.topic_create_at%> <%=moment(create_at).fromNow()%>&nbsp;•&nbsp;<%=visit_count%><%=locale.topic_visit_count%></div>
+        <div class="time_<%=_theme%>"><%=locale.topic_create_at%> <%=moment(create_at).fromNow()%>&nbsp;•&nbsp;<%=visit_count%><%=locale.topic_visit_count%></div>
       </div>
     </div>
-    <div class="title">
+    <div class="divide_<%=_theme%>"></div>
+    <div class="title title_<%=_theme%> cellBackground_<%=_theme%>">
       <% if (good) { %>
         [精]
       <% } %>
       <%=title%>
     </div>
-    <hr>
-    <div class="content deal-link">
+    <div class="divide_<%=_theme%>"></div>
+    <div class="content title_<%=_theme%> cellBackground_<%=_theme%> deal-link">
       <%=content%>
     </div>
-    <div class="panel">
+    <div class="divide_<%=_theme%>"></div>
+    <div class="panel title_<%=_theme%>">
       <%=replies.length%> <%=locale.replies%>
     </div>
-    <div class="replies">
+    <div class="divide_<%=_theme%>"></div>
+    <div class="replies cellBackground_<%=_theme%>">
       <% _.each(replies, function(v, i) { %>
         <div class="tap" data-id="<%=v.id%>" data-loginname="<%=v.author.loginname%>">
           <div class="reply">
             <img src="<%=v.author.avatar_url%>" class="avatar-sm to-user-center" data-loginname="<%=v.author.loginname%>"/>
             <div class="info">
               <div class="info1">
-                <div class="loginname to-user-center" data-loginname="<%=v.author.loginname%>">
+                <div class="loginname to-user-center username_<%=_theme%>" data-loginname="<%=v.author.loginname%>">
                   <%=v.author.loginname%>
                   <% if(v.author.loginname === author.loginname){ %>
                     <span class="op">[<%=locale.reply_author%>]</span>
                   <% } %>
                 </div>
               </div>
-              <div><%=i + 1%><%=locale.reply_floor%>&nbsp;•&nbsp;<%=locale.topic_create_at%> <%=moment(v.create_at).fromNow()%></div>
+              <div class="time_<%=_theme%>"><%=i + 1%><%=locale.reply_floor%>&nbsp;•&nbsp;<%=locale.topic_create_at%> <%=moment(v.create_at).fromNow()%></div>
             </div>
           </div>
-          <div class="reply-content deal-link"><%=v.content%></div>
+          <div class="reply-content deal-link title_<%=_theme%>"><%=v.content%></div>
         </div>
+        <div class="divide_<%=_theme%>"></div>
       <% }) %>
     </div>
     <% if(replies.length > 0){ %>
-      <div class="no-more"><%=locale.reply_no_more%></div>
+      <div class="no-more title_<%=_theme%>"><%=locale.reply_no_more%></div>
     <% } %>
   </script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
@@ -77,6 +81,8 @@
     function init(topic) {
       var appTpl = _.template(document.getElementById('tpl').innerHTML);
       moment.locale(topic.data.locale.time_i18n);
+      document.body.className = "background_" + topic.data._theme
+      document.getElementById("app").className = "background_" + topic.data._theme
       document.getElementById("app").innerHTML = appTpl(topic.data);
 
       // 点击回复列表里用户名事件

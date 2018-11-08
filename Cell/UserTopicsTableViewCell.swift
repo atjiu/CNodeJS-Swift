@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 import Kingfisher
-import NightNight
 
 class UserTopicsTableViewCell: UITableViewCell {
     
@@ -21,38 +20,29 @@ class UserTopicsTableViewCell: UITableViewCell {
     }()
     var titleLabel: UILabel = {
         var label = UILabel()
-        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.titleColor), night: UIColor(CNodeColor.titleColor_dark))
         label.font = UIFont.systemFont(ofSize: 15)
         label.numberOfLines = 0
         return label
     }()
     var usernameLabel: UILabel = {
         var label = UILabel()
-        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.usernameColor), night: UIColor(CNodeColor.usernameColor_dark))
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     var createTimeLabel: UILabel = {
         var label = UILabel()
-        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.timeColor), night: UIColor(CNodeColor.timeColor_dark))
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     
     // 装上面定义的那些元素的容器
-    var contentPanel:UIView = {
-        var contentPanel = UIView()
-        contentPanel.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.cellBackgroundColor), night: UIColor(CNodeColor.cellBackgroundColor_dark))
-        return contentPanel
-    }()
+    var contentPanel = UIView()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
         let selectedBackgroundView = UIView()
         self.selectedBackgroundView = selectedBackgroundView
-        selectedBackgroundView.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
         
         self.contentView.addSubview(self.contentPanel)
         
@@ -85,6 +75,15 @@ class UserTopicsTableViewCell: UITableViewCell {
             make.top.equalTo(self.avatar.snp.bottom).offset(10)
             make.left.equalTo(10)
             make.right.bottom.equalTo(-10)
+        }
+        
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.titleLabel.textColor = AppColor.colors.titleColor
+            self?.usernameLabel.textColor = AppColor.colors.usernameColor
+            self?.createTimeLabel.textColor = AppColor.colors.timeColor
+            self?.contentPanel.backgroundColor = AppColor.colors.cellBackgroundColor
+            self?.backgroundColor = AppColor.colors.backgroundColor
+            selectedBackgroundView.backgroundColor = AppColor.colors.backgroundColor
         }
         
     }

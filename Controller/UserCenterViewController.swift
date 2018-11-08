@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 import Moya
-import NightNight
 
 class UserCenterViewController: UIViewController {
     
@@ -22,11 +21,6 @@ class UserCenterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = loginname
-        
-        self.view.mixedBackgroundColor = MixedColor(normal: UIColor(CNodeColor.backgroundColor), night: UIColor(CNodeColor.backgroundColor_dark))
-        self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
-        // 设置返回颜色
-        self.navigationController?.navigationBar.mixedTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor_dark), night: UIColor(CNodeColor.navigationBackgroundColor))
         
         self.view.addSubview(header)
         self.addChildViewController(tabsTopicAndReplyViewController)
@@ -43,6 +37,12 @@ class UserCenterViewController: UIViewController {
         }
         
         self.view.makeToastActivity(.center)
+        
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.view.backgroundColor = AppColor.colors.backgroundColor
+            self?.navigationController?.navigationBar.tintColor = AppColor.colors.navigationBackgroundColor
+//            self?.navigationController?.navigationBar.barTintColor = AppColor.colors.navigationBackgroundColor
+        }
         
         // 请求用户信息
         provider.request(.user(loginname: loginname)) { (res) in
@@ -63,6 +63,7 @@ class UserCenterViewController: UIViewController {
                 UIAlertController.showAlert(message: error.errorDescription!)
             }
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
