@@ -26,6 +26,7 @@ topic_detail = "Detail";
 topic_reply = "Reply";
 topic_share = "Share";
 topic_collect = "Collect";
+topic_report = "Report";
 topic_cancel = "Cancel";
 topic_up = "Up";
 topic_create_at = "create at ";

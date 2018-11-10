@@ -23,6 +23,8 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     var detail_reply_loginname: String?
     
     var refreshControl = UIRefreshControl()
+    let topicAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    let replyAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     
     lazy var webView: WKWebView = {
         let preferences = WKPreferences()
@@ -37,6 +39,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
 //        webView.layer.borderColor = UIColor.red.cgColor
 //        webView.layer.borderWidth = 1
 //        webView.scrollView.bounces = true
+        webView.isOpaque = false
         webView.scrollView.alwaysBounceVertical = true
         webView.navigationDelegate = self
         webView.loadHTMLString(TOPICDETAILHTML, baseURL: Bundle.main.resourceURL)
@@ -124,21 +127,23 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     
     @objc func menuClick() {
 //        let alertController = UIAlertController(title: "Hello World", message: "WebView加载HTML才是王道", preferredStyle: .actionSheet)
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_reply", comment: ""), style: .default, handler: self.replyHandler))
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_share", comment: ""), style: .default, handler: self.shareHandler))
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_collect", comment: ""), style: .default, handler: self.collectHandler))
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_cancel", comment: ""), style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
+        topicAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_reply", comment: ""), style: .default, handler: self.replyHandler))
+        topicAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_share", comment: ""), style: .default, handler: self.shareHandler))
+        topicAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_collect", comment: ""), style: .default, handler: self.collectHandler))
+        topicAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_report", comment: ""), style: .default, handler: self.reportHandler))
+        topicAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_cancel", comment: ""), style: .cancel, handler: nil))
+        self.present(topicAlertController, animated: true, completion: nil)
+        
     }
     
     @objc func replyClick() {
 //        let alertController = UIAlertController(title: "Hello World", message: "你想干点啥", preferredStyle: .actionSheet)
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_reply", comment: ""), style: .default, handler: self.replyHandler))
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_up", comment: ""), style: .default, handler: self.upHandler))
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("topic_cancel", comment: ""), style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
+        replyAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_reply", comment: ""), style: .default, handler: self.replyHandler))
+        replyAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_up", comment: ""), style: .default, handler: self.upHandler))
+        replyAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_report", comment: ""), style: .default, handler: self.reportHandler))
+        replyAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_cancel", comment: ""), style: .cancel, handler: nil))
+        self.present(replyAlertController, animated: true, completion: nil)
+        
     }
     
     func upHandler(alert: UIAlertAction) {
@@ -170,6 +175,14 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                     UIAlertController.showAlert(message: error.errorDescription!)
                 }
             }
+        } else {
+            UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
+        }
+    }
+    
+    func reportHandler(alert: UIAlertAction) {
+        if UserDefaults.standard.string(forKey: "token") != nil {
+            self.navigationController?.view.makeToast(NSLocalizedString("alert_success", comment: ""))
         } else {
             UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
         }

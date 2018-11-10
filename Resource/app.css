@@ -90,17 +90,32 @@ img {
 }
 
 blockquote {
-/*  background-color: #eee;*/
-  border-left: 4px solid #aaa;
   margin: 0;
   padding: 5px 10px;
+}
+
+.blockquote_Default {
+    background-color: #f2f3f5;
+    border-left: 4px solid #ccc;
+}
+
+.blockquote_Dark {
+    background-color: #201f24;
+    border-left: 4px solid #333;
 }
 
 pre {
   padding: 10px;
   border-radius: 4px;
-  background-color: #eee;
   overflow-x: auto;
+}
+
+.pre_Default, .hr_Default {
+    background-color: #f2f3f5;
+}
+
+.pre_Dark, .hr_Dark {
+    background-color: #201f24;
 }
 
 .reply {

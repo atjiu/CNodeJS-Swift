@@ -26,6 +26,7 @@ topic_detail = "详情";
 topic_reply = "回复";
 topic_share = "分享";
 topic_collect = "收藏";
+topic_report = "举报";
 topic_cancel = "取消";
 topic_up = "点赞";
 topic_create_at = "发布于 ";

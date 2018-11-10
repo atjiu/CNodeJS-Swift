@@ -10,13 +10,13 @@
 </head>
 
 <body>
-  <div id="app"></div>
-  <script type="text/template" id="tpl">
-    <div class="header cellBackground_<%=_theme%>">
-      <img src="<%=author.avatar_url%>" class="avatar to-user-center" data-loginname="<%=author.loginname%>"/>
-      <div class="info">
+    <div id="app"></div>
+    <script type="text/template" id="tpl">
+        <div class="header cellBackground_<%=_theme%>">
+        <img src="<%=author.avatar_url%>" class="avatar to-user-center" data-loginname="<%=author.loginname%>"/>
+        <div class="info">
         <div class="info1">
-          <div class="loginname username_<%=_theme%> to-user-center" data-loginname="<%=author.loginname%>"><%=author.loginname%></div>
+        <div class="loginname username_<%=_theme%> to-user-center" data-loginname="<%=author.loginname%>"><%=author.loginname%></div>
           <div class="tab tabBackgroundColor_<%=_theme%> time_<%=_theme%>">
             <% if(tab === 'share') { %>
               <%=locale.tab_share%>
@@ -84,6 +84,24 @@
       document.body.className = "background_" + topic.data._theme
       document.getElementById("app").className = "background_" + topic.data._theme
       document.getElementById("app").innerHTML = appTpl(topic.data);
+      // 给blockquote设置样式
+      var bqs = document.getElementsByTagName("blockquote");
+      for (var i = 0; i < bqs.length; i++) {
+          var bq = bqs[i];
+          bq.className = "blockquote_" + topic.data._theme
+      }
+      // 给pre标签设置样式
+      var pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++) {
+          var pre = pres[i];
+          pre.className = "pre_" + topic.data._theme
+      }
+      // 给hr标签设置样式
+      var hrs = document.getElementsByTagName("hr");
+      for (var i = 0; i < hrs.length; i++) {
+          var hr = hrs[i];
+          hr.className = "hr_" + topic.data._theme
+      }
 
       // 点击回复列表里用户名事件
       var loginnameDoms = document.getElementsByClassName('to-user-center');
