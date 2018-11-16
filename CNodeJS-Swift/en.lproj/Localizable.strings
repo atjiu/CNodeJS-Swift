@@ -46,11 +46,14 @@ my_collects = "My Collects";
 my_topics = "My Topics";
 my_replies = "My Replies";
 my_settings = "Settings";
+my_login = "Login";
+my_scan_qrcode = "Scan QR Login";
+my_scan_token_result = "Invalid token";
 
 // user header
 user_header_sign_in = "Sign In: ";
 user_header_score = "Score: ";
-user_header_scanner_tip = "Tap the avatar scan code to login";
+user_header_scanner_tip = "Tap the avatar to login";
 
 // notification
 note_read = "Read";
@@ -77,7 +80,9 @@ time_i18n = "en";
 
 // settings
 settings_theme = "Night Mode";
-settings_open_source = "Source Code";
+settings_code = "Source Code";
+settings_open_source = "Open Source Libraries";
+settings_version = "Version";
 settings_issues = "Report Problem";
 settings_logout = "Logout";
 settings_logout_tip = "Are you sure you want to logout your account?";

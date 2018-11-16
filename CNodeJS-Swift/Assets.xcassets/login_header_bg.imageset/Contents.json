@@ -2,17 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "baseline_send_white_24pt_1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "baseline_send_white_24pt_2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "baseline_send_white_24pt_3x.png",
+      "filename" : "login_header_bg.png",
       "scale" : "3x"
     }
   ],

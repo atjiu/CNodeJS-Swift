@@ -28,6 +28,12 @@ class SimpleTableViewCell: UITableViewCell {
         return image
     }()
     
+    var rightLabel: UILabel = {
+        var label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 13)
+        return label
+    }()
+    
 //    var introLabel: UILabel = {
 //        var label = UILabel()
 //        label.mixedTextColor = MixedColor(normal: UIColor(CNodeColor.titleColor), night: UIColor(CNodeColor.titleColor_dark))
@@ -47,11 +53,13 @@ class SimpleTableViewCell: UITableViewCell {
         self.contentPanel.addSubview(icon)
         self.contentPanel.addSubview(titleLabel)
         self.contentPanel.addSubview(rightImage)
+        self.contentPanel.addSubview(rightLabel)
         
         self.themeChangedHandler = {[weak self] (style) -> Void in
             self?.titleLabel.textColor = AppColor.colors.titleColor
             self?.icon.tintColor = AppColor.colors.titleColor
             self?.rightImage.tintColor = AppColor.colors.titleColor
+            self?.rightLabel.textColor = AppColor.colors.titleColor
             self?.contentPanel.backgroundColor = AppColor.colors.cellBackgroundColor
             self?.backgroundColor = AppColor.colors.backgroundColor
             selectedBackgroundView.backgroundColor = AppColor.colors.backgroundColor
@@ -76,13 +84,36 @@ class SimpleTableViewCell: UITableViewCell {
         
         rightImage.snp.makeConstraints { (make) in
             make.centerY.equalTo(self.contentPanel)
-            make.right.equalTo(self.contentPanel).offset(-18)
+            make.right.equalTo(self.contentPanel).offset(-15)
             make.width.height.equalTo(20)
         }
+        
+        rightLabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(self.contentPanel)
+            make.right.equalTo(self.contentPanel).offset(-15)
+        }
+        
     }
     
-    func bind(icon: String, title: String) {
-        self.icon.image = UIImage(named: icon)?.withRenderingMode(.alwaysTemplate)
+    func bind(icon: String?, title: String, rightLabelText: String?) {
+        if icon != nil {
+            self.icon.image = UIImage(named: icon!)?.withRenderingMode(.alwaysTemplate)
+            titleLabel.snp.remakeConstraints { (make) in
+                make.left.equalTo(self.icon.snp.right).offset(18)
+                make.centerY.equalTo(self.icon)
+            }
+        } else {
+            titleLabel.snp.remakeConstraints { (make) in
+                make.left.equalTo(18)
+                make.centerY.equalTo(self.contentPanel)
+            }
+        }
+        if rightLabelText != nil {
+            self.rightLabel.text = rightLabelText!
+            self.rightImage.isHidden = true
+        } else {
+            self.rightImage.isHidden = false
+        }
         self.titleLabel.text = title
     }
 

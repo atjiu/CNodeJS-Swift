@@ -41,7 +41,7 @@ class DefaultColor: NSObject,AppColorProtocol {
     }
     var navigationBackgroundColor: UIColor {
         get {
-            return UIColor("#666")
+            return UIColor("#222")
         }
     }
     var backgroundColor: UIColor {
@@ -95,7 +95,7 @@ class DarkColor: NSObject,AppColorProtocol {
     }
     var navigationBackgroundColor: UIColor {
         get {
-            return UIColor("#A5A5A5")
+            return UIColor("#fff")
         }
     }
     var backgroundColor: UIColor {

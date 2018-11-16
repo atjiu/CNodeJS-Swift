@@ -38,7 +38,7 @@ class LoadMoreView: MJRefreshAutoFooter {
         super.prepare()
         self.mj_h = 50
         
-        self.loadingView = AppColor.sharedInstance.style == AppColor.AppColorStyleDefault ? UIActivityIndicatorView(activityIndicatorStyle: .gray) : UIActivityIndicatorView(activityIndicatorStyle: .white)
+        self.loadingView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         
         self.stateLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
         self.stateLabel?.textAlignment = .center
@@ -47,6 +47,13 @@ class LoadMoreView: MJRefreshAutoFooter {
         self.addSubview(loadingView!)
         self.addSubview(stateLabel!)
         
+        self.themeChangedHandler = {[weak self] (style) -> Void in
+            if style == AppColor.AppColorStyleDefault {
+                self?.loadingView?.activityIndicatorViewStyle = .gray
+            } else {
+                self?.loadingView?.activityIndicatorViewStyle = .white
+            }
+        }
     }
     
     override func placeSubviews() {

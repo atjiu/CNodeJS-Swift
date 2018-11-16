@@ -36,7 +36,7 @@ class AddReplyViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("alert_cancel", comment: ""), style: .plain, target: self, action: #selector(AddReplyViewController.leftClick))
         let menuButton = UIButton()
         menuButton.contentMode = .center
-        menuButton.setImage(UIImage(named: "baseline_send_white_24pt"), for: UIControlState.normal)
+        menuButton.setImage(UIImage(named: "baseline_send_black_24pt"), for: UIControlState.normal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButton)
         menuButton.addTarget(self, action: #selector(AddReplyViewController.rightClick), for: .touchUpInside)
 

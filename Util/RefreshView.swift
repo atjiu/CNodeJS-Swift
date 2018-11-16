@@ -43,15 +43,17 @@ class RefreshView: MJRefreshHeader {
         super.prepare()
         self.mj_h = 50
         
-        self.loadingView = AppColor.sharedInstance.style == AppColor.AppColorStyleDefault ? UIActivityIndicatorView(activityIndicatorStyle: .gray) : UIActivityIndicatorView(activityIndicatorStyle: .white)
-
+        self.loadingView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        
         self.addSubview(loadingView!)
         self.addSubview(arrowImage)
         
         self.themeChangedHandler = {[weak self] (style) -> Void in
             if style == AppColor.AppColorStyleDefault {
+                self?.loadingView?.activityIndicatorViewStyle = .gray
                 self?.arrowImage.image = UIImage(named: "baseline_arrow_downward_black_24pt")
             } else {
+                self?.loadingView?.activityIndicatorViewStyle = .white
                 self?.arrowImage.image = UIImage(named: "baseline_arrow_downward_white_24pt")
             }
             self?.arrowImage.tintColor = AppColor.colors.titleColor

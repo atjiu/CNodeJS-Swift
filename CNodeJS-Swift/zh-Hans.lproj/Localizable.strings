@@ -46,11 +46,14 @@ my_collects = "我的收藏";
 my_topics = "我的话题";
 my_replies = "我的回复";
 my_settings = "设置";
+my_login = "登录";
+my_scan_qrcode = "扫描登录";
+my_scan_token_result = "无效Token";
 
 // user header
 user_header_sign_in = "注册于: ";
 user_header_score = "积分: ";
-user_header_scanner_tip = "点击头像扫码登录";
+user_header_scanner_tip = "点击头像登录";
 
 // notification
 note_read = "已读";
@@ -77,7 +80,9 @@ time_i18n = "zh-cn";
 
 // settings
 settings_theme = "夜间模式";
-settings_open_source = "开源地址";
+settings_code = "开源地址";
+settings_open_source = "开源库";
+settings_version = "版本号";
 settings_issues = "提交Bug";
 settings_logout = "注销";
 settings_logout_tip = "确定要注销当前帐号吗？";

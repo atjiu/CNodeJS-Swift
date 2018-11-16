@@ -14,8 +14,12 @@ class SettingsTableViewController: UITableViewController {
         ("", []),
         ("", [("baseline_brightness_2_black_24pt",NSLocalizedString("settings_theme", comment: ""))]),
         ("", [
-            ("baseline_code_black_24pt",NSLocalizedString("settings_open_source", comment: "")),
+            ("baseline_code_black_24pt",NSLocalizedString("settings_code", comment: "")),
             ("baseline_bug_report_black_24pt",NSLocalizedString("settings_issues", comment: ""))
+        ]),
+        ("", [
+            ("open_source_black_24pt",NSLocalizedString("settings_open_source", comment: "")),
+            ("version_black_24pt",NSLocalizedString("settings_version", comment: ""))
         ]),
         ("", [("baseline_warning_white_24pt",NSLocalizedString("settings_logout", comment: ""))])
     ]
@@ -32,7 +36,6 @@ class SettingsTableViewController: UITableViewController {
         self.themeChangedHandler = {[weak self] (style) -> Void in
             self?.view.backgroundColor = AppColor.colors.backgroundColor
             self?.navigationController?.navigationBar.tintColor = AppColor.colors.navigationBackgroundColor
-//            self?.navigationController?.navigationBar.barTintColor = AppColor.colors.navigationBackgroundColor
         }
     }
     
@@ -48,7 +51,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return [0, 20, 20, 20][section]
+        return [0, 20, 20, 20, 20][section]
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,7 +63,8 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as! SwitchButtonTableViewCell
-            cell.switchClick = {[weak self] in
+            cell.selectionStyle = .none
+            cell.switchClick = {[] in
                 if AppColor.sharedInstance.style == AppColor.AppColorStyleDefault {
                     AppColor.sharedInstance.setStyleAndSave(AppColor.AppColorStyleDark)
                 } else {
@@ -68,17 +72,23 @@ class SettingsTableViewController: UITableViewController {
                 }
             }
             return cell
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 2 || indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "simpleCell", for: indexPath) as! SimpleTableViewCell
-            cell.bind(icon: data[indexPath.section].1[indexPath.row].0, title: data[indexPath.section].1[indexPath.row].1)
+            cell.selectionStyle = .none
+            if indexPath.section == 3 && indexPath.row == 1 {
+                cell.bind(icon: data[indexPath.section].1[indexPath.row].0, title: data[indexPath.section].1[indexPath.row].1, rightLabelText: "Version " + (Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)
+                    + " (Build " + (Bundle.main.infoDictionary!["CFBundleVersion"] as! String ) + ")")
+            } else {
+                cell.bind(icon: data[indexPath.section].1[indexPath.row].0, title: data[indexPath.section].1[indexPath.row].1, rightLabelText: nil)
+            }
             return cell
-        } else if indexPath.section == 3 {
+        } else if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "logoutCell", for: indexPath)
-            
+            cell.selectionStyle = .none
             let selectedBackgroundView = UIView()
             cell.selectedBackgroundView = selectedBackgroundView
             
-            cell.themeChangedHandler = {[weak self] (style) -> Void in
+            cell.themeChangedHandler = {[] (style) -> Void in
                 cell.backgroundColor = AppColor.colors.cellBackgroundColor
                 selectedBackgroundView.backgroundColor = AppColor.colors.backgroundColor
             }
@@ -98,18 +108,20 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let menuName = data[indexPath.section].1[indexPath.row].1
-        if menuName == NSLocalizedString("settings_open_source", comment: "") {
+        if indexPath.section == 2 && indexPath.row == 0 {
             UIApplication.shared.open(URL(string: "https://github.com/tomoya92/CNodeJS-Swift")!, options: [:]) { (success) in
                 //打开浏览器成功了，做点其它的东东
             }
-        } else if menuName == NSLocalizedString("settings_issues", comment: "") {
+        } else if indexPath.section == 2 && indexPath.row == 1 {
             UIApplication.shared.open(URL(string: "https://github.com/tomoya92/CNodeJS-Swift/issues")!, options: [:]) { (success) in
                 //打开浏览器成功了，做点其它的东东
             }
+        } else if indexPath.section == 3 && indexPath.row == 0 {
+            let openSourceTableViewController = OpenSourceTableViewController()
+            self.navigationController?.pushViewController(openSourceTableViewController, animated: true)
         }
         if UserDefaults.standard.string(forKey: "token") != nil {
-            if menuName == NSLocalizedString("settings_logout", comment: "") {
+            if indexPath.section == 4 && indexPath.row == 0 {
                 UIAlertController.showConfirm(message: NSLocalizedString("settings_logout_tip", comment: "")) { (_) in
                     let domain = Bundle.main.bundleIdentifier!
                     UserDefaults.standard.removePersistentDomain(forName: domain)

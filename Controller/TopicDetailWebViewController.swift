@@ -23,8 +23,6 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     var detail_reply_loginname: String?
     
     var refreshControl = UIRefreshControl()
-    let topicAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    let replyAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     
     lazy var webView: WKWebView = {
         let preferences = WKPreferences()
@@ -61,6 +59,8 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
         self.refreshControl.addTarget(self, action: #selector(TopicDetailWebViewController.fetch), for: .valueChanged)
         webView.scrollView.addSubview(refreshControl)
         
+        // 这个设置没用，第一次加载就是黑色的，加载完成之后再手动刷新颜色就正常了，不清楚到底是为啥
+//        self.refreshControl.tintColor = AppColor.colors.titleColor
         self.refreshControl.beginRefreshing()
 
         addSubView()
@@ -71,7 +71,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
             self?.navigationController?.navigationBar.tintColor = AppColor.colors.navigationBackgroundColor
             self?.webView.backgroundColor = AppColor.colors.backgroundColor
             self?.webView.scrollView.backgroundColor = AppColor.colors.backgroundColor
-//            self?.navigationController?.navigationBar.barTintColor = AppColor.colors.navigationBackgroundColor
+            self?.refreshControl.tintColor = AppColor.colors.titleColor
         }
     }
     
@@ -126,6 +126,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     }
     
     @objc func menuClick() {
+        let topicAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 //        let alertController = UIAlertController(title: "Hello World", message: "WebView加载HTML才是王道", preferredStyle: .actionSheet)
         topicAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_reply", comment: ""), style: .default, handler: self.replyHandler))
         topicAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_share", comment: ""), style: .default, handler: self.shareHandler))
@@ -137,6 +138,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
     }
     
     @objc func replyClick() {
+        let replyAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 //        let alertController = UIAlertController(title: "Hello World", message: "你想干点啥", preferredStyle: .actionSheet)
         replyAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_reply", comment: ""), style: .default, handler: self.replyHandler))
         replyAlertController.addAction(UIAlertAction(title: NSLocalizedString("topic_up", comment: ""), style: .default, handler: self.upHandler))
@@ -159,7 +161,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                 }
             }
         } else {
-            UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
+            self.view.makeToast(NSLocalizedString("settings_login_tip", comment: ""))
         }
     }
     
@@ -176,7 +178,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                 }
             }
         } else {
-            UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
+            self.view.makeToast(NSLocalizedString("settings_login_tip", comment: ""))
         }
     }
     
@@ -184,7 +186,7 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
         if UserDefaults.standard.string(forKey: "token") != nil {
             self.navigationController?.view.makeToast(NSLocalizedString("alert_success", comment: ""))
         } else {
-            UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
+            self.view.makeToast(NSLocalizedString("settings_login_tip", comment: ""))
         }
     }
     
@@ -208,13 +210,9 @@ class TopicDetailWebViewController: UIViewController, WKNavigationDelegate, WKSc
                 self?.fetch()
             }
             let navigationController = UINavigationController(rootViewController: addReplyViewController)
-            present(navigationController, animated: true, completion: {() in
-                // 回复成功后，刷新当前页面
-                // 调用 self.fetch() 不生效，也不知道为啥
-//                self.view.makeToast("回复成功") 这个也没效果，只好用block了。。
-            })
+            present(navigationController, animated: true, completion: nil)
         } else {
-            UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
+            self.view.makeToast(NSLocalizedString("settings_login_tip", comment: ""))
         }
     }
 

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0715110A20E71D630014206D /* TopicDetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715110920E71D630014206D /* TopicDetailWebViewController.swift */; };
 		0715110C20E71FD80014206D /* LayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715110B20E71FD80014206D /* LayoutViewController.swift */; };
+		07250581219D74BA00090A25 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07250580219D74BA00090A25 /* LoginViewController.swift */; };
+		07250585219EB3B000090A25 /* OpenSourceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07250584219EB3B000090A25 /* OpenSourceTableViewController.swift */; };
 		072ED80420F8EB8A00941953 /* UserTopicsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072ED80320F8EB8A00941953 /* UserTopicsTableViewCell.swift */; };
 		072ED80620F9FAA300941953 /* CollectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072ED80520F9FAA300941953 /* CollectTableViewController.swift */; };
 		072F1C562189494300BA1488 /* underscore.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 072F1C532189494300BA1488 /* underscore.min.js */; };
@@ -76,6 +78,8 @@
 /* Begin PBXFileReference section */
 		0715110920E71D630014206D /* TopicDetailWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailWebViewController.swift; sourceTree = "<group>"; };
 		0715110B20E71FD80014206D /* LayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutViewController.swift; sourceTree = "<group>"; };
+		07250580219D74BA00090A25 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		07250584219EB3B000090A25 /* OpenSourceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceTableViewController.swift; sourceTree = "<group>"; };
 		072ED80320F8EB8A00941953 /* UserTopicsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTopicsTableViewCell.swift; sourceTree = "<group>"; };
 		072ED80520F9FAA300941953 /* CollectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectTableViewController.swift; sourceTree = "<group>"; };
 		072F1C532189494300BA1488 /* underscore.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = underscore.min.js; sourceTree = "<group>"; };
@@ -182,12 +186,12 @@
 		07446BF620E60C3900768C90 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				07446BF720E60C4B00768C90 /* LoadMoreView.swift */,
-				07446BF920E60C9800768C90 /* CNodeService.swift */,
 				07446C0120E61BD300768C90 /* Constants.swift */,
 				076BB1202193E9EC006AF550 /* AppColor.swift */,
+				07446BF920E60C9800768C90 /* CNodeService.swift */,
 				07446C0B20E63C4200768C90 /* UILabelPadding.swift */,
 				07A5427F20EBBE960068B99C /* RefreshView.swift */,
+				07446BF720E60C4B00768C90 /* LoadMoreView.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -284,6 +288,8 @@
 				072ED80520F9FAA300941953 /* CollectTableViewController.swift */,
 				072F1C5B2189AA5F00BA1488 /* AddReplyViewController.swift */,
 				07D77EF02192FC31002D8849 /* SettingsTableViewController.swift */,
+				07250580219D74BA00090A25 /* LoginViewController.swift */,
+				07250584219EB3B000090A25 /* OpenSourceTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -500,6 +506,7 @@
 				074D0BAD2122AE500055B10E /* Notification.swift in Sources */,
 				07742D4920F5912F004C80AA /* UserCenterViewController.swift in Sources */,
 				07D77EF12192FC31002D8849 /* SettingsTableViewController.swift in Sources */,
+				07250585219EB3B000090A25 /* OpenSourceTableViewController.swift in Sources */,
 				079A88C120E5C58000C1E76F /* AppDelegate.swift in Sources */,
 				07742D4120F4B458004C80AA /* LBXScanNetAnimation.swift in Sources */,
 				07742D4220F4B458004C80AA /* LBXScanView.swift in Sources */,
@@ -519,6 +526,7 @@
 				076BB13621942AC8006AF550 /* IndicatorInfo.swift in Sources */,
 				076BB13B21942AC8006AF550 /* PagerTabStripBehaviour.swift in Sources */,
 				078B340720E9CD6A006AD5D1 /* Reply.swift in Sources */,
+				07250581219D74BA00090A25 /* LoginViewController.swift in Sources */,
 				074D0BAB2122A9870055B10E /* Message.swift in Sources */,
 				07446BFA20E60C9800768C90 /* CNodeService.swift in Sources */,
 				072F1C63218AFDB200BA1488 /* Toast-Swift.swift in Sources */,

@@ -14,7 +14,6 @@ public protocol LBXScanViewControllerDelegate {
      func scanFinished(scanResult: LBXScanResult, error: String?)
 }
 
-
 open class LBXScanViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
  //返回扫码结果，也可以通过继承本控制器，改写该handleCodeResult方法即可
@@ -41,16 +40,30 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
 
     override open func viewDidLoad() {
         super.viewDidLoad()
+        self.title = NSLocalizedString("my_scan_qrcode", comment: "")
 
         // Do any additional setup after loading the view.
         
               // [self.view addSubview:_qRScanView];
-        self.view.backgroundColor = UIColor.black
+//        self.view.backgroundColor = UIColor.black
         self.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
         
+        // 添加返回button
+        let backButton = UIButton()
+        backButton.contentMode = .center
+        backButton.setImage(UIImage(named: "baseline_keyboard_backspace_black_24pt"), for: UIControlState.normal)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        backButton.addTarget(self, action: #selector(LBXScanViewController.backClick), for: .touchUpInside)
+        
         self.themeChangedHandler = {[weak self] (style) -> Void in
+            self?.navigationController?.navigationBar.barStyle = style == AppColor.AppColorStyleDefault ? .default : .black
+            self?.view.backgroundColor = AppColor.colors.backgroundColor
             self?.navigationController?.navigationBar.tintColor = AppColor.colors.navigationBackgroundColor
         }
+    }
+    
+    @objc func backClick() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     open func setNeedCodeImage(needCodeImg:Bool)
@@ -138,6 +151,7 @@ open class LBXScanViewController: UIViewController, UIImagePickerControllerDeleg
             let result:LBXScanResult = arrayResult[0]
             
             delegate.scanFinished(scanResult: result, error: nil)
+            self.backClick()
 
         }else{
             

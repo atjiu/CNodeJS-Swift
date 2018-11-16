@@ -9,11 +9,10 @@
 import UIKit
 import SnapKit
 import Kingfisher
-import MJRefresh
 import Moya
 import SwiftyJSON
 
-class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
+class UserHeaderTableViewCell: UITableViewCell {
     
     let provider = MoyaProvider<CNodeService>()
     // 0: 当前用户的个人中心 1: 其它用户的个人中心
@@ -132,95 +131,12 @@ class UserHeaderTableViewCell: UITableViewCell, LBXScanViewControllerDelegate {
         self.score.text = ""
     }
     
+    var toLogin: (() -> Void)?
+    
     @objc func avatarTap() {
         if UserDefaults.standard.string(forKey: "token") == nil {
-            LBXPermissions.authorizeCameraWith { [weak self] (granted) in
-                if granted {
-                    self?.scanQrCode()
-                } else {
-                    LBXPermissions.jumpToSystemPrivacySetting()
-                }
-            }
+            self.toLogin?()
         }
     }
     
-    var scanQrCodeViewController: ((_ vc: LBXScanViewController?) -> Void)?
-    var reloadData : (() -> Void)?
-    func scanQrCode() {
-        //设置扫码区域参数
-        var style = LBXScanViewStyle()
-        style.centerUpOffset = 60;
-        style.xScanRetangleOffset = 30;
-        if SCREEN_HEIGHT <= 480 {
-            //3.5inch 显示的扫码缩小
-            style.centerUpOffset = 40;
-            style.xScanRetangleOffset = 20;
-        }
-        style.color_NotRecoginitonArea = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 0.4)
-        style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle.Inner;
-        style.photoframeLineW = 2.0;
-        style.photoframeAngleW = 16;
-        style.photoframeAngleH = 16;
-        style.isNeedShowRetangle = false;
-        style.anmiationStyle = LBXScanViewAnimationStyle.NetGrid;
-        style.animationImage = UIImage(named: "qrcode_scan_full_net")
-        let vc = LBXScanViewController();
-        vc.scanStyle = style
-        vc.scanResultDelegate = self
-        scanQrCodeViewController?(vc)
-    }
-    
-    var startReloadDataRefreshing: (() -> Void)?
-    var endReloadDataRefreshing: (() -> Void)?
-    var toastMessage: ((_ msg: String) -> Void)?
-    var updateMenuStatus : (() -> Void)?
-    func scanFinished(scanResult: LBXScanResult, error: String?) {
-        let token = scanResult.strScanned
-        if token == nil {
-            return;
-        }
-        if token!.count != 36 {
-            return;
-        }
-        self.startReloadDataRefreshing?()
-        // fetch user
-        provider.request(.accessToken(token: token!)) { (res) in
-            switch res {
-            case .success(let response):
-                let json = JSON(response.data)
-                if json["success"] == false {
-                    self.toastMessage?("accesstoken error")
-                    self.endReloadDataRefreshing?()
-                    return;
-                }
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-                let author = try! decoder.decode(Author.self, from: response.data)
-                UserDefaults.standard.set(token, forKey: "token")
-                UserDefaults.standard.set(author.avatar_url, forKey: "avatar_url")
-                UserDefaults.standard.set(author.loginname, forKey: "loginname")
-                // 请求用户个人信息
-                self.provider.request(.user(loginname: author.loginname!), completion: { (res) in
-                    switch res {
-                    case .success(let response):
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-                        let result = try! decoder.decode(Result<Author>.self, from: response.data)
-                        UserDefaults.standard.set(result.data?.score, forKey: "score")
-                        UserDefaults.standard.set(result.data?.create_at?.getElapsedInterval(), forKey: "create_at")
-                        self.bind()
-                        self.updateMenuStatus?()
-                        self.endReloadDataRefreshing?()
-                    case .failure(let error):
-                        self.toastMessage?(error.errorDescription!)
-                        self.endReloadDataRefreshing?()
-                    }
-                })
-            case .failure(let error):
-                self.toastMessage?(error.errorDescription!)
-                self.endReloadDataRefreshing?()
-            }
-        }
-    }
-
 }

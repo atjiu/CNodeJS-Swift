@@ -41,6 +41,8 @@
 - [Toast-Swift](https://github.com/scalessec/Toast-Swift)
 - [YBImageBrowser](https://github.com/indulgeIn/YBImageBrowser)
 - [FDFullscreenPopGesture](https://github.com/forkingdog/FDFullscreenPopGesture)
+- [KVOController](https://github.com/facebook/KVOController)
+- [swiftScan](https://github.com/MxABC/swiftScan)
 
 ## Donate
 

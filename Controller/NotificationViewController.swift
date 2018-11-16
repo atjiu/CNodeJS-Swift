@@ -51,14 +51,8 @@ class NotificationViewController: UITableViewController {
     var setBadge: ((_ count: Int) -> Void)?
     
     @objc func refreshData() {
-        let token = UserDefaults.standard.string(forKey: "token")
-        if token == nil {
-            UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
-            self.data = [Message]()
-            self.tableView.mj_header.endRefreshing()
-            self.tableView.reloadData()
-        } else {
-            provider.request(.messages(token: token!)) { (res) in
+        if let token = UserDefaults.standard.string(forKey: "token") {
+            provider.request(.messages(token: token)) { (res) in
                 switch res {
                 case .success(let response):
                     let decoder = JSONDecoder()
@@ -110,6 +104,12 @@ class NotificationViewController: UITableViewController {
         self.navigationController?.pushViewController(topicDetailWebViewController, animated: true)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if UserDefaults.standard.string(forKey: "token") == nil {
+            self.data.removeAll()
+            self.tableView.reloadData()
+        }
+    }
 
     /*
     // MARK: - Navigation

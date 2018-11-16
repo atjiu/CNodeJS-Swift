@@ -10,24 +10,9 @@ import UIKit
 
 class UserViewController: UITableViewController {
     
-    lazy var headerView: UserHeaderTableViewCell = {
+    var headerView: UserHeaderTableViewCell = {
         var cell = UserHeaderTableViewCell()
         cell.type = 0
-        cell.scanQrCodeViewController = { [weak self] vc in
-            self?.navigationController?.pushViewController(vc!, animated: true)
-        }
-        cell.startReloadDataRefreshing = { [weak self] in
-            self?.view.makeToastActivity(.center)
-        }
-        cell.endReloadDataRefreshing = { [weak self] in
-            self?.view.hideToastActivity()
-        }
-        cell.updateMenuStatus = { [weak self] in
-            self?.tableView.reloadData()
-        }
-        cell.toastMessage = {[weak self] msg in
-            self?.navigationController?.view.makeToast(msg)
-        }
         return cell
     }()
     
@@ -64,9 +49,14 @@ class UserViewController: UITableViewController {
         // 加载当前用户信息
         self.headerView.bind();
         
+        // 跳转登录页面
+        self.headerView.toLogin = {[weak self] in
+            let loginViewController = LoginViewController()
+            self?.present(loginViewController, animated: true, completion: nil)
+        }
+        
         self.themeChangedHandler = {[weak self] (style) -> Void in
             self?.view.backgroundColor = AppColor.colors.backgroundColor
-//            self.navigationController?.navigationBar.mixedBarTintColor = MixedColor(normal: UIColor(CNodeColor.navigationBackgroundColor), night: UIColor(CNodeColor.navigationBackgroundColor_dark))
         }
     }
     
@@ -95,7 +85,7 @@ class UserViewController: UITableViewController {
             return UITableViewCell()
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! SimpleTableViewCell
-            cell.bind(icon: data[indexPath.section].1[indexPath.row].0, title: data[indexPath.section].1[indexPath.row].1)
+            cell.bind(icon: data[indexPath.section].1[indexPath.row].0, title: data[indexPath.section].1[indexPath.row].1, rightLabelText: nil)
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "settings_cell", for: indexPath)
@@ -133,7 +123,8 @@ class UserViewController: UITableViewController {
                 self.navigationController?.pushViewController(collectTableViewController, animated: true)
             }
         } else {
-            UIAlertController.showAlert(message: NSLocalizedString("settings_login_tip", comment: ""))
+            let loginViewController = LoginViewController()
+            self.present(loginViewController, animated: true, completion: nil)
         }
     }
     
@@ -145,6 +136,8 @@ class UserViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         if UserDefaults.standard.string(forKey: "token") == nil {
             self.headerView.unbind()
+        } else {
+            self.headerView.bind()
         }
         self.tableView.reloadData()
     }
